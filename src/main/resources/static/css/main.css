@@ -1,0 +1,99 @@
+@charset "ISO-8859-1";
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    height: 56px;
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
+}
+
+footer {
+    position: fixed;     /* make it fixed at bottom */
+    bottom: 0;           /* align to bottom */
+    left: 0;             /* full width */
+    width: 100%;
+    height: 40px;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    line-height: 10px;   /* vertical center text */
+    z-index: 1000;       /* above content */
+}
+
+/* Main container */
+main {
+    flex: 1;
+    display: flex;
+    min-height: 0; /* important for flex overflow to work */
+}
+
+/* Sidebar */
+aside {
+    width: 200px;
+    background-color: #f8f9fa;
+    padding: 5px;
+    overflow-y: auto; /* scroll sidebar if too tall */
+}
+
+/* Main content section */
+section {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto; /* scrollable content */
+    min-height: 0; /* important for flex scrolling */
+/*     background-color: #e9ecef; */
+}
+
+
+Example of overriding a conflicting style
+fieldset {
+	border: 1px solid #666 !important;
+	Re-add the	border
+	padding
+	:
+	10px
+	!important;
+	Add
+	some
+	padding
+}
+
+legend {
+	float: none;
+	Reset
+	float
+	issues
+	width
+	:
+	auto;
+	Ensure
+	legend
+	width
+	is
+	correct
+	padding
+	:
+	0
+	10px;
+	Add
+	padding
+	to
+	the
+	legend
+	text
+	font-size
+	:
+	20px;
+}
+
+

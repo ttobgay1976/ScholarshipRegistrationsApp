@@ -1,0 +1,10 @@
+
+
+#successModal .modal-dialog {
+    max-width: 900px;
+}
+
+#successModal .modal-content {
+    min-height: 350px;
+    border-radius: 12px;
+}

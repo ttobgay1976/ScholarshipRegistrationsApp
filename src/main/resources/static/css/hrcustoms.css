@@ -1,0 +1,45 @@
+
+/* 
+//this display the hr text in center of the line
+.hr-with-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 7px 0;
+}
+
+.hr-with-text::before,
+.hr-with-text::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.hr-with-text span {
+    padding: 0 10px;
+    font-weight: normal;
+    color: #555;
+} */
+
+//this will display the hr text at left side
+
+.hr-with-text {
+    display: flex;
+    align-items: center;
+    width: 100%;              /* 👈 IMPORTANT */
+    margin: 7px 0 10px 0 !important;   /* 👈 bottom space added */
+}
+
+.hr-with-text span {
+    margin-right: 10px;
+    white-space: nowrap;
+    color: #555;
+}
+
+.hr-with-text::after {
+    content: "";
+    display: block;           /* 👈 IMPORTANT */
+    height: 1px;
+    background-color: #ccc;
+    flex: 1;
+}

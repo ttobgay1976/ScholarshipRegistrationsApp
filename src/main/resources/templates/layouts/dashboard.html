@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Layout</title>
+
+    <!-- CSS Fragment -->
+    <th:block th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
+
+   
+
+</head>
+
+<!-- Set currentPath globally for all fragments -->
+<!-- <body th:with="currentPath=${#httpServletRequest.requestURI}"> -->
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div style="display:flex; min-height: 80vh;">
+    <!-- Sidebar -->
+    <!-- <aside th:replace="~{fragments/sidebar :: sidebar}" style="width:200px;"></aside> -->
+
+    <!-- Main Content -->
+    <main style="flex:1; padding:10px; border-left:1px solid #ccc;">
+        <section layout:fragment="content"></section>
+    </main>
+</div>
+
+<!-- <!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div> -->
+
+<!-- JS Fragment -->
+<th:block th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
+
+</body>
+</html>

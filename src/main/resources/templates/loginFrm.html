@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>NDI Login</title>
+
+<th:block
+	th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
+
+<style>
+body {
+	background: linear-gradient(135deg, #eef2f7, #f8f9fc);
+}
+
+.login-card {
+	width: 100%;
+	max-width: 420px;
+	border-radius: 16px;
+	overflow: hidden;
+	border: none;
+	margin-top: 1px;
+}
+
+.login-header {
+	background: linear-gradient(135deg, #432DD7, #0d6efd);
+	color: white;
+	font-weight: 600;
+	text-align: center;
+	padding: 18px;
+	font-size: 18px;
+}
+
+.login-body {
+	padding: 30px;
+	text-align: center;
+}
+
+.login-logo {
+	width: 85px;
+	margin-bottom: 15px;
+}
+
+/* ✅ SAME SIZE FOR BOTH BUTTONS */
+.btn-ndi, .btn-alt {
+	width: 100%;
+	height: 48px;
+	border-radius: 10px;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	transition: 0.3s ease;
+	text-decoration: none;
+}
+
+.btn-ndi {
+	background: #124143;
+	border: none;
+	color: white;
+}
+
+.btn-ndi:hover {
+	background: #0e2f30;
+	transform: translateY(-1px);
+	color: #fff !important; /* keep text white */
+}
+
+.btn-alt {
+	background: #00bfff;
+	border: none;
+	color: white;
+}
+
+.btn-alt:hover {
+	background: #009acd;
+	transform: translateY(-1px);
+	color: #fff !important; /* keep text white */
+}
+
+.login-footer {
+	font-size: 13px;
+}
+</style>
+
+</head>
+
+<body>
+
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<div class="d-flex justify-content-center align-items-center"
+		style="min-height: 85vh;">
+
+		<div class="card shadow-lg login-card">
+
+			<!-- Header -->
+			<div
+				class="login-header d-flex align-items-center justify-content-center gap-2 text-center">
+
+				<img th:src="@{/images/logo.png}" alt="SPRMS Logo"
+					style="height: 40px; width: auto;"> <span class="fw-bold">SPRMS
+					| NDI Login</span>
+
+			</div>
+			<!-- Body -->
+			<div class="login-body">
+
+				<img th:src="@{/images/QRNDIlogo.png}" alt="NDI" class="login-logo">
+
+				<h5 class="mb-2">Welcome Back</h5>
+
+				<p class="text-muted" style="font-size: 14px;">Secure
+					authentication using National Digital Identity</p>
+
+				<!-- NDI Login Button -->
+				<a href="/ndi/login" class="btn btn-ndi mt-3"> <img
+					th:src="@{/images/NDI.png}" style="height: 22px; width: 22px;"
+					alt="NDI"> Login with Bhutan NDI
+				</a>
+
+				<hr class="my-4">
+
+				<!-- Alternative Login Button -->
+				<p class="text-muted" style="font-size: 14px;">Direct Login
+					without using National Digital Identity</p>
+				<a href="/scholarship/dcrc-registrationfrm" class="btn btn-alt">
+					Login without Bhutan NDI </a>
+
+			</div>
+
+			<!-- Footer -->
+			<div class="text-center text-muted py-3 login-footer">© SPRMS
+				System</div>
+
+		</div>
+
+	</div>
+
+	<th:block
+		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
+
+</body>
+</html>

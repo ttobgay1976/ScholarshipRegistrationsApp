@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header th:fragment="header" class="bg-success text-white p-3">
+
+	<div style="display: flex; width: 100%; align-items: center;">
+
+		<!-- Center: Logo + Text -->
+		<div
+			style="flex: 1; display: flex; justify-content: left; align-items: center;">
+			<img th:src="@{/images/logo.png}" alt="Logo"
+				style="height: 50px; margin-right: 10px; padding-left: 100px;">
+			<span>Scholarship Profile and Resource Management System
+				(SPRMS)- RCSC</span>
+		</div>
+
+		<!-- Right: User -->
+
+		<div style="flex: 1; text-align: right;">
+
+			<span th:if="${session.USERNAME != null}"> User ::&nbsp; <span
+				th:text="${session.USERNAME}"></span>
+			</span> <span th:if="${session.USERNAME == null}"> User :: Guest </span>
+
+		</div>
+
+	</div>
+</header>
+</html>

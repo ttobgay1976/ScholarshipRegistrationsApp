@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/dashboard}">
+<head>
+<meta charset="UTF-8">
+
+<title>Thank You</title>
+
+<th:block
+	th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
+<style>
+.thankyou-box {
+	max-width: 700px;
+	margin: 80px auto;
+	text-align: center;
+	padding: 30px;
+	border-radius: 12px;
+	box-shadow: 0px 0px 10px #ccc;
+}
+
+.check-icon {
+	font-size: 60px;
+	color: green;
+}
+</style>
+</head>
+<body>
+	<div class="thankyou-box">
+
+		<div class="check-icon">✔</div>
+
+		<h2 class="text-success">Thank You!</h2>
+
+		<p>
+			<b th:text="${message}"></b>
+		</p>
+
+		<hr />
+
+		<p>
+			<b>Name:</b> <span th:text="${name}"></span>
+		</p>
+		<p>
+			<b>Index No:</b> <span th:text="${indexNo}"></span>
+		</p>
+<!-- 		<p>
+			<b>Stream:</b> <span th:text="${strm}"></span>
+		</p> -->
+		<p>
+			<b>Registration No:</b> <span th:text="${regNo}"></span><br>
+			Note: <i>Kindly take note of your registration number, you may
+				need in future for reference.</i>
+		</p>
+
+		<br />
+
+		<button class="btn btn-primary" onclick="window.print()">
+			Print Registration Slip</button>
+<!-- 
+		<a href="/scholarship/registrationfrm" class="btn btn-secondary">
+			New Registration </a> -->
+
+	</div>
+	<!-- Footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+
+	<!-- JS Fragment -->
+	<th:block
+		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
+</body>
+</html>

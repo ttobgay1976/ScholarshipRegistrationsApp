@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>NDI Waiting</title>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function () {
+	
+    console.log("SCRIPT LOADED");
+
+    function checkStatus() {
+
+        console.log("CHECKING STATUS...");
+
+        const thid = document.getElementById("threadId")?.value;
+
+        console.log("THID:", thid);
+
+        if (!thid) {
+            console.error("THID NOT FOUND");
+            return;
+        }
+
+        fetch("/ndi/check-post-login-ready?thid=" + thid)
+         
+            .then(res => {
+                console.log("HTTP STATUS:", res.status);
+                return res.json();
+            })
+            .then(data => {
+                console.log("API RESPONSE:", data);
+
+                if (data.ready === true) {
+                    window.location.href = "/ndi/post-login?thid=" + thid;
+                } else {
+                    console.log("❌ NOT READY YET");
+                    setTimeout(checkStatus, 1000);
+                }
+
+            })
+            .catch(err => {
+                console.error("FETCH ERROR:", err);
+                setTimeout(checkStatus, 2000);
+            });
+    }
+
+    checkStatus();
+});
+</script>
+
+</head>
+<style>
+.loader {
+	border: 6px solid #f3f3f3;
+	border-top: 6px solid #3498db;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: spin 1s linear infinite;
+	margin: 120px auto;
+}
+
+@
+keyframes spin { 0% {
+	transform: rotate(0deg);
+}
+
+100
+%
+{
+transform
+:
+rotate(
+360deg
+);
+}
+}
+.text {
+	text-align: center;
+	font-family: Arial;
+}
+</style>
+</head>
+<body>
+
+	<input type="hidden" id="threadId" th:value="${thid}" />
+
+	<div class="loader"></div>
+	<div class="text">Preparing your registration...</div>
+
+</body>
+</html>

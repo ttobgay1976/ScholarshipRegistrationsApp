@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>NDI Login</title>
+
+<th:block
+	th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
+<script th:inline="javascript">
+	document
+			.addEventListener(
+					"DOMContentLoaded",
+					function() {
+
+						// ================= QR CODE =================
+						const qrUrlString = /*[[${qrUrl}]]*/"";
+
+						if (qrUrlString) {
+							new QRCode(document.getElementById("qrcode"), {
+								text : qrUrlString,
+								width : 200,
+								height : 200,
+								colorDark : "#000000",
+								colorLight : "#ffffff",
+								correctLevel : QRCode.CorrectLevel.H
+							});
+						}
+
+						// ================= THREAD ID =================
+						const threadInput = document.getElementById("threadId");
+
+						if (!threadInput) {
+							console.error("threadId not found");
+							return;
+						}
+
+						const thid = threadInput.value;
+
+						// ================= SSE CONNECTION =================
+						const eventSource = new EventSource(
+								window.location.origin + "/ndi/events/" + thid);
+
+						eventSource.onopen = function() {
+							console.log("✅ SSE CONNECTED");
+						};
+
+						eventSource.onmessage = function(event) {
+							console.log("Message:", event.data);
+						};
+
+						eventSource.addEventListener("heartbeat", function(
+								event) {
+							console.log("Heartbeat:", event.data);
+						});
+
+						eventSource
+								.addEventListener(
+										"status",
+										function(event) {
+											try {
+												const data = JSON
+														.parse(event.data);
+
+												if (data.status === "PROOF_VALIDATED") {
+													console
+															.log("✅ Proof validated");
+
+													eventSource.close();
+
+													window.location.href = "/ndi/post-login?thid="
+															+ thid;
+
+													// Alternative:
+													// window.location.href = "/ndi/waiting?thid=" + thid;
+												}
+
+											} catch (e) {
+												console
+														.error(
+																"Invalid status event JSON:",
+																event.data);
+											}
+										});
+
+						eventSource.onerror = function() {
+							console
+									.log("⚠️ SSE connection lost (browser will auto-reconnect)");
+						};
+
+					});
+</script>
+
+<style type="text/css">
+.store-badges {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* gap: 1px; */
+}
+
+/* equal container for both */
+.store-badge-box {
+	width: 190px;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fff;
+	border-radius: 8px;
+	padding: 6px;
+}
+
+/* make image fit inside box */
+.store-badge-box img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+	display: block;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="container">
+		<div class="page-wrapper">
+			<div class="login-box">
+
+				<h2 class="title">
+					Login with <span>Bhutan NDI </span> Wallet
+				</h2>
+
+				<a th:href="${deepLink}" class="primary-btn"> Open Bhutan NDI
+					Wallet </a>
+
+				<div class="divider">
+					<span>OR</span>
+				</div>
+
+				<!-- QR WRAPPER -->
+
+				<!-- 				<div class="qr-wrapper">
+
+					LOADER
+					<div id="loader" class="loader"></div>
+					<p th:text="${qrUrl}"></p>
+					<div class="qr-box">
+						<div id="qrcode"></div>
+					</div>
+
+				</div> -->
+
+				<!-- -----NEW QRCODE------ -->
+
+				<div class="qr-wrapper">
+					<!-- LOADER -->
+					<div id="loader" class="loader"></div>
+					<div class="qr-box">
+						<div id="qrcode"></div>
+						<!-- LOGO OVERLAY -->
+						<img th:src="@{/images/QRNDIlogo.png}"
+							style="width:60px; height:60px;" class="qr-logo" alt="NDI Logo">
+					</div>
+
+				</div>
+
+				<!-- ----END OF QR SCAN------- -->
+
+				<div class="steps">
+					<p>1. Open Bhutan NDI Wallet on your phone.</p>
+					<p>2. Tap Scan and scan QR code</p>
+				</div>
+
+				<a href="https://www.youtube.com/@BhutanNDI" target="_blank"
+					rel="noopener noreferrer" class="video-btn"> Watch video guide
+					<i class="bi bi-play-circle-fill ms-1"></i>
+				</a>
+
+				<div class="download-text">Don’t have the Bhutan NDI Wallet?</div>
+				<a href="https://www.youtube.com/@BhutanNDI" class="download-link">Download
+					Now!</a>
+
+				<div class="store-links">
+
+					<div class="store-badges">
+
+						<a
+							href="https://play.google.com/store/apps/details?id=com.example.app"
+							target="_blank" class="store-badge-box"> <img
+							th:src="@{/images/PlayStore.png}" alt="Google Play">
+						</a> <a href="https://apps.apple.com/app/id123456789" target="_blank"
+							class="store-badge-box"> <img
+							th:src="@{/images/AppStore.png}" alt="App Store">
+						</a>
+
+					</div>
+
+				</div>
+				<div class="support">
+
+					<a href="https://www.youtube.com/@BhutanNDI" target="_blank" class="download-link">Get
+						Support </a>
+					<p>
+						<i class="bi bi-envelope-fill"></i> ndifeedback@dhi.bt
+						&nbsp;&nbsp; <i class="bi bi-telephone-fill"></i> 1199
+					</p>
+				</div>
+
+				<input type="hidden" id="threadId" th:value="${threadId}" />
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- JS Fragment -->
+	<th:block
+		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
+
+</body>
+</html>

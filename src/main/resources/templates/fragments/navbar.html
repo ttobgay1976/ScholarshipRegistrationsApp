@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<navbar th:fragment="navbar">
+	
+	</navbar>
+
+
+</body>
+</html>
+<!-- 
+copy of working sidenav
+
+<nav th:fragment="sidebar" class="sidebar">
+	<h2>Menu</h2>
+	<ul class="nav flex-column" id="sidebarMenu">
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#usersubmenu" role="button"
+			aria-expanded="false" aria-controls="#usersubmenu"> 
+			User Management </a>
+			<div class="collapse" id="usersubmenu" data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/others}">TestPage</a></li>
+					<hr class="sidebar-divider" />
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/registrationfrm}">User Registration</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/userlists}">List Users</a></li>
+					<hr class="sidebar-divider" />
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/addrole}">User Role</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/roles}">List Roles</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/user/userrolemap}">User Role Mapping</a></li>
+					<hr class="sidebar-divider" />
+				</ul>
+			</div>
+		</li>
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#flodmanagement" role="button"
+			aria-expanded="false" aria-controls="flodmanagement"> Flood
+				Management </a>
+			<div class="collapse" id="flodmanagement"
+				data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/flood/registrationfrm}">Register Flood</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{#}">List
+							Severity</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{#}">List
+							Registration</a></li>
+				</ul>
+			</div></li>
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#fldmasters" role="button"
+			aria-expanded="false" aria-controls="fldmasters"> Masters
+				Management </a>
+			<div class="collapse" id="fldmasters" data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/master/floodmasterfrm}">Flood Types</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/master/listmasters}">Master Maintenance</a></li>
+				</ul>
+			</div></li>
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" data-bs-target="#wkflowmanagement"
+			role="button" aria-expanded="false" aria-controls="wkflowmanagement">
+				WorkFlow Management </a>
+			<div class="collapse" id="wkflowmanagement"
+				data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/master/floodmasterfrm}">Flood Master</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/master/listmasters}">Flood Registration</a></li>
+				</ul>
+			</div></li>
+	</ul>
+
+</nav>
+ -->

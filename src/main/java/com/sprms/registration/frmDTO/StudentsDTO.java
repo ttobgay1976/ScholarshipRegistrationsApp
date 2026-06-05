@@ -1,0 +1,23 @@
+package com.sprms.registration.frmDTO;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class StudentsDTO {
+
+	/* @JsonProperty("student") */
+	private List<StudentDTO> student;
+
+	public List<StudentDTO> getStudent() {
+		return student;
+	}
+
+	public void setStudent(List<StudentDTO> student) {
+		this.student = student;
+	}
+
+
+}

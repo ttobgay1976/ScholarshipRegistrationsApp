@@ -1,0 +1,89 @@
+
+<nav th:fragment="sidebar" class="sidebar">
+	<h2>Menu</h2>
+	<ul class="nav flex-column" id="sidebarMenu">
+		<!-- User Menu -->
+		<li class="nav-item"><a
+			class="nav-link d-flex justify-content-between align-items-center parent-menu"
+			data-bs-toggle="collapse" href="#usersubmenu" role="button"
+			aria-expanded="false" aria-controls="usersubmenu"> User
+				Management <span class="bi bi-chevron-down"></span>
+		</a>
+
+			<div class="collapse submenu" id="usersubmenu"
+				data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/user/others">TestPage</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/user/registrationfrm">User Registration</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/user/userlists">List Users</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/user/addrole">User Role</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/user/roles">List Roles</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/user/userrolemap">User Role Mapping</a></li>
+				</ul>
+			</div></li>
+
+		<!-- Masters Menu -->
+		<li class="nav-item"><a
+			class="nav-link d-flex justify-content-between align-items-center parent-menu"
+			data-bs-toggle="collapse" href="#reportsSubmenu" role="button"
+			aria-expanded="false" aria-controls="reportsSubmenu"> Master
+				Management <span class="bi bi-chevron-down"></span>
+		</a>
+
+			<div class="collapse submenu" id="reportsSubmenu"
+				data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link child-menu"
+						th:href="@{/college/registrationfrm}">Register College</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						th:href="@{/college/streams}">Register Stream</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						th:href="@{/college/lstcolleges}">List College</a></li>
+				</ul>
+			</div></li>
+
+		<!-- Reports Menu -->
+		<li class="nav-item"><a
+			class="nav-link d-flex justify-content-between align-items-center parent-menu"
+			data-bs-toggle="collapse" href="#reportsSubmenu" role="button"
+			aria-expanded="false" aria-controls="reportsSubmenu"> Reports <span
+				class="bi bi-chevron-down"></span>
+		</a>
+
+			<div class="collapse submenu" id="reportsSubmenu"
+				data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/reports/daily">Daily Report</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/reports/monthly">Monthly Report</a></li>
+				</ul>
+			</div></li>
+
+		<!-- Settings Menu -->
+		<li class="nav-item"><a
+			class="nav-link d-flex justify-content-between align-items-center parent-menu"
+			data-bs-toggle="collapse" href="#settingsSubmenu" role="button"
+			aria-expanded="false" aria-controls="settingsSubmenu"> Settings <span
+				class="bi bi-chevron-down"></span>
+		</a>
+
+			<div class="collapse submenu" id="settingsSubmenu"
+				data-bs-parent="#sidebarMenu">
+				<ul class="nav flex-column ms-3">
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/settings/profile">Profile</a></li>
+					<li class="nav-item"><a class="nav-link child-menu"
+						href="/settings/security">Security</a></li>
+				</ul>
+			</div></li>
+
+	</ul>
+
+</nav>

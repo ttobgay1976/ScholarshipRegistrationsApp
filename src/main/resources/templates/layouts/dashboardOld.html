@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+
+<th:block
+	th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
+
+<link rel="stylesheet" th:href="@{/css/sidebar.css}" />
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+
+</head>
+<body>
+	<!-- Include Header -->
+	<div th:replace="~{fragments/header :: header}"></div>
+
+	<main>
+		<!-- Include Sidebar -->
+		<aside th:replace="~{fragments/sidebar :: sidebar}"></aside>
+
+		<!-- Content area -->
+		<section layout:fragment="content"></section>
+	</main>
+
+	<!-- Include Footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	<th:block
+		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
+</body>
+</html>

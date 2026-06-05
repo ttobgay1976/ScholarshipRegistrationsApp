@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/dashboard}">
+<head>
+<meta charset="UTF-8">
+<title>|| SPRMS - Scholarship Registration ||</title>
+
+<th:block
+	th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+
+	// ===== Dynamic Field Toggle =====
+
+	const countrySelect = document.getElementById("countryOfCompletion");
+
+	const indexNumberField = document
+			.getElementById("indexNumberContainer");
+	const indexNumberInput = document.getElementById("indexNumber");
+
+	const fileUploadField = document.getElementById("fileUploadContainer");
+	const fileUploadInput = document.getElementById("files");
+
+	if (countrySelect && indexNumberField && indexNumberInput
+			&& fileUploadField && fileUploadInput) {
+
+		function toggleFields() {
+
+			const selectedCountry = countrySelect.value;
+
+			// Reset validation
+			indexNumberInput.required = false;
+			fileUploadInput.required = false;
+
+			// Remove invalid styles
+			indexNumberInput.classList.remove("is-invalid");
+			fileUploadInput.classList.remove("is-invalid");
+
+			if (selectedCountry === "Other") {
+
+				// Hide Index Number
+				indexNumberField.classList.add("hidden");
+				indexNumberInput.value = "";
+
+				// Show File Upload
+				fileUploadField.classList.remove("hidden");
+				fileUploadInput.required = true;
+
+			} else if (selectedCountry === "Bhutan") {
+
+				// Show Index Number
+				indexNumberField.classList.remove("hidden");
+				indexNumberInput.required = true;
+
+				// Hide File Upload
+				fileUploadField.classList.add("hidden");
+				fileUploadInput.required = false;
+				fileUploadInput.value = null;
+
+			} else {
+
+				// Hide both
+				indexNumberField.classList.add("hidden");
+				fileUploadField.classList.add("hidden");
+
+				indexNumberInput.value = "";
+				fileUploadInput.value = null;
+			}
+		}
+
+		// Run when selection changes
+		countrySelect.addEventListener("change", toggleFields);
+
+		// Run on page load
+		toggleFields();
+	}
+
+	// ===== Email validation =====
+
+	const emailInput = document.getElementById("emailAddress");
+	const emailError = document.getElementById("emailError");
+
+	if (emailInput && emailError) {
+
+		emailInput.addEventListener("blur", function() {
+
+			const email = this.value.trim();
+
+			const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+			if (!email) {
+
+				emailError.textContent = "Email is required";
+				this.classList.add("is-invalid");
+
+			} else if (!emailPattern.test(email)) {
+
+				emailError.textContent = "Invalid email format";
+				this.classList.add("is-invalid");
+
+			} else {
+
+				emailError.textContent = "";
+				this.classList.remove("is-invalid");
+			}
+		});
+	}
+
+	// ===== Form validation =====
+
+	const form = document.getElementById("scholarshipregistrationfrm");
+
+	if (form) {
+
+		form.addEventListener("submit", function(e) {
+
+			let isValid = true;
+
+			// Validate required dropdowns
+			document.querySelectorAll(".required-dropdown").forEach(
+					function(dropdown) {
+
+						if (!dropdown.value) {
+
+							dropdown.classList.add("is-invalid");
+							isValid = false;
+
+						} else {
+
+							dropdown.classList.remove("is-invalid");
+						}
+					});
+
+			// Validate visible required inputs
+			document.querySelectorAll("[required]").forEach(
+					function(field) {
+
+						if (!field.value) {
+
+							field.classList.add("is-invalid");
+							isValid = false;
+
+						} else {
+
+							field.classList.remove("is-invalid");
+						}
+					});
+
+			if (!isValid) {
+
+				e.preventDefault();
+				alert("Please fill all required fields.");
+			}
+		});
+	}
+
+});
+</script>
+
+<!--THIS JS IS USE FOR THE POPUP MSG  -->
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		var toastEl = document.getElementById('liveToast');
+		if (toastEl) {
+			var toast = new bootstrap.Toast(toastEl, {
+				delay : 7000
+			});
+			toast.show();
+		}
+	});
+</script>
+<style type="text/css">
+.hidden {
+	display: none;
+}
+
+.is-invalid {
+	border: 1px solid red;
+}
+</style>
+<style type="text/css">
+.custom-toast {
+	min-width: 350px; /* increase width */
+	max-width: 500px;
+	font-size: 14px;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+/* Header styling */
+.custom-header {
+	color: white;
+	padding: 10px 15px;
+}
+
+/* Body spacing */
+.toast-body {
+	padding: 15px;
+}
+</style>
+</head>
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+<section layout:fragment="content">
+
+	<div class="container p-2 bg-body-secondary">Scholarship
+		Registration Page</div>
+	<div class="container p-4">
+		<!-- Success message -->
+		<!-- 
+		<div th:if="${message}" class="alert alert-success"
+			th:text="${successMessage}"></div>
+
+		<div th:if="${errorMessage}" class="alert alert-success"
+			th:text="${errorMessage}"></div>
+ -->
+
+		<!-- Registration Form -->
+		<form th:action="@{/scholarship/addregistration}"
+			th:object="${scholarshipRegistrationdto}" method="post"
+			autocomplete="off" id="scholarshipregistrationfrm"
+			enctype="multipart/form-data">
+
+			<input type="hidden" th:field="*{id}" /> <input type="hidden"
+				th:field="*{dzongkhagId}" /> <input type="hidden"
+				th:field="*{gewogId}" />
+
+			<!-- Citizen ID -->
+			<div class="row mb-1">
+
+				<!-- LABEL -->
+				<label for="citizenId" class="col-sm-2 col-form-label">
+					Enter ID No. : </label>
+
+				<!-- INPUT -->
+				<div class="col-sm-4">
+					<input type="text" th:field="*{citizenId}" id="citizenId"
+						class="form-control" placeholder="Enter CID No" autocomplete="off"
+						onblur="fetchCitizenDetails(this.value)" required />
+				</div>
+
+				<!-- MESSAGE BOX (RIGHT SIDE) -->
+				<div class="col-sm-4 d-flex align-items-center">
+					<small id="cidMessage" style="font-weight: bold;"></small>
+				</div>
+
+			</div>
+
+			<div class="row mb-1">
+				<label for="firstName" class="col-sm-2 col-form-label">First
+					Name:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{firstName}" id="firstName"
+						class="form-control" placeholder="Enter First Name"
+						autocomplete="off" required readonly>
+				</div>
+
+				<label for="middleName" class="col-sm-2 col-form-label">Middle
+					Name:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{middleName}" id="middleName"
+						class="form-control" autocomplete="off"
+						placeholder="Enter Middle Name" readonly>
+				</div>
+			</div>
+			<div class="row mb-1">
+				<label for="lastName" class="col-sm-2 col-form-label">Last
+					Name:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{lastName}" id="lastName"
+						class="form-control" placeholder="Enter Last Name"
+						autocomplete="off" required readonly>
+				</div>
+				<label for="dateOfBirth" class="col-sm-2 col-form-label">Date
+					of Birth:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{dateOfBirth}" id="dateOfBirth"
+						class="form-control" placeholder="Enter Date of Birth"
+						autocomplete="off" required readonly>
+				</div>
+			</div>
+			<div class="row mb-1">
+				<label for="gender" class="col-sm-2 col-form-label">Gender :</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{gender}" id="gender"
+						class="form-control" placeholder="Enter Gender" autocomplete="off"
+						required readonly>
+				</div>
+				<label for="fatherName" class="col-sm-2 col-form-label">Father
+					Name:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{fatherName}" id="fatherName"
+						class="form-control" placeholder="Enter Father Name"
+						autocomplete="off" required readonly>
+				</div>
+			</div>
+			<div class="row mb-1">
+				<label for="motherName" class="col-sm-2 col-form-label">Mother
+					Name:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{motherName}" id="motherName"
+						class="form-control" placeholder="Enter Mother Name"
+						autocomplete="off" required readonly>
+				</div>
+				<label for="dzongkhagName" class="col-sm-2 col-form-label">Dzongkhag
+					Name :</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{dzongkhagName}" id="dzongkhagName"
+						class="form-control" placeholder="Enter Dzongkhga Address"
+						autocomplete="off" required readonly>
+				</div>
+			</div>
+			<div class="row mb-1">
+				<label for="gewogName" class="col-sm-2 col-form-label">Gewog
+					Name:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{gewogName}" id="gewogName"
+						class="form-control" placeholder="Enter Gewog Name"
+						autocomplete="off" required readonly>
+				</div>
+				<label for="villageName" class="col-sm-2 col-form-label">village
+					Name :</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{villageName}" id="villageName"
+						class="form-control" placeholder="Enter village Name"
+						autocomplete="off" required readonly>
+				</div>
+			</div>
+			<div class="row mb-1">
+				<label for="emailAddress" class="col-sm-2 col-form-label">Email
+					Address :</label>
+				<div class="col-sm-4">
+					<input type="email" th:field="*{emailAddress}" id="emailAddress"
+						class="form-control" placeholder="Enter email address"
+						autocomplete="off" required> <small id="emailError"
+						style="color: red;"></small>
+				</div>
+				<label for="contactNo" class="col-sm-2 col-form-label">Contact
+					Number:</label>
+				<div class="col-sm-4">
+					<input type="number" th:field="*{contactNo}" id="contactNo"
+						class="form-control" placeholder="Enter Contact No."
+						autocomplete="off" required>
+				</div>
+			</div>
+			<div class="row mb-1">
+				<label for="guardianDetail" class="col-sm-2 col-form-label">Guardian
+					Name:</label>
+				<div class="col-sm-4">
+					<input type="text" th:field="*{guardianDetail}" id="guardianDetail"
+						class="form-control" placeholder="Enter Guradian Name"
+						autocomplete="off" required>
+				</div>
+			</div>
+			<div class="hr-with-text my-3">
+				<span><i>Key Information Section</i></span>
+			</div>
+			<div class="row mb-1">
+				<label for="countryOfCompletion" class="col-sm-2 col-form-label">Country
+					Of Completion:</label>
+				<div class="col-sm-4">
+					<select th:field="*{countryOfCompletion}" id="countryOfCompletion"
+						class="form-select required-dropdown">
+						<option value="">--Select Country--</option>
+						<option value="Bhutan">Bhutan</option>
+						<option value="Other">Other Country</option>
+					</select>
+				</div>
+			</div>
+			<div class="row mb-1" id="indexNumberContainer">
+				<label for="indexNumber" class="col-sm-2 col-form-label">Index
+					Number:</label>
+				<div class="col-sm-4">
+					<input type="number" th:field="*{indexNumber}" id="indexNumber"
+						class="form-control" placeholder="Enter indexNumber"
+						autocomplete="off" required>
+				</div>
+
+			</div>
+
+			<div class="row mb-1 hidden" id="fileUploadContainer">
+				<div class="hr-with-text my-3">
+					<span><i>Upload following Supporting Documents (CLass 10
+							& 12 Marks and passed certificate)</i></span>
+				</div>
+				<label for="files" class="col-sm-2 col-form-label">Supporting
+					Documents :</label>
+				<div class="col-sm-4">
+					<input type="file" th:field="*{files}" multiple="multiple"
+						id="files" class="form-control"
+						placeholder="Upload supporting documents" autocomplete="off">
+				</div>
+
+			</div>
+			<div class="row mb-3">
+				<label for="remarks" class="col-sm-2 col-form-label">Remarks
+					:</label>
+				<div class="col-sm-4">
+					<textarea th:field="*{remarks}" id="remarks" class="form-control"
+						rows="3" placeholder="Enter remarks here...">
+   					 </textarea>
+				</div>
+			</div>
+
+			<!-- Submit -->
+			<div class="d-flex justify-content-center mt-3">
+				<button type="submit" class="btn btn-primary"
+					th:text="${scholarshipRegistrationdto.id != null} ? 'Update' : 'Register'">
+				</button>
+			</div>
+
+		</form>
+
+		<!-- 🔔 TOAST MESSAGE HERE -->
+		<div class="toast position-fixed top-0 end-0 m-3 custom-toast"
+			th:if="${errorMessage != null or successMessage != null}"
+			id="liveToast">
+
+			<div class="toast-header custom-header"
+				th:classappend="${errorMessage != null} ? 'bg-danger' : 'bg-success'">
+
+				<strong class="me-auto text-white">Notification</strong>
+
+				<button type="button" class="btn-close btn-close-white ms-2"
+					data-bs-dismiss="toast"></button>
+			</div>
+
+			<div class="toast-body"
+				th:text="${errorMessage != null ? errorMessage : successMessage}">
+			</div>
+
+		</div>
+	</div>
+	<!-- Footer -->
+	<!-- <div th:replace="~{fragments/footer :: footer}"></div>
+ -->
+	<!-- JS Fragment -->
+	<th:block
+		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
+
+
+</section>
+</html>

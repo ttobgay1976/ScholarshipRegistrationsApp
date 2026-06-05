@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Error Page</title>
+
+<th:block
+	th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
+
+</head>
+<body>
+
+	<div th:replace="~{fragments/header :: header}"></div>
+	
+	<div class="container mt-5 p-5">
+		<h2>Oops!</h2>
+		<p th:text="${errorMessage}"></p>
+
+<div>
+	Try again after sometime by visiting the NDI Login Page again
+</div>
+		<a href="/">Go Back and Try Again</a>
+
+
+	</div>
+
+	<!-- JS Fragment -->
+	<th:block
+		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
+</body>
+</html>
