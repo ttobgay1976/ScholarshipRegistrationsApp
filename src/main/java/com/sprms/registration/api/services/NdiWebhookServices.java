@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -35,6 +36,7 @@ import com.sprms.registration.ndievent.NdiVerifiedEvent;
 import com.sprms.registration.utils.DateUtil;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class NdiWebhookServices {
@@ -50,6 +52,9 @@ public class NdiWebhookServices {
 	private final NdiAppUserRepositoryServices _ndiWebhookRepositoryServices;
 	private final NdiAppUserAuditRepository _ndiAppUserAuditRepository;
 	private final NdiSessionRepository _ndiSessionRepository;
+
+	@Value("${NDI_WEBHOOK_ID:sprms01}")
+	private String webhookId;
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -80,7 +85,7 @@ public class NdiWebhookServices {
 
 		// Request body
 		Map<String, String> body = new HashMap<>();
-		body.put("webhookId", "sprms01");
+		body.put("webhookId", webhookId);
 		body.put("threadId", threadId);
 
 		// Headers
@@ -189,6 +194,29 @@ public class NdiWebhookServices {
 		_ndiAppUserAuditRepository.save(audit);
 	}
 
+
+	@Transactional
+	public void markSessionProofValidated(PresentationResultRequestDTO payload) {
+
+		String thid = payload.getThid();
+
+		NdiSession session = _ndiSessionRepository.findByThreadId(thid);
+
+		if (session == null) {
+			logger.warn("@@@NDI session not found for thid={}", thid);
+			return;
+		}
+
+		session.setNdiStatus(NDIStatus.PROOF_VALIDATED);
+		session.setHolderDid(payload.getHolderDid());
+		session.setRelationshipDid(payload.getRelationshipDid());
+
+		_ndiSessionRepository.save(session);
+
+		logger.info("@@@NDI session updated thid={}, status=PROOF_VALIDATED", thid);
+	}
+
+
 	// Event driven handler
 	// created dat 26/04/2026
 	// palce : Home
@@ -238,7 +266,7 @@ public class NdiWebhookServices {
 			unsubscribe(thid);
 
 		} catch (Exception e) {
-			logger.info("ERROR", e.getMessage());
+			logger.error("@@@NDI webhook processing failed", e);
 		}
 	}
 }

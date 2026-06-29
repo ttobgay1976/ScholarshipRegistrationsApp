@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -22,62 +22,66 @@ import com.sprms.registration.frmDTO.WebhookRegisterRequestDTO;
 @Service
 public class WebhookRegistrationService {
 
-	// this is used for the logging the error
-	private static final Logger logger = LoggerFactory.getLogger(WebhookRegistrationService.class);
+    private static final Logger logger = LoggerFactory.getLogger(WebhookRegistrationService.class);
 
-	// call the Repository
-	private final APISchemaConfig _apiSchemaConfig;
+    private final APISchemaConfig apiSchemaConfig;
+    private final RestTemplate restTemplate;
 
-	@Autowired
-	private RestTemplate restTemplate;
+    @Value("${NDI_WEBHOOK_ID:sprms01}")
+    private String webhookId;
 
-	// constructor
-	public WebhookRegistrationService(APISchemaConfig apiSchemaConfig) {
-		this._apiSchemaConfig = apiSchemaConfig;
+    @Value("${NDI_WEBHOOK_URL}")
+    private String webhookUrl;
 
-	}
+    @Value("${NDI_WEBHOOK_AUTH_TOKEN:thisisfixtoken01}")
+    private String webhookAuthToken;
 
-	private final Set<String> registeredTokens = new HashSet<>();
-	
-	// this method will register the webhook url
-	// created 24/04/2026
-	public String registerWebhook(String accessToken) {
+    private final Set<String> registeredTokens = new HashSet<>();
 
-		// 📦 Build request
-		AuthDataDTO authData = new AuthDataDTO();
-		authData.setToken("thisisfixtoken01");
+    public WebhookRegistrationService(APISchemaConfig apiSchemaConfig, RestTemplate restTemplate) {
+        this.apiSchemaConfig = apiSchemaConfig;
+        this.restTemplate = restTemplate;
+    }
 
-		AuthenticationDTO auth = new AuthenticationDTO();
-		auth.setType("OAuth2");
-		auth.setVersion("v2");
-		auth.setData(authData);
+    public String registerWebhook(String accessToken) {
 
-		WebhookRegisterRequestDTO request = new WebhookRegisterRequestDTO();
-		request.setWebhookId("sprms01");
-		request.setWebhookURL("https://growl-corporal-playtime.ngrok-free.dev/webhook");
-		request.setAuthentication(auth);
+        logger.info("@@@Calling the webhookRegister.............");
+        logger.info("@@@Registering webhookId={}, webhookUrl={}", webhookId, webhookUrl);
 
-		// 🧾 Headers
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
+        AuthDataDTO authData = new AuthDataDTO();
+        authData.setToken(webhookAuthToken);
 
-		// 🔐 IMPORTANT: Pass access token here
-		headers.setBearerAuth(accessToken);
+        AuthenticationDTO auth = new AuthenticationDTO();
+        auth.setType("OAuth2");
+        auth.setVersion("v2");
+        auth.setData(authData);
 
-		HttpEntity<WebhookRegisterRequestDTO> entity = new HttpEntity<>(request, headers);
+        WebhookRegisterRequestDTO request = new WebhookRegisterRequestDTO();
+        request.setWebhookId(webhookId);
+        request.setWebhookURL(webhookUrl);
+        request.setAuthentication(auth);
 
-		// 🌐 API CALL
-		ResponseEntity<String> response = restTemplate.exchange(_apiSchemaConfig.getWebhookRegistrationUrl(),
-				HttpMethod.POST, entity, String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(accessToken);
 
-		System.out.println("Webhook Register Response: " + response.getBody());
+        HttpEntity<WebhookRegisterRequestDTO> entity = new HttpEntity<>(request, headers);
 
-		return response.getBody();
-	}
+        ResponseEntity<String> response = restTemplate.exchange(
+                apiSchemaConfig.getWebhookRegistrationUrl(),
+                HttpMethod.POST,
+                entity,
+                String.class
+        );
 
-	public boolean isRegistered(String webhookid) {
-		return registeredTokens.contains(webhookid);
-	}
+        logger.info("@@@Webhook Register Response: {}", response.getBody());
 
+        registeredTokens.add(webhookId);
 
+        return response.getBody();
+    }
+
+    public boolean isRegistered(String webhookid) {
+        return registeredTokens.contains(webhookid);
+    }
 }

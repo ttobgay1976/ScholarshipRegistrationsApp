@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NDI Login</title>
+
+
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<!-- Icon -->
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+	<!-- 	<link rel="stylesheet" th:href="@{/css/sidebar.css}" /> -->
+	<link rel="stylesheet" href="/css/main.css" />
+	<!-- 	<link rel="stylesheet" th:href="@{/css/pagination.css}" />
+	<link rel="stylesheet" th:href="@{/css/dynamicsidebar.css}" /> -->
+	<link rel="stylesheet" href="/css/hrcustoms.css" />
+
+	<!--This css is for model popup  -->
+	<link rel="stylesheet" href="/css/model.css" />
+
+	<!--This css is for NDI popup  -->
+	<link rel="stylesheet" href="/css/NdiStyle.css" />
+
+
+
+
+
+
+
+<style>
+body {
+	background: linear-gradient(135deg, #eef2f7, #f8f9fc);
+}
+
+.login-card {
+	width: 100%;
+	max-width: 420px;
+	border-radius: 16px;
+	overflow: hidden;
+	border: none;
+	margin-top: 1px;
+}
+
+.login-header {
+	background: linear-gradient(135deg, #432DD7, #0d6efd);
+	color: white;
+	font-weight: 600;
+	text-align: center;
+	padding: 18px;
+	font-size: 18px;
+}
+
+.login-body {
+	padding: 30px;
+	text-align: center;
+}
+
+.login-logo {
+	width: 85px;
+	margin-bottom: 15px;
+}
+
+/* ✅ SAME SIZE FOR BOTH BUTTONS */
+.btn-ndi, .btn-alt {
+	width: 100%;
+	height: 48px;
+	border-radius: 10px;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	transition: 0.3s ease;
+	text-decoration: none;
+}
+
+.btn-ndi {
+	background: #124143;
+	border: none;
+	color: white;
+}
+
+.btn-ndi:hover {
+	background: #0e2f30;
+	transform: translateY(-1px);
+	color: #fff !important; /* keep text white */
+}
+
+.btn-alt {
+	background: #00bfff;
+	border: none;
+	color: white;
+}
+
+.btn-alt:hover {
+	background: #009acd;
+	transform: translateY(-1px);
+	color: #fff !important; /* keep text white */
+}
+
+.login-footer {
+	font-size: 13px;
+}
+</style>
+
+</head>
+
+<body>
+
+	<header class="bg-success text-white p-3">
+
+	<div style="display: flex; width: 100%; align-items: center;">
+
+		<!-- Center: Logo + Text -->
+		<div
+			style="flex: 1; display: flex; justify-content: left; align-items: center;">
+			<img src="/images/logo.png" alt="Logo"
+				style="height: 50px; margin-right: 10px; padding-left: 100px;">
+			<span>Scholarship Profile and Resource Management System
+				(SPRMS)- RCSC</span>
+		</div>
+
+		<!-- Right: User -->
+
+		<div style="flex: 1; text-align: right;">
+
+			 <span> User :: Guest </span>
+
+		</div>
+
+	</div>
+</header>
+
+	<div class="d-flex justify-content-center align-items-center"
+		style="min-height: 85vh;">
+
+		<div class="card shadow-lg login-card">
+
+			<!-- Header -->
+			<div
+				class="login-header d-flex align-items-center justify-content-center gap-2 text-center">
+
+				<img src="/images/logo.png" alt="SPRMS Logo"
+					style="height: 40px; width: auto;"> <span class="fw-bold">SPRMS
+					| NDI Login</span>
+
+			</div>
+			<!-- Body -->
+			<div class="login-body">
+
+				<img src="/images/QRNDIlogo.png" alt="NDI" class="login-logo">
+
+				<h5 class="mb-2">Welcome Back</h5>
+
+				<p class="text-muted" style="font-size: 14px;">Secure
+					authentication using National Digital Identity</p>
+
+				<!-- NDI Login Button -->
+				<a href="/ndi/login" class="btn btn-ndi mt-3"> <img
+					src="/images/NDI.png" style="height: 22px; width: 22px;"
+					alt="NDI"> Login with Bhutan NDI
+				</a>
+
+				<hr class="my-4">
+
+				<!-- Alternative Login Button -->
+				<p class="text-muted" style="font-size: 14px;">Direct Login
+					without using National Digital Identity</p>
+				<a href="/scholarship/registration" class="btn btn-alt">
+					Login without Bhutan NDI </a>
+
+			</div>
+
+			<!-- Footer -->
+			<div class="text-center text-muted py-3 login-footer">© SPRMS
+				System</div>
+
+		</div>
+
+	</div>
+
+	
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Your sidebar JS -->
+	<script src="/js/sidebar.js"></script>
+
+	<!-- This is for NDI -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+	<!-- This is for NDI WebSockets -->
+
+<!-- 	<script
+		src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+ -->
+	<!-- This is for citizen fetch js -->
+	<script src="/js/GetCitizenDetails.js"></script>
+
+
+
+
+</body>
+</html>

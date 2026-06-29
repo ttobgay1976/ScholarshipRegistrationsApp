@@ -98,6 +98,9 @@ public class WebhookRestController {
 			return ResponseEntity.ok("Ignored - Proof not valid");
 		}
 
+		// update session immediately before async/event extraction
+		_ndiWebhookServices.markSessionProofValidated(payload);
+
 		// fire event ONLY
 		_publisher.publishEvent(new NdiVerifiedEvent(payload, payload.getThid()));
 		
