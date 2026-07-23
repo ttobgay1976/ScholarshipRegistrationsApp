@@ -1,5 +1,6 @@
 package com.sprms.registration.hbmbean;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -42,6 +43,13 @@ public class StudentProfile {
 
     @OneToMany(mappedBy = "studentProfile", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StudentMarks> studentMarks;
+    
+    @Column(nullable = false)
+    private boolean active = false;
+
+	private String activationToken;
+
+	private LocalDateTime tokenExpiry;
 
 	public Long getId() {
 		return id;
@@ -137,6 +145,30 @@ public class StudentProfile {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getActivationToken() {
+		return activationToken;
+	}
+
+	public void setActivationToken(String activationToken) {
+		this.activationToken = activationToken;
+	}
+
+	public LocalDateTime getTokenExpiry() {
+		return tokenExpiry;
+	}
+
+	public void setTokenExpiry(LocalDateTime tokenExpiry) {
+		this.tokenExpiry = tokenExpiry;
 	}
 
 

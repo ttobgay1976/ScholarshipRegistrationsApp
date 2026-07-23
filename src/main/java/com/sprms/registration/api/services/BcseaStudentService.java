@@ -1,6 +1,7 @@
 package com.sprms.registration.api.services;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +11,9 @@ import com.sprms.registration.api.client.BcseaApiClient;
 import com.sprms.registration.config.APISchemaConfig;
 import com.sprms.registration.exception.BcseaApiException;
 import com.sprms.registration.exception.BcseaValidationException;
-import com.sprms.registration.frmDTO.StudentApiResponseDTO;
-import com.sprms.registration.frmDTO.StudentDTO;
-import com.sprms.registration.frmDTO.StudentProfileDTO;
-import com.sprms.registration.services.ScholarsipRegistrationService;
+import com.sprms.registration.frmbean.StudentApiResponseDTO;
+import com.sprms.registration.frmbean.StudentDTO;
+import com.sprms.registration.frmbean.StudentProfileDTO;
 
 import io.github.resilience4j.retry.annotation.Retry;
 
@@ -49,20 +49,23 @@ public class BcseaStudentService {
 		validateResponse(response);
 
 		List<StudentDTO> students = response.getStudents().getStudent();
-		
-		for (StudentDTO std : students) {
-			System.out.println("@@@Checking the Student Name :"+ std.getStudentName());
-			System.out.println("@@@Checking the status type:"+ std.getType());
-		}
 
-		return students.stream().anyMatch(s -> "REPEATER".equalsIgnoreCase(s.getType()));
+		boolean repeater = students.stream().filter(Objects::nonNull)
+				.anyMatch(s -> "Reappearing".equalsIgnoreCase(s.getType() == null ? "" : s.getType().trim()));
+
+		logger.info("Student {} repeater status={}", indexNo, repeater);
+
+		//students.forEach(s -> logger.info("Student Type=[{}]", s.getType()));
+
+		return repeater;
+
 	}
 
 	public boolean fallbackStudentMarks(String indexNo, Throwable ex) {
 
-		logger.error("BCSEA API failed after retries for indexNo: {}", indexNo, ex);
+		logger.error("BCSEA API unavailable for indexNo: {}. Defaulting repeater status to false.", indexNo, ex);
 
-		throw new BcseaApiException("BCSEA service unavailable. Please try again later.", ex);
+		return false;
 	}
 
 	// ================= VALIDATION HELPERS =================

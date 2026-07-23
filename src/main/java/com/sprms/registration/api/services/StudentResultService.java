@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.sprms.registration.frmDTO.StudentResultDTO;
+import com.sprms.registration.frmbean.StudentResultDTO;
 import com.sprms.registration.hbmbean.StudentMarks;
 import com.sprms.registration.hbmbean.StudentProfile;
 

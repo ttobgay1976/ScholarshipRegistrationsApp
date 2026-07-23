@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sprms.registration.frmDTO.VerifiedUserDTO;
+import com.sprms.registration.frmbean.VerifiedUserDTO;
 
 //this will store the verified user details
 //created 25/04/2026

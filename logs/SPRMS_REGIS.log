@@ -1,0 +1,85 @@
+2026-07-23T12:42:49.806+05:30  INFO 4600 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 4600 (started by eCMS in D:\RCSC_SPRMS\SPRMS MAIN\SPRMS_STUDENT_REGISTRATION)
+2026-07-23T12:42:49.810+05:30  INFO 4600 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "pro"
+2026-07-23T12:42:50.582+05:30  INFO 4600 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-23T12:42:50.728+05:30  INFO 4600 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 139 ms. Found 9 JPA repository interfaces.
+2026-07-23T12:42:51.675+05:30  INFO 4600 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-23T12:42:51.765+05:30  INFO 4600 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-07-23T12:42:51.793+05:30  INFO 4600 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-23T12:42:52.078+05:30  INFO 4600 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-23T12:42:52.099+05:30  INFO 4600 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Starting...
+2026-07-23T12:42:52.348+05:30  INFO 4600 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : SPRMS-HikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@77e6053
+2026-07-23T12:42:52.350+05:30  INFO 4600 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Start completed.
+2026-07-23T12:42:53.171+05:30  INFO 4600 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-23T12:42:53.193+05:30  INFO 4600 --- [student-Registration] [main] org.hibernate.orm.connections.access     : HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7c290246] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2026-07-23T12:42:53.361+05:30  INFO 4600 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-23T12:42:54.855+05:30  INFO 4600 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
+2026-07-23T12:42:54.998+05:30  INFO 4600 --- [student-Registration] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-23T12:42:55.464+05:30  WARN 4600 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-23T12:42:55.549+05:30  WARN 4600 --- [student-Registration] [main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 81f2210c-be37-48d5-af3d-fd9a0daaea48
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-23T12:42:55.594+05:30  INFO 4600 --- [student-Registration] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-07-23T12:42:56.707+05:30  INFO 4600 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-07-23T12:42:56.708+05:30  INFO 4600 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@654b9f0]]
+2026-07-23T12:42:56.709+05:30  INFO 4600 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-07-23T12:42:56.715+05:30  INFO 4600 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 7.165 seconds (process running for 7.865)
+2026-07-23T12:42:57.038+05:30  INFO 4600 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-07-23T12:42:57.038+05:30  INFO 4600 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@654b9f0]]
+2026-07-23T12:42:57.038+05:30  INFO 4600 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-07-23T12:42:57.047+05:30  INFO 4600 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-23T12:42:57.049+05:30  INFO 4600 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown initiated...
+2026-07-23T12:42:57.091+05:30  INFO 4600 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown completed.
+2026-07-23T12:43:08.396+05:30  INFO 24776 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : Starting StudentRegistrationApplication using Java 17.0.3 with PID 24776 (D:\RCSC_SPRMS\SPRMS MAIN\SPRMS_STUDENT_REGISTRATION\target\classes started by eCMS in D:\RCSC_SPRMS\SPRMS MAIN\SPRMS_STUDENT_REGISTRATION)
+2026-07-23T12:43:08.397+05:30  INFO 24776 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : The following 1 profile is active: "pro"
+2026-07-23T12:43:08.423+05:30  INFO 24776 --- [student-Registration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-07-23T12:43:08.423+05:30  INFO 24776 --- [student-Registration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-07-23T12:43:12.247+05:30  INFO 24776 --- [student-Registration] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-23T12:43:12.341+05:30  INFO 24776 --- [student-Registration] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 90 ms. Found 9 JPA repository interfaces.
+2026-07-23T12:43:12.842+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-07-23T12:43:12.849+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-23T12:43:12.849+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-07-23T12:43:12.876+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-23T12:43:12.876+05:30  INFO 24776 --- [student-Registration] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4453 ms
+2026-07-23T12:43:12.994+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-23T12:43:13.019+05:30  INFO 24776 --- [student-Registration] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-07-23T12:43:13.036+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-23T12:43:13.172+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-23T12:43:13.186+05:30  INFO 24776 --- [student-Registration] [restartedMain] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Starting...
+2026-07-23T12:43:13.468+05:30  INFO 24776 --- [student-Registration] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : SPRMS-HikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@6625f527
+2026-07-23T12:43:13.470+05:30  INFO 24776 --- [student-Registration] [restartedMain] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Start completed.
+2026-07-23T12:43:14.080+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-23T12:43:14.093+05:30  INFO 24776 --- [student-Registration] [restartedMain] org.hibernate.orm.connections.access     : HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@30053fec] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2026-07-23T12:43:14.255+05:30  INFO 24776 --- [student-Registration] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-23T12:43:14.836+05:30  INFO 24776 --- [student-Registration] [restartedMain] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
+2026-07-23T12:43:14.891+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-07-23T12:43:15.089+05:30  WARN 24776 --- [student-Registration] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-23T12:43:15.128+05:30  WARN 24776 --- [student-Registration] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 08a12881-9af4-494d-9466-c3e7ee598b1c
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-07-23T12:43:15.142+05:30  INFO 24776 --- [student-Registration] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-07-23T12:43:15.749+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-07-23T12:43:15.779+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-07-23T12:43:15.781+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-07-23T12:43:15.781+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74adc449]]
+2026-07-23T12:43:15.781+05:30  INFO 24776 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-07-23T12:43:15.786+05:30  INFO 24776 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : Started StudentRegistrationApplication in 7.608 seconds (process running for 8.229)
+2026-07-23T12:43:24.389+05:30  INFO 24776 --- [student-Registration] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-23T12:43:24.390+05:30  INFO 24776 --- [student-Registration] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-07-23T12:43:24.392+05:30  INFO 24776 --- [student-Registration] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-07-23T12:43:26.473+05:30  INFO 24776 --- [student-Registration] [http-nio-8081-exec-4] s.r.c.ScholarshipResgistrationController : @@@Calling the manual CID entry DCRC info  frm...................
+2026-07-23T12:43:33.005+05:30  INFO 24776 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.c.CitizenDetailController          : @@@ CID: 11510004046
+2026-07-23T12:43:33.006+05:30  INFO 24776 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling the getAccessToken proc..................
+2026-07-23T12:43:33.339+05:30  INFO 24776 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling getCitizenDetils proc..................
+2026-07-23T12:44:14.909+05:30  INFO 24776 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-07-23T12:44:14.910+05:30  INFO 24776 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-07-23T12:44:14.911+05:30  INFO 24776 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@74adc449]]
+2026-07-23T12:44:14.911+05:30  INFO 24776 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-07-23T12:44:15.098+05:30  INFO 24776 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-23T12:44:15.099+05:30  INFO 24776 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown initiated...
+2026-07-23T12:44:15.153+05:30  INFO 24776 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown completed.

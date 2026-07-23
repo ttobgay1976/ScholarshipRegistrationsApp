@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.sprms.registration.frmDTO.VerifiedUserDTO;
+import com.sprms.registration.frmbean.VerifiedUserDTO;
 
 //This is created to keep the NDI user Audit log detail
 //created 25/04/2026

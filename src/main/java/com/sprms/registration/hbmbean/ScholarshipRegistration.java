@@ -53,6 +53,9 @@ public class ScholarshipRegistration {
 	private String houseNo;
 	private String thramNo;
 	private String householdNo;
+	
+	@Column(name = "registration_number", nullable = false, unique = true, length = 20)
+	private String registrationNumber;
 
 	@Column(name = "guardian_details")
 	private String guardianDetail;
@@ -94,11 +97,7 @@ public class ScholarshipRegistration {
 	@OneToOne(mappedBy = "registration", cascade = CascadeType.ALL, orphanRemoval = true)
 	private StudentProfile studentProfile;
 
-	/*
-	 * @ManyToOne(fetch = FetchType.LAZY)
-	 * 
-	 * @JoinColumn(name = "stream_id") private Stream stream;
-	 */
+	private Boolean isStudentRepeater;
 
 	public void addFile(SupportingFiles file) {
 		supportingDocs.add(file);
@@ -376,5 +375,23 @@ public class ScholarshipRegistration {
 	public void setStudentProfile(StudentProfile studentProfile) {
 		this.studentProfile = studentProfile;
 	}
+
+	public Boolean getIsStudentRepeater() {
+		return isStudentRepeater;
+	}
+
+	public void setIsStudentRepeater(Boolean isStudentRepeater) {
+		this.isStudentRepeater = isStudentRepeater;
+	}
+
+	public String getRegistrationNumber() {
+		return registrationNumber;
+	}
+
+	public void setRegistrationNumber(String registrationNumber) {
+		this.registrationNumber = registrationNumber;
+	}
+	
+	
 
 }

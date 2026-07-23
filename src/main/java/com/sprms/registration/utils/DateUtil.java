@@ -12,20 +12,20 @@ import org.slf4j.LoggerFactory;
 
 public class DateUtil {
 
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(DateUtil.class);
 
 	private static String format = "dd-MMM-yyyy";
 	private static String formatWithTime = "dd-MMM-yyyy HH:mm:ss";
 	private static String timeFormat = "HH:mm:ss";
+
 	private DateUtil() {
 	}
 
 //	get the current date with time
-    public static LocalDateTime getCurrentDateTime() {
-        return LocalDateTime.now();
-    }
-    
+	public static LocalDateTime getCurrentDateTime() {
+		return LocalDateTime.now();
+	}
+
 	public static String toString(Date date) {
 		if (date == null) {
 			return null;
@@ -126,23 +126,31 @@ public class DateUtil {
 		return date;
 	}
 
+	// GET THE APPLICATION UNIQUE ID
+	// IF PASS THE PARAMETER TO THIS
+	// String registrationNo = DateUtil.getUniqueID("S");
+	// S20260707034411
+
+	// WITHOUT PARAMETER
+	// String id = DateUtil.getUniqueID();
+	// 20260707034411
+
 	public static String getUniqueID() {
+		return getUniqueID("");
+	}
+
+	public static String getUniqueID(String prefix) {
 
 		Date dt = new Date();
-		int resultYear = -1;
-		if (dt != null) {
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(dt);
-			resultYear = cal.get(Calendar.YEAR);
-		}
-		SimpleDateFormat ft = new SimpleDateFormat("MMddhhmmss");
-		String dayTime = ft.format(dt);
 
-		String uniqueID = resultYear + dayTime;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dt);
 
-		// int maxID= Integer.parseInt(uniqueID);
-		return uniqueID;
+		int year = cal.get(Calendar.YEAR);
 
+		SimpleDateFormat ft = new SimpleDateFormat("MMddHHmmss");
+
+		return prefix + year + ft.format(dt);
 	}
 
 	public static Integer getCurrentYear() {
@@ -299,7 +307,7 @@ public class DateUtil {
 				String formattedDate = formatter.format(d);
 				// convert string to date type
 				expireDate = DateUtil.toDate(formattedDate);
-				
+
 			}
 		} catch (Exception e) {
 			LOGGER.error("ERROR @ getExpiryDate Method", e);
@@ -322,11 +330,10 @@ public class DateUtil {
 	}
 
 	/*
-	 * Function to get current year
-	 * and generate unique ID by current year plus taking max number
-	 * created on dated 30/07/2020
+	 * Function to get current year and generate unique ID by current year plus
+	 * taking max number created on dated 30/07/2020
 	 */
-	
+
 	public static Integer getCurrentYearPlusInteger() {
 
 		Date dt = new Date();
@@ -338,25 +345,25 @@ public class DateUtil {
 		}
 
 		Integer currentYear = resultYear;
-		
+
 		return currentYear;
 	}
-	
-	//this procedure will return Year from the date provided as parameter
-	//Created on date : 15/09/2020
-	//Place : eCMS Office
+
+	// this procedure will return Year from the date provided as parameter
+	// Created on date : 15/09/2020
+	// Place : eCMS Office
 	public static Integer getNumberOfYear(Date date, Date cCurrent_Date) {
-		
+
 		// application Date
-		Integer nNumberOfYears=null;
+		Integer nNumberOfYears = null;
 		Date applicationDate = DateUtil.applicationDateWithServerTime(date);
 		Date cCurrentDate = DateUtil.applicationDateWithServerTime(cCurrent_Date);
-		
+
 		// change format into dd-MMM-yyyy
 		String appformatDate = DateUtil.toString(applicationDate);
 		String cCurrentDate_Format = DateUtil.toString(cCurrentDate);
 
-		Calendar  cal2,cal3;
+		Calendar cal2, cal3;
 		int dDays;
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -367,12 +374,13 @@ public class DateUtil {
 			cal2 = parseTimestamp(cCurrentDate_Format);
 			Date curDate = cal2.getTime();
 			Date appDate = cal3.getTime();
-			
-			//dayDifference = (int) ((curDate.getTime() - appDate.getTime()) / (1000 * 60 * 60 * 24));
-			dDays= (int) ((curDate.getTime() - appDate.getTime()) / (1000 * 60 * 60 * 24));
-			nNumberOfYears=dDays/365;
-			
-			System.out.println("@@@No. of Days :"+dDays);
+
+			// dayDifference = (int) ((curDate.getTime() - appDate.getTime()) / (1000 * 60 *
+			// 60 * 24));
+			dDays = (int) ((curDate.getTime() - appDate.getTime()) / (1000 * 60 * 60 * 24));
+			nNumberOfYears = dDays / 365;
+
+			System.out.println("@@@No. of Days :" + dDays);
 			/*
 			 * int ddDay=(1000 * 60 * 60 * 24); int dddDays=(int) appDate.getTime();
 			 * System.out.println("@@@No. of Days :"+ddDay);
@@ -396,6 +404,6 @@ public class DateUtil {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
 }

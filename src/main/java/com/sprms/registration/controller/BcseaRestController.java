@@ -28,19 +28,6 @@ public class BcseaRestController {
 		this._bcseaStudentService = bcseaStudentService;
 	}
 
-	@GetMapping("/check-student-type_OLD/{indexNumber}")
-	public ResponseEntity<Map<String, Object>> checkStudentType_OLD(@PathVariable String indexNumber) {
-
-		logger.info("@@@Calling the checkStudentType proc............");
-
-		boolean isRepeater = _bcseaStudentService.isRepeaterStudent(indexNumber);
-
-		Map<String, Object> response = new HashMap<>();
-		response.put("indexNumber", indexNumber);
-		response.put("repeater", isRepeater);
-
-		return ResponseEntity.ok(response);
-	}
 
 	@GetMapping("/check-student-type/{indexNumber}")
 	public ResponseEntity<Map<String, Object>> checkStudentType(@PathVariable String indexNumber) {

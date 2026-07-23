@@ -9,9 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sprms.registration.frmDTO.ApiResponseDTO;
-import com.sprms.registration.frmDTO.ScholarshipRegistrationDTO;
-import com.sprms.registration.frmDTO.StreamDTO;
+import com.sprms.registration.frmbean.ApiResponseDTO;
+import com.sprms.registration.frmbean.ScholarshipRegistrationDTO;
+import com.sprms.registration.frmbean.StreamDTO;
 
 @Controller
 public class HomePageController {
@@ -21,7 +21,7 @@ public class HomePageController {
 		
 	
 	// setting the static variable for the form call
-	private static String DISPLAY_NDI_LOGIN_PAGE = "LoginFrm";
+	private static String DISPLAY_NDI_LOGIN_PAGE = "loginFrm";
 	private static String DISPLAY_DASHBOARD_PAGE = "layouts/dashboard";
 	private static String DISPLAY_SCHOLARSHIP_REGISTRATION_PAGE = "ScholarshipRegistrationFrm";
 	

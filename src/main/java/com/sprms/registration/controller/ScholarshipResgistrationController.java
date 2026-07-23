@@ -18,8 +18,11 @@ import com.sprms.registration.DTOMapper.CitizenRegistrationDTOMapper;
 import com.sprms.registration.api.repository.NdiAppUserRepository;
 import com.sprms.registration.api.services.DcrcAuthNCitizenServices;
 import com.sprms.registration.api.services.NdiUserSessionService;
-import com.sprms.registration.frmDTO.CitizenDetailDTO;
-import com.sprms.registration.frmDTO.ScholarshipRegistrationDTO;
+import com.sprms.registration.exception.BcseaApiException;
+import com.sprms.registration.exception.BusinessException;
+import com.sprms.registration.exception.EligibilityException;
+import com.sprms.registration.frmbean.CitizenDetailDTO;
+import com.sprms.registration.frmbean.ScholarshipRegistrationDTO;
 import com.sprms.registration.services.ScholarsipRegistrationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -43,8 +46,7 @@ public class ScholarshipResgistrationController {
 
 	// constructor to initialize the above declaration
 	public ScholarshipResgistrationController(ScholarsipRegistrationService scholarsipRegistrationService,
-			 NdiAppUserRepository ndiAppUserRepository,
-			DcrcAuthNCitizenServices dcrcAuthNCitizenServices,
+			NdiAppUserRepository ndiAppUserRepository, DcrcAuthNCitizenServices dcrcAuthNCitizenServices,
 			CitizenRegistrationDTOMapper citizenRegistrationDTOMapper, NdiUserSessionService ndiUserSessionService) {
 		this._scholarsipRegistrationService = scholarsipRegistrationService;
 		this._dcrcAuthNCitizenServices = dcrcAuthNCitizenServices;
@@ -124,9 +126,9 @@ public class ScholarshipResgistrationController {
 	/*
 	 * -----------------------------------------------------------------------------
 	 */
-	// THIS FORM IS FOR THE SCHOLARSHIP REGISTRATION
-	// THIS FORM WILL BE OPEN USING NDI APP
-	@GetMapping("/dcrc-registrationfrm")
+	// THIS FORM IS FOR THE SCHOLARSHIP REGISTRATION WITHOUT NDI
+	// @GetMapping("/dcrc-registrationfrm")
+	@GetMapping("/registration")
 	public String getDCRCStudentRegistrationFrm(Model model) {
 
 		logger.info("@@@Calling the manual CID entry DCRC info  frm...................");
@@ -161,18 +163,62 @@ public class ScholarshipResgistrationController {
 					savedRegistration.getFirstName() + " " + savedRegistration.getLastName());
 			redirectAttributes.addFlashAttribute("indexNo", savedRegistration.getIndexNumber());
 			redirectAttributes.addFlashAttribute("regNo", savedRegistration.getId());
+			redirectAttributes.addFlashAttribute("cidNo", savedRegistration.getCitizenId());
 
-		} catch (IOException e) {
-			redirectAttributes.addFlashAttribute("successMessage", "File upload failed: " + e.getMessage());
+		} catch (EligibilityException e) {
 
-			System.out.println("@@@Check the error :" + e.getStackTrace());
+			logger.warn("Eligibility Error", e);
 
-			return "redirect:/scholarship/dcrc-registrationfrm";
-		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("successMessage" + e.getMessage());
+			redirectAttributes.addFlashAttribute("errorType", "ELIGIBILITY");
 			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 
-			return "redirect:/scholarship/dcrc-registrationfrm";
+			return "redirect:/scholarship/registration";
+
+		} catch (BcseaApiException e) {
+
+			logger.error("BCSEA API Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "API");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registration";
+
+		} catch (IllegalArgumentException e) {
+
+			logger.warn("Validation Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "VALIDATION");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registration";
+
+		} catch (IOException e) {
+
+			logger.error("File Upload Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "FILE_UPLOAD");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registration";
+
+		} catch (BusinessException e) {
+
+			logger.warn("Business Validation Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "BUSINESS");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registration";
+
+		} catch (Exception e) {
+
+			logger.error("Scholarship Registration Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "SYSTEM");
+			redirectAttributes.addFlashAttribute("errorMessage",
+					"An unexpected error occurred. Please try again later.");
+
+			return "redirect:/scholarship/registration";
 		}
 
 		return "redirect:/scholarship/thankpage";

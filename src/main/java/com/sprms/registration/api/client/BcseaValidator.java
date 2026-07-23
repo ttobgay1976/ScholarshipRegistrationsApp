@@ -2,7 +2,7 @@ package com.sprms.registration.api.client;
 
 import org.springframework.stereotype.Component;
 
-import com.sprms.registration.frmDTO.StudentApiResponseDTO;
+import com.sprms.registration.frmbean.StudentApiResponseDTO;
 
 @Component
 public class BcseaValidator {

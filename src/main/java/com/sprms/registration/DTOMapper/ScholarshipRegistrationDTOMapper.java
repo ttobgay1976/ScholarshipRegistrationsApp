@@ -2,7 +2,8 @@ package com.sprms.registration.DTOMapper;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import com.sprms.registration.frmDTO.ScholarshipRegistrationDTO;
+
+import com.sprms.registration.frmbean.ScholarshipRegistrationDTO;
 import com.sprms.registration.hbmbean.ScholarshipRegistration;
 
 public class ScholarshipRegistrationDTOMapper {

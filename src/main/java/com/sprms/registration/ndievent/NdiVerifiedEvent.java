@@ -1,6 +1,6 @@
 package com.sprms.registration.ndievent;
 
-import com.sprms.registration.frmDTO.PresentationResultRequestDTO;
+import com.sprms.registration.frmbean.PresentationResultRequestDTO;
 
 public class NdiVerifiedEvent {
 

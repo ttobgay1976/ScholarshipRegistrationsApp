@@ -23,9 +23,10 @@ import com.sprms.registration.api.services.NdiLoginStoreServices;
 import com.sprms.registration.api.services.NdiRestServices;
 import com.sprms.registration.api.services.PostLoginService;
 import com.sprms.registration.applicationEnums.NDIStatus;
-import com.sprms.registration.frmDTO.AppUserDTO;
-import com.sprms.registration.frmDTO.ProofRequestResponseDTO;
-import com.sprms.registration.frmDTO.VerifiedUserDTO;
+import com.sprms.registration.frmbean.AppUserDTO;
+import com.sprms.registration.frmbean.ProofRequestResponseDTO;
+import com.sprms.registration.frmbean.VerifiedUserDTO;
+
 import jakarta.servlet.http.HttpSession;
 
 //this controller is use for NDI API call

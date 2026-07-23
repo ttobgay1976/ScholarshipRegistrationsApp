@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +26,13 @@ import com.sprms.registration.api.services.StudentServices;
 import com.sprms.registration.api.services.ValidateDuplicateStudentIndexNumber;
 import com.sprms.registration.applicationEnums.ApplicationStatus;
 import com.sprms.registration.dao.ScholarsipRegistrationRepository;
-import com.sprms.registration.frmDTO.ScholarshipRegistrationDTO;
-import com.sprms.registration.frmDTO.StudentApiResponseDTO;
-import com.sprms.registration.frmDTO.StudentDTO;
-import com.sprms.registration.frmDTO.StudentProfileDTO;
+import com.sprms.registration.eligibility.services.EligibilityEngineService;
+import com.sprms.registration.exception.EligibilityException;
+import com.sprms.registration.frmbean.EligibilityResultDTO;
+import com.sprms.registration.frmbean.ScholarshipRegistrationDTO;
+import com.sprms.registration.frmbean.StudentApiResponseDTO;
+import com.sprms.registration.frmbean.StudentDTO;
+import com.sprms.registration.frmbean.StudentProfileDTO;
 import com.sprms.registration.hbmbean.ScholarshipRegistration;
 import com.sprms.registration.hbmbean.SupportingFiles;
 import com.sprms.registration.mailServices.EmailServices;
@@ -48,12 +53,15 @@ public class ScholarsipRegistrationService {
 	private final StudentMapperService _studentMapperService;
 	private final ValidateDuplicateStudentIndexNumber _validateDuplicateStudentIndexNumber;
 
+	private final EligibilityEngineService _eligibilityEngineService;
+
 	// constructor
 	public ScholarsipRegistrationService(ScholarsipRegistrationRepository scholarsipRegistrationRepository,
 			SupportingFilesService supportingFilesService, EmailServices emailServices,
 			BcseaAuthNmarksService bcseaApiTokenService, StudentServices studentServices,
 			StudentMapperService studentMapperService,
-			ValidateDuplicateStudentIndexNumber validateDuplicateStudentIndexNumber) {
+			ValidateDuplicateStudentIndexNumber validateDuplicateStudentIndexNumber,
+			EligibilityEngineService eligibilityEngineService) {
 		this._scholarsipRegistrationRepository = scholarsipRegistrationRepository;
 		this._supportingFilesService = supportingFilesService;
 		this._emailServices = emailServices;
@@ -61,6 +69,7 @@ public class ScholarsipRegistrationService {
 		this._studentServices = studentServices;
 		this._studentMapperService = studentMapperService;
 		this._validateDuplicateStudentIndexNumber = validateDuplicateStudentIndexNumber;
+		this._eligibilityEngineService = eligibilityEngineService;
 	}
 
 	// file saving path and directories
@@ -70,6 +79,7 @@ public class ScholarsipRegistrationService {
 	// MAIN NAVEGATION POIN FOR CALLING THE SAVE LOGIV
 	public ScholarshipRegistrationDTO saveScholarshipDetails(ScholarshipRegistrationDTO dto) throws Exception {
 
+		/* ======NDI and DCRC============= */
 		logger.info("@@@START: saveScholarshipDetails");
 
 		if (dto == null) {
@@ -128,7 +138,11 @@ public class ScholarsipRegistrationService {
 
 			// NEW SAVE
 			entity = ScholarshipRegistrationDTOMapper.toEntity(dto);
-			entity.setId(Long.parseLong(DateUtil.getUniqueID()));
+			
+			//set the value S as prefix to RegistrationNo
+			entity.setId(Long.parseLong(DateUtil.getUniqueID()));      // Primary Key
+			entity.setRegistrationNumber(DateUtil.getUniqueID("S"));   // Business Registration No.
+			
 			entity.setCreatedAt(DateUtil.getCurrentDateTime());
 		}
 
@@ -178,7 +192,8 @@ public class ScholarsipRegistrationService {
 
 	// THIS METHOD IS USE ONLY FOR THE STUDENT WHO'S COUNTRY OF COMPLETION IS BHUTAN
 	// CREATED ON 12/05/2026
-	public ScholarshipRegistration saveRegistrationForCountryBhutan_OLD(ScholarshipRegistrationDTO dto) throws Exception {
+	public ScholarshipRegistration saveRegistrationForCountryBhutan_OLD(ScholarshipRegistrationDTO dto)
+			throws Exception {
 
 		logger.info("@@@START: saveRegistrationForCountryBhutan");
 
@@ -259,14 +274,55 @@ public class ScholarsipRegistrationService {
 		// TRANSFORM STUDENT DATA
 		List<StudentProfileDTO> students = _studentMapperService.transform(bcseaResponse);
 
+		// =====================================================
+		// CHECK SCHOLARSHIP ELIGIBILITY
+		// =====================================================
+
+		EligibilityResultDTO result = _eligibilityEngineService.checkEligibility(students);
+
+		//EligibilityResultDTO result = _eligibilityEngineService.checkEligibility(students);
+
+		logger.info("====================================");
+		logger.info("@@@Eligible          : {}", result.isEligible());
+		logger.info("@@@Message           : {}", result.getMessage());
+		//logger.info("Eligible Programs : {}", result.getEligibleRules());
+		logger.info("@@@Reasons           : {}", result.getReasons());
+		logger.info("====================================");
+
+		if (!result.isEligible()) {
+
+			logger.warn("@@@Student is not eligible : {}", result.getMessage());
+
+			StringBuilder message = new StringBuilder();
+			message.append("You are not eligible to register for any scholarship.\n\n");
+
+			if (result.getReasons() != null && !result.getReasons().isEmpty()) {
+
+				message.append("Reason(s):\n");
+
+				result.getReasons().forEach(reason -> message.append("• ").append(reason).append("\n"));
+			} else {
+
+				message.append(result.getMessage());
+			}
+
+			throw new EligibilityException(message.toString());
+		}
+
 		// CHECK REPEATER FLAG (IMPORTANT)
-		boolean isRepeater = students.stream().anyMatch(s -> "REPEATER".equalsIgnoreCase(s.getType()));
+		boolean isRepeater = students.stream().filter(Objects::nonNull)
+				.anyMatch(s -> "Reappearing".equalsIgnoreCase(s.getType() == null ? "" : s.getType().trim()));
 
 		// SAVE REGISTRATION
 		ScholarshipRegistration savedRegistration = saveScholarshipRegistration(dto);
 
 		// SAVE STUDENT PROFILE
+		// set the student repeater status\
+
+		savedRegistration.setIsStudentRepeater(isRepeater);
 		_studentServices.saveStudentProfiles(students, savedRegistration);
+
+		students.forEach(s -> System.out.println("@@@Student Type=[" + s.getType() + "]"));
 
 		// 🔥 FILE SAVE LOGIC (ONLY FOR REPEATER)
 		if (isRepeater) {

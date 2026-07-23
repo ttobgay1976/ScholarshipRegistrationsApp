@@ -19,9 +19,9 @@ import com.sprms.registration.api.services.NdiAuthServices;
 import com.sprms.registration.api.services.NdiDataExtractorServices;
 import com.sprms.registration.api.services.NdiRestServices;
 import com.sprms.registration.api.services.NdiWebhookServices;
-import com.sprms.registration.frmDTO.NdiSseRegistry;
-import com.sprms.registration.frmDTO.PresentationResultRequestDTO;
-import com.sprms.registration.frmDTO.ProofRequestResponseDTO;
+import com.sprms.registration.frmbean.NdiSseRegistry;
+import com.sprms.registration.frmbean.PresentationResultRequestDTO;
+import com.sprms.registration.frmbean.ProofRequestResponseDTO;
 import com.sprms.registration.ndievent.NdiVerifiedEvent;
 
 @RestController
@@ -109,6 +109,7 @@ public class WebhookRestController {
 		// only pass to service
 		// _ndiWebhookServices.process(payload);
 		
+		  logger.info("@@@AUTH HEADER RECEIVED: {}", authHeader);
 
 		return ResponseEntity.ok("Processed Successfully");
 	}

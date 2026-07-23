@@ -1,196 +1,906 @@
-2026-06-02T09:29:55.614+05:30  INFO 28240 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 28240 (started by eCMS in D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION)
-2026-06-02T09:29:55.620+05:30  INFO 28240 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "dev"
-2026-06-02T09:29:56.734+05:30  INFO 28240 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-02T09:29:56.922+05:30  INFO 28240 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 178 ms. Found 7 JPA repository interfaces.
-2026-06-02T09:29:58.498+05:30  INFO 28240 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-02T09:29:58.587+05:30  INFO 28240 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2026-06-02T09:29:58.640+05:30  INFO 28240 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-02T09:29:59.020+05:30  INFO 28240 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-02T09:29:59.060+05:30  INFO 28240 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-02T09:29:59.552+05:30  INFO 28240 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@570299e3
-2026-06-02T09:29:59.560+05:30  INFO 28240 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-02T09:29:59.637+05:30  WARN 28240 --- [student-Registration] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-02T09:30:00.777+05:30  INFO 28240 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-02T09:30:01.025+05:30  INFO 28240 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T09:30:03.205+05:30  INFO 28240 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
-2026-06-02T09:30:03.656+05:30  WARN 28240 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-02T09:30:05.006+05:30  INFO 28240 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2026-06-02T09:30:05.007+05:30  INFO 28240 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3a95898c]]
-2026-06-02T09:30:05.008+05:30  INFO 28240 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2026-06-02T09:30:05.026+05:30  INFO 28240 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 9.739 seconds (process running for 10.822)
-2026-06-02T09:30:05.519+05:30  INFO 28240 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2026-06-02T09:30:05.519+05:30  INFO 28240 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@3a95898c]]
-2026-06-02T09:30:05.519+05:30  INFO 28240 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2026-06-02T09:30:05.531+05:30  INFO 28240 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T09:30:05.533+05:30  INFO 28240 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-06-02T09:30:05.565+05:30  INFO 28240 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-06-02T09:30:20.938+05:30  INFO 1704 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : Starting StudentRegistrationApplication using Java 17.0.3 with PID 1704 (D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION\target\classes started by eCMS in D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION)
-2026-06-02T09:30:20.941+05:30  INFO 1704 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : The following 1 profile is active: "dev"
-2026-06-02T09:30:20.984+05:30  INFO 1704 --- [student-Registration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2026-06-02T09:30:20.984+05:30  INFO 1704 --- [student-Registration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2026-06-02T09:30:23.070+05:30  INFO 1704 --- [student-Registration] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-02T09:30:23.213+05:30  INFO 1704 --- [student-Registration] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 137 ms. Found 7 JPA repository interfaces.
-2026-06-02T09:30:23.915+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2026-06-02T09:30:23.925+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-06-02T09:30:23.926+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-06-02T09:30:23.968+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-06-02T09:30:23.969+05:30  INFO 1704 --- [student-Registration] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2983 ms
-2026-06-02T09:30:24.129+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-02T09:30:24.164+05:30  INFO 1704 --- [student-Registration] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2026-06-02T09:30:24.185+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-02T09:30:24.365+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-02T09:30:24.385+05:30  INFO 1704 --- [student-Registration] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-02T09:30:24.638+05:30  INFO 1704 --- [student-Registration] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2d0f1a3e
-2026-06-02T09:30:24.642+05:30  INFO 1704 --- [student-Registration] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-02T09:30:24.692+05:30  WARN 1704 --- [student-Registration] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-02T09:30:25.512+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-02T09:30:25.737+05:30  INFO 1704 --- [student-Registration] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T09:30:26.592+05:30  INFO 1704 --- [student-Registration] [restartedMain] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
-2026-06-02T09:30:26.788+05:30  WARN 1704 --- [student-Registration] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-02T09:30:27.472+05:30  WARN 1704 --- [student-Registration] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
-2026-06-02T09:30:27.513+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
-2026-06-02T09:30:27.514+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2026-06-02T09:30:27.515+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@668354cf]]
-2026-06-02T09:30:27.516+05:30  INFO 1704 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2026-06-02T09:30:27.525+05:30  INFO 1704 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : Started StudentRegistrationApplication in 6.883 seconds (process running for 7.523)
-2026-06-02T09:30:33.120+05:30  INFO 1704 --- [student-Registration] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-06-02T09:30:33.121+05:30  INFO 1704 --- [student-Registration] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-06-02T09:30:33.123+05:30  INFO 1704 --- [student-Registration] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2026-06-02T09:31:27.510+05:30  INFO 1704 --- [student-Registration] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
-2026-06-02T09:34:15.501+05:30  INFO 1704 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
-2026-06-02T09:34:15.504+05:30  INFO 1704 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2026-06-02T09:34:15.504+05:30  INFO 1704 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@668354cf]]
-2026-06-02T09:34:15.504+05:30  INFO 1704 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2026-06-02T09:34:15.739+05:30  INFO 1704 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T09:34:15.742+05:30  INFO 1704 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-06-02T09:34:15.759+05:30  INFO 1704 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-06-02T10:06:25.762+05:30  INFO 25364 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 25364 (started by eCMS in D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION)
-2026-06-02T10:06:25.764+05:30  INFO 25364 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "dev"
-2026-06-02T10:06:26.885+05:30  INFO 25364 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-02T10:06:27.051+05:30  INFO 25364 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 159 ms. Found 7 JPA repository interfaces.
-2026-06-02T10:06:28.471+05:30  INFO 25364 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-02T10:06:28.600+05:30  INFO 25364 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2026-06-02T10:06:28.640+05:30  INFO 25364 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-02T10:06:28.972+05:30  INFO 25364 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-02T10:06:29.002+05:30  INFO 25364 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-02T10:06:29.393+05:30  INFO 25364 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@62808e9e
-2026-06-02T10:06:29.399+05:30  INFO 25364 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-02T10:06:29.476+05:30  WARN 25364 --- [student-Registration] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-02T10:06:30.546+05:30  INFO 25364 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-02T10:06:30.795+05:30  INFO 25364 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T10:06:32.954+05:30  INFO 25364 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
-2026-06-02T10:06:33.457+05:30  WARN 25364 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-02T10:06:34.763+05:30  INFO 25364 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2026-06-02T10:06:34.764+05:30  INFO 25364 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@48e0d3a7]]
-2026-06-02T10:06:34.766+05:30  INFO 25364 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2026-06-02T10:06:34.778+05:30  INFO 25364 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 9.37 seconds (process running for 10.442)
-2026-06-02T10:06:35.287+05:30  INFO 25364 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2026-06-02T10:06:35.288+05:30  INFO 25364 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@48e0d3a7]]
-2026-06-02T10:06:35.288+05:30  INFO 25364 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2026-06-02T10:06:35.305+05:30  INFO 25364 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T10:06:35.308+05:30  INFO 25364 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-06-02T10:06:35.333+05:30  INFO 25364 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-06-02T10:12:24.490+05:30  INFO 25396 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 25396 (started by eCMS in D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION)
-2026-06-02T10:12:24.492+05:30  INFO 25396 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "dev"
-2026-06-02T10:12:25.211+05:30  INFO 25396 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-02T10:12:25.331+05:30  INFO 25396 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 113 ms. Found 7 JPA repository interfaces.
-2026-06-02T10:12:26.316+05:30  INFO 25396 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-02T10:12:26.380+05:30  INFO 25396 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2026-06-02T10:12:26.414+05:30  INFO 25396 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-02T10:12:26.696+05:30  INFO 25396 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-02T10:12:26.717+05:30  INFO 25396 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-02T10:12:26.980+05:30  INFO 25396 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@40aad17d
-2026-06-02T10:12:26.982+05:30  INFO 25396 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-02T10:12:27.028+05:30  WARN 25396 --- [student-Registration] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-02T10:12:27.859+05:30  INFO 25396 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-02T10:12:28.115+05:30  INFO 25396 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T10:12:29.879+05:30  INFO 25396 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
-2026-06-02T10:12:30.237+05:30  WARN 25396 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-02T10:12:31.318+05:30  INFO 25396 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2026-06-02T10:12:31.319+05:30  INFO 25396 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@4835e10a]]
-2026-06-02T10:12:31.320+05:30  INFO 25396 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2026-06-02T10:12:31.326+05:30  INFO 25396 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 7.051 seconds (process running for 7.813)
-2026-06-02T10:12:31.639+05:30  INFO 25396 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2026-06-02T10:12:31.640+05:30  INFO 25396 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@4835e10a]]
-2026-06-02T10:12:31.640+05:30  INFO 25396 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2026-06-02T10:12:31.648+05:30  INFO 25396 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T10:12:31.650+05:30  INFO 25396 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-06-02T10:12:31.669+05:30  INFO 25396 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-06-02T11:08:18.331+05:30  INFO 12320 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 12320 (started by eCMS in D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION)
-2026-06-02T11:08:18.332+05:30  INFO 12320 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "dev"
-2026-06-02T11:08:18.968+05:30  INFO 12320 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-02T11:08:19.082+05:30  INFO 12320 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 7 JPA repository interfaces.
-2026-06-02T11:08:19.954+05:30  INFO 12320 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-02T11:08:20.025+05:30  INFO 12320 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2026-06-02T11:08:20.051+05:30  INFO 12320 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-02T11:08:20.257+05:30  INFO 12320 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-02T11:08:20.281+05:30  INFO 12320 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-02T11:08:20.510+05:30  INFO 12320 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@720ffab4
-2026-06-02T11:08:20.512+05:30  INFO 12320 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-02T11:08:20.553+05:30  WARN 12320 --- [student-Registration] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-02T11:08:21.254+05:30  INFO 12320 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-02T11:08:21.459+05:30  INFO 12320 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T11:08:22.879+05:30  INFO 12320 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
-2026-06-02T11:08:23.161+05:30  WARN 12320 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-02T11:08:23.920+05:30  INFO 12320 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2026-06-02T11:08:23.921+05:30  INFO 12320 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1daf79ab]]
-2026-06-02T11:08:23.922+05:30  INFO 12320 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2026-06-02T11:08:23.931+05:30  INFO 12320 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 5.84 seconds (process running for 6.46)
-2026-06-02T11:08:24.235+05:30  INFO 12320 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2026-06-02T11:08:24.236+05:30  INFO 12320 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@1daf79ab]]
-2026-06-02T11:08:24.236+05:30  INFO 12320 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2026-06-02T11:08:24.246+05:30  INFO 12320 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T11:08:24.248+05:30  INFO 12320 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-06-02T11:08:24.264+05:30  INFO 12320 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-06-02T11:09:21.108+05:30  INFO 9820 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 9820 (started by eCMS in D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION)
-2026-06-02T11:09:21.109+05:30  INFO 9820 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "dev"
-2026-06-02T11:09:21.747+05:30  INFO 9820 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-02T11:09:21.854+05:30  INFO 9820 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100 ms. Found 7 JPA repository interfaces.
-2026-06-02T11:09:22.652+05:30  INFO 9820 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-02T11:09:22.706+05:30  INFO 9820 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2026-06-02T11:09:22.734+05:30  INFO 9820 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-02T11:09:22.949+05:30  INFO 9820 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-02T11:09:22.968+05:30  INFO 9820 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-02T11:09:23.194+05:30  INFO 9820 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@50c2ef56
-2026-06-02T11:09:23.196+05:30  INFO 9820 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-02T11:09:23.240+05:30  WARN 9820 --- [student-Registration] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-02T11:09:23.965+05:30  INFO 9820 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-02T11:09:24.152+05:30  INFO 9820 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T11:09:25.522+05:30  INFO 9820 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
-2026-06-02T11:09:25.817+05:30  WARN 9820 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-02T11:09:26.622+05:30  INFO 9820 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2026-06-02T11:09:26.623+05:30  INFO 9820 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@9a1b870]]
-2026-06-02T11:09:26.623+05:30  INFO 9820 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2026-06-02T11:09:26.628+05:30  INFO 9820 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 5.717 seconds (process running for 6.362)
-2026-06-02T11:09:26.940+05:30  INFO 9820 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2026-06-02T11:09:26.940+05:30  INFO 9820 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@9a1b870]]
-2026-06-02T11:09:26.940+05:30  INFO 9820 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2026-06-02T11:09:26.947+05:30  INFO 9820 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T11:09:26.949+05:30  INFO 9820 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-06-02T11:09:26.962+05:30  INFO 9820 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2026-06-02T11:10:05.336+05:30  INFO 25292 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 25292 (started by eCMS in D:\RCSC_SPRMS\SPRMS_BACKEND\SPRMS_STUDENT_REGISTRATION)
-2026-06-02T11:10:05.338+05:30  INFO 25292 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "dev"
-2026-06-02T11:10:05.994+05:30  INFO 25292 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-06-02T11:10:06.114+05:30  INFO 25292 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 113 ms. Found 7 JPA repository interfaces.
-2026-06-02T11:10:06.874+05:30  INFO 25292 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-06-02T11:10:06.980+05:30  INFO 25292 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2026-06-02T11:10:07.042+05:30  INFO 25292 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-06-02T11:10:07.271+05:30  INFO 25292 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-06-02T11:10:07.288+05:30  INFO 25292 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-06-02T11:10:07.521+05:30  INFO 25292 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@720ffab4
-2026-06-02T11:10:07.522+05:30  INFO 25292 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-06-02T11:10:07.567+05:30  WARN 25292 --- [student-Registration] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2026-06-02T11:10:08.244+05:30  INFO 25292 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-06-02T11:10:08.529+05:30  INFO 25292 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T11:10:09.902+05:30  INFO 25292 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
-2026-06-02T11:10:10.210+05:30  WARN 25292 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2026-06-02T11:10:11.017+05:30  INFO 25292 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
-2026-06-02T11:10:11.017+05:30  INFO 25292 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@356285d9]]
-2026-06-02T11:10:11.018+05:30  INFO 25292 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
-2026-06-02T11:10:11.024+05:30  INFO 25292 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 5.889 seconds (process running for 6.518)
-2026-06-02T11:10:11.324+05:30  INFO 25292 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
-2026-06-02T11:10:11.324+05:30  INFO 25292 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@356285d9]]
-2026-06-02T11:10:11.325+05:30  INFO 25292 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
-2026-06-02T11:10:11.332+05:30  INFO 25292 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-06-02T11:10:11.334+05:30  INFO 25292 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2026-06-02T11:10:11.354+05:30  INFO 25292 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-19T09:25:54.675+05:30  INFO 15200 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 15200 (started by eCMS in D:\RCSC_SPRMS\SPRMS MAIN\SPRMS_STUDENT_REGISTRATION)
+2026-06-19T09:25:54.678+05:30  INFO 15200 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "pro"
+2026-06-19T09:25:55.417+05:30  INFO 15200 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-19T09:25:55.560+05:30  INFO 15200 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 135 ms. Found 7 JPA repository interfaces.
+2026-06-19T09:25:56.354+05:30  INFO 15200 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-19T09:25:56.451+05:30  INFO 15200 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-06-19T09:25:56.478+05:30  INFO 15200 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-19T09:25:56.726+05:30  INFO 15200 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-19T09:25:56.750+05:30  INFO 15200 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Starting...
+2026-06-19T09:25:57.009+05:30  INFO 15200 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : SPRMS-HikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fd92289
+2026-06-19T09:25:57.011+05:30  INFO 15200 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Start completed.
+2026-06-19T09:25:57.777+05:30  INFO 15200 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-19T09:25:57.791+05:30  INFO 15200 --- [student-Registration] [main] org.hibernate.orm.connections.access     : HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6079d219] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2026-06-19T09:25:57.837+05:30  INFO 15200 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-19T09:25:59.240+05:30  INFO 15200 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
+2026-06-19T09:25:59.523+05:30  WARN 15200 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-19T09:26:00.451+05:30  INFO 15200 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-06-19T09:26:00.452+05:30  INFO 15200 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@4835e10a]]
+2026-06-19T09:26:00.453+05:30  INFO 15200 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-06-19T09:26:00.459+05:30  INFO 15200 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 5.993 seconds (process running for 6.708)
+2026-06-19T09:26:00.795+05:30  INFO 15200 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-06-19T09:26:00.796+05:30  INFO 15200 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@4835e10a]]
+2026-06-19T09:26:00.796+05:30  INFO 15200 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-06-19T09:26:00.807+05:30  INFO 15200 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-19T09:26:00.809+05:30  INFO 15200 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown initiated...
+2026-06-19T09:26:00.815+05:30  INFO 15200 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown completed.
+2026-06-19T09:26:51.193+05:30  INFO 31428 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Starting StudentRegistrationApplicationTests using Java 17 with PID 31428 (started by eCMS in D:\RCSC_SPRMS\SPRMS MAIN\SPRMS_STUDENT_REGISTRATION)
+2026-06-19T09:26:51.194+05:30  INFO 31428 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : The following 1 profile is active: "pro"
+2026-06-19T09:26:51.847+05:30  INFO 31428 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-19T09:26:51.963+05:30  INFO 31428 --- [student-Registration] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 105 ms. Found 7 JPA repository interfaces.
+2026-06-19T09:26:52.911+05:30  INFO 31428 --- [student-Registration] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-19T09:26:52.990+05:30  INFO 31428 --- [student-Registration] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-06-19T09:26:53.017+05:30  INFO 31428 --- [student-Registration] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-19T09:26:53.256+05:30  INFO 31428 --- [student-Registration] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-19T09:26:53.277+05:30  INFO 31428 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Starting...
+2026-06-19T09:26:53.486+05:30  INFO 31428 --- [student-Registration] [main] com.zaxxer.hikari.pool.HikariPool        : SPRMS-HikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@c6bf8d9
+2026-06-19T09:26:53.487+05:30  INFO 31428 --- [student-Registration] [main] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Start completed.
+2026-06-19T09:26:54.243+05:30  INFO 31428 --- [student-Registration] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-19T09:26:54.255+05:30  INFO 31428 --- [student-Registration] [main] org.hibernate.orm.connections.access     : HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@37f75ebf] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2026-06-19T09:26:54.303+05:30  INFO 31428 --- [student-Registration] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-19T09:26:55.900+05:30  INFO 31428 --- [student-Registration] [main] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
+2026-06-19T09:26:56.216+05:30  WARN 31428 --- [student-Registration] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-19T09:26:57.224+05:30  INFO 31428 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-06-19T09:26:57.225+05:30  INFO 31428 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5c176a0f]]
+2026-06-19T09:26:57.226+05:30  INFO 31428 --- [student-Registration] [main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-06-19T09:26:57.233+05:30  INFO 31428 --- [student-Registration] [main] .s.r.StudentRegistrationApplicationTests : Started StudentRegistrationApplicationTests in 6.239 seconds (process running for 6.873)
+2026-06-19T09:26:57.543+05:30  INFO 31428 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-06-19T09:26:57.543+05:30  INFO 31428 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5c176a0f]]
+2026-06-19T09:26:57.544+05:30  INFO 31428 --- [student-Registration] [SpringApplicationShutdownHook] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-06-19T09:26:57.553+05:30  INFO 31428 --- [student-Registration] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-19T09:26:57.554+05:30  INFO 31428 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown initiated...
+2026-06-19T09:26:57.560+05:30  INFO 31428 --- [student-Registration] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown completed.
+2026-06-19T09:27:11.605+05:30  INFO 28472 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : Starting StudentRegistrationApplication using Java 17.0.3 with PID 28472 (D:\RCSC_SPRMS\SPRMS MAIN\SPRMS_STUDENT_REGISTRATION\target\classes started by eCMS in D:\RCSC_SPRMS\SPRMS MAIN\SPRMS_STUDENT_REGISTRATION)
+2026-06-19T09:27:11.606+05:30  INFO 28472 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : The following 1 profile is active: "pro"
+2026-06-19T09:27:11.630+05:30  INFO 28472 --- [student-Registration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-06-19T09:27:11.630+05:30  INFO 28472 --- [student-Registration] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-06-19T09:27:14.728+05:30  INFO 28472 --- [student-Registration] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-19T09:27:14.818+05:30  INFO 28472 --- [student-Registration] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86 ms. Found 7 JPA repository interfaces.
+2026-06-19T09:27:15.302+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-06-19T09:27:15.310+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-19T09:27:15.310+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-06-19T09:27:15.350+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-06-19T09:27:15.350+05:30  INFO 28472 --- [student-Registration] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3720 ms
+2026-06-19T09:27:15.536+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-19T09:27:15.573+05:30  INFO 28472 --- [student-Registration] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-06-19T09:27:15.598+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-06-19T09:27:15.743+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-19T09:27:15.758+05:30  INFO 28472 --- [student-Registration] [restartedMain] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Starting...
+2026-06-19T09:27:15.989+05:30  INFO 28472 --- [student-Registration] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : SPRMS-HikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@4f90b5c0
+2026-06-19T09:27:15.991+05:30  INFO 28472 --- [student-Registration] [restartedMain] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Start completed.
+2026-06-19T09:27:16.692+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-19T09:27:16.703+05:30  INFO 28472 --- [student-Registration] [restartedMain] org.hibernate.orm.connections.access     : HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@169ad469] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+2026-06-19T09:27:16.744+05:30  INFO 28472 --- [student-Registration] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-19T09:27:17.533+05:30  INFO 28472 --- [student-Registration] [restartedMain] c.s.r.config.Resilience4jConfig          : Retry listener registered for bcseaApi
+2026-06-19T09:27:17.681+05:30  WARN 28472 --- [student-Registration] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-19T09:27:18.298+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-06-19T09:27:18.337+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-06-19T09:27:18.338+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-06-19T09:27:18.339+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@4a163075]]
+2026-06-19T09:27:18.339+05:30  INFO 28472 --- [student-Registration] [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-06-19T09:27:18.347+05:30  INFO 28472 --- [student-Registration] [restartedMain] c.s.r.StudentRegistrationApplication     : Started StudentRegistrationApplication in 6.956 seconds (process running for 7.469)
+2026-06-19T09:27:32.473+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-19T09:27:32.473+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-19T09:27:32.475+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-06-19T09:27:35.786+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] s.r.c.ScholarshipResgistrationController : @@@Calling the manual CID entry DCRC info  frm...................
+2026-06-19T09:27:39.865+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-10] c.s.r.c.CitizenDetailController          : @@@ CID: 11510004046
+2026-06-19T09:27:39.865+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-10] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:27:40.205+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-10] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling getCitizenDetils proc..................
+2026-06-19T09:27:55.805+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.api.services.BcseaStudentService   : Student 012250150107 repeater status=false
+2026-06-19T09:28:08.169+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.api.services.BcseaStudentService   : BCSEA API unavailable for indexNo: 012250010003. Defaulting repeater status to false.
+
+org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found: "{"message":"No student details found or wrong index number"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:112) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:183) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:137) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:942) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:891) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672) ~[spring-web-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.client.BcseaApiClient.fetchStudentDetail(BcseaApiClient.java:33) ~[classes/:na]
+	at com.sprms.registration.api.services.BcseaStudentService.isRepeaterStudent(BcseaStudentService.java:47) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89) ~[spring-aop-6.1.14.jar:6.1.14]
+	at io.github.resilience4j.retry.Retry.lambda$decorateCheckedSupplier$1(Retry.java:135) ~[resilience4j-retry-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.retry.Retry.executeCheckedSupplier(Retry.java:350) ~[resilience4j-retry-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.handleDefaultJoinPoint(RetryAspect.java:175) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.proceed(RetryAspect.java:132) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.lambda$retryAroundAdvice$0(RetryAspect.java:116) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.fallback.DefaultFallbackDecorator.lambda$decorate$0(DefaultFallbackDecorator.java:36) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.fallback.FallbackExecutor.execute(FallbackExecutor.java:39) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.retryAroundAdvice(RetryAspect.java:117) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:637) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:627) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:173) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.services.BcseaStudentService$$SpringCGLIB$$0.isRepeaterStudent(<generated>) ~[classes/:na]
+	at com.sprms.registration.controller.BcseaRestController.checkStudentType(BcseaRestController.java:35) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-06-19T09:28:10.422+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.api.services.BcseaStudentService   : Student 012250010003 repeater status=true
+2026-06-19T09:28:13.237+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.api.services.BcseaStudentService   : Student 012250010003 repeater status=true
+2026-06-19T09:28:14.678+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.api.services.BcseaStudentService   : Student 012250010003 repeater status=true
+2026-06-19T09:28:18.335+05:30  INFO 28472 --- [student-Registration] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2026-06-19T09:28:25.097+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.c.CitizenDetailController          : @@@ CID: 11510004046
+2026-06-19T09:28:25.097+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:28:25.097+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling getCitizenDetils proc..................
+2026-06-19T09:28:25.203+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.a.s.DcrcAuthNCitizenServices       : Error fetching citizen details
+
+org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://staging-datahub-apim.tech.gov.bt/dcrc_citizen_details_api/1.0.0/citizendetails/11510004046": staging-datahub-apim.tech.gov.bt
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672) ~[spring-web-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.services.DcrcAuthNCitizenServices.getCitizenDetils(DcrcAuthNCitizenServices.java:125) ~[classes/:na]
+	at com.sprms.registration.controller.CitizenDetailController.getCitizenDetails(CitizenDetailController.java:42) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: java.net.UnknownHostException: staging-datahub-apim.tech.gov.bt
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:567) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304) ~[na:na]
+	at java.base/sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:174) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:498) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:603) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:189) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:175) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(HttpsURLConnectionImpl.java:142) ~[na:na]
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889) ~[spring-web-6.1.14.jar:6.1.14]
+	... 54 common frames omitted
+
+2026-06-19T09:28:25.207+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.c.CitizenDetailController          : DCRC service down
+
+java.lang.RuntimeException: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://staging-datahub-apim.tech.gov.bt/dcrc_citizen_details_api/1.0.0/citizendetails/11510004046": staging-datahub-apim.tech.gov.bt
+	at com.sprms.registration.api.services.DcrcAuthNCitizenServices.getCitizenDetils(DcrcAuthNCitizenServices.java:172) ~[classes/:na]
+	at com.sprms.registration.controller.CitizenDetailController.getCitizenDetails(CitizenDetailController.java:42) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://staging-datahub-apim.tech.gov.bt/dcrc_citizen_details_api/1.0.0/citizendetails/11510004046": staging-datahub-apim.tech.gov.bt
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672) ~[spring-web-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.services.DcrcAuthNCitizenServices.getCitizenDetils(DcrcAuthNCitizenServices.java:125) ~[classes/:na]
+	... 51 common frames omitted
+Caused by: java.net.UnknownHostException: staging-datahub-apim.tech.gov.bt
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:567) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304) ~[na:na]
+	at java.base/sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:174) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:498) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:603) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:189) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:175) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(HttpsURLConnectionImpl.java:142) ~[na:na]
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889) ~[spring-web-6.1.14.jar:6.1.14]
+	... 54 common frames omitted
+
+2026-06-19T09:28:28.307+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.c.CitizenDetailController          : @@@ CID: 11510004046
+2026-06-19T09:28:28.307+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:28:28.307+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling getCitizenDetils proc..................
+2026-06-19T09:28:28.309+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.s.DcrcAuthNCitizenServices       : Error fetching citizen details
+
+org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://staging-datahub-apim.tech.gov.bt/dcrc_citizen_details_api/1.0.0/citizendetails/11510004046": staging-datahub-apim.tech.gov.bt
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672) ~[spring-web-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.services.DcrcAuthNCitizenServices.getCitizenDetils(DcrcAuthNCitizenServices.java:125) ~[classes/:na]
+	at com.sprms.registration.controller.CitizenDetailController.getCitizenDetails(CitizenDetailController.java:42) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: java.net.UnknownHostException: staging-datahub-apim.tech.gov.bt
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:567) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304) ~[na:na]
+	at java.base/sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:174) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:498) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:603) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:189) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:175) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(HttpsURLConnectionImpl.java:142) ~[na:na]
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889) ~[spring-web-6.1.14.jar:6.1.14]
+	... 54 common frames omitted
+
+2026-06-19T09:28:28.312+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.c.CitizenDetailController          : DCRC service down
+
+java.lang.RuntimeException: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://staging-datahub-apim.tech.gov.bt/dcrc_citizen_details_api/1.0.0/citizendetails/11510004046": staging-datahub-apim.tech.gov.bt
+	at com.sprms.registration.api.services.DcrcAuthNCitizenServices.getCitizenDetils(DcrcAuthNCitizenServices.java:172) ~[classes/:na]
+	at com.sprms.registration.controller.CitizenDetailController.getCitizenDetails(CitizenDetailController.java:42) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: org.springframework.web.client.ResourceAccessException: I/O error on GET request for "https://staging-datahub-apim.tech.gov.bt/dcrc_citizen_details_api/1.0.0/citizendetails/11510004046": staging-datahub-apim.tech.gov.bt
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672) ~[spring-web-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.services.DcrcAuthNCitizenServices.getCitizenDetils(DcrcAuthNCitizenServices.java:125) ~[classes/:na]
+	... 51 common frames omitted
+Caused by: java.net.UnknownHostException: staging-datahub-apim.tech.gov.bt
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:567) ~[na:na]
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327) ~[na:na]
+	at java.base/java.net.Socket.connect(Socket.java:633) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304) ~[na:na]
+	at java.base/sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:174) ~[na:na]
+	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:183) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:498) ~[na:na]
+	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:603) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:266) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:380) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:189) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1242) ~[na:na]
+	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1128) ~[na:na]
+	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:175) ~[na:na]
+	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.connect(HttpsURLConnectionImpl.java:142) ~[na:na]
+	at org.springframework.http.client.SimpleClientHttpRequest.executeInternal(SimpleClientHttpRequest.java:79) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889) ~[spring-web-6.1.14.jar:6.1.14]
+	... 54 common frames omitted
+
+2026-06-19T09:35:09.704+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.ndi.controller.NdiLoginController  : @@@Calling the NDI API to get token......................
+2026-06-19T09:35:09.704+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.api.services.NdiRestServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:35:10.426+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.api.services.NdiRestServices       : @@@Calling the createProofRequest proc..................
+2026-06-19T09:35:11.515+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.a.s.WebhookRegistrationService     : Webhook already exists.
+2026-06-19T09:35:11.641+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.api.services.NdiWebhookServices    : @@@Calling the webhookSubscribe.............
+2026-06-19T09:35:11.641+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.api.services.NdiAuthServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:35:12.863+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.ndi.controller.NdiSseController    : SSE connected thid=11d4bde9-0a38-4559-8712-edf44d98ceb4
+2026-06-19T09:35:55.997+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.ndi.controller.NdiLoginController  : @@@Calling the NDI API to get token......................
+2026-06-19T09:35:55.998+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.api.services.NdiRestServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:35:55.998+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.api.services.NdiRestServices       : @@@Calling the createProofRequest proc..................
+2026-06-19T09:35:58.411+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.a.s.WebhookRegistrationService     : Webhook already exists.
+2026-06-19T09:35:58.421+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.api.services.NdiWebhookServices    : @@@Calling the webhookSubscribe.............
+2026-06-19T09:35:58.421+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.api.services.NdiAuthServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:35:58.611+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.ndi.controller.NdiSseController    : SSE connected thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3
+2026-06-19T09:36:01.751+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:36:01.859+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.a.s.NdiDataExtractorServices       : @@@Calling the VerifiedUserDTO extract pro...................
+2026-06-19T09:36:01.859+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.api.services.NdiWebhookServices    : @@@Calling the saveUser proce................
+2026-06-19T09:36:01.869+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.api.services.NdiWebhookServices    : @@@Calling the saveAuditSuccess proce................
+2026-06-19T09:36:01.905+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.api.services.NdiAuthServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:36:01.995+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.registration.frmbean.NdiSseRegistry  : Client disconnected. thid=11d4bde9-0a38-4559-8712-edf44d98ceb4
+2026-06-19T09:36:01.995+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.ndi.controller.NdiSseController    : SSE error thid=11d4bde9-0a38-4559-8712-edf44d98ceb4, msg=An established connection was aborted by the software in your host machine
+2026-06-19T09:36:01.998+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.registration.frmbean.NdiSseRegistry  : @@@SSE cleaned safely thid=11d4bde9-0a38-4559-8712-edf44d98ceb4
+2026-06-19T09:36:02.000+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:36:02.011+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.G.GlobalExceptionHandler           : @@@Client disconnected from async/SSE response: Response not usable after response errors.
+2026-06-19T09:36:02.011+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: Response not usable after response errors.]
+2026-06-19T09:36:02.012+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.ndi.controller.NdiSseController    : SSE completed thid=11d4bde9-0a38-4559-8712-edf44d98ceb4
+2026-06-19T09:36:06.961+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:36:06.966+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.a.s.NdiDataExtractorServices       : @@@Calling the VerifiedUserDTO extract pro...................
+2026-06-19T09:36:06.967+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.api.services.NdiWebhookServices    : @@@Calling the saveUser proce................
+2026-06-19T09:36:06.974+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.api.services.NdiWebhookServices    : @@@Calling the saveAuditSuccess proce................
+2026-06-19T09:36:06.986+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.api.services.NdiAuthServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:36:07.072+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:36:07.169+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] s.r.c.ScholarshipResgistrationController : @@@Calling the Student Registration frm...................
+2026-06-19T09:36:07.170+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:36:07.170+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling getCitizenDetils proc..................
+2026-06-19T09:36:09.316+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:36:09.323+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.registration.frmbean.NdiSseRegistry  : Client disconnected. thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3
+2026-06-19T09:36:09.324+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.ndi.controller.NdiSseController    : SSE error thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3, msg=An established connection was aborted by the software in your host machine
+2026-06-19T09:36:09.325+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.registration.frmbean.NdiSseRegistry  : @@@SSE cleaned safely thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3
+2026-06-19T09:36:09.326+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:36:09.326+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.G.GlobalExceptionHandler           : @@@Client disconnected from async/SSE response: Response not usable after response errors.
+2026-06-19T09:36:09.326+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.context.request.async.AsyncRequestNotUsableException: Response not usable after response errors.]
+2026-06-19T09:36:09.330+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.ndi.controller.NdiSseController    : SSE connected thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3
+2026-06-19T09:36:09.332+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.ndi.controller.NdiSseController    : SSE error thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3, msg=Cannot start async: [ERROR]
+2026-06-19T09:36:09.332+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.registration.frmbean.NdiSseRegistry  : @@@SSE cleaned safely thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3
+2026-06-19T09:36:09.332+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.G.GlobalExceptionHandler           : UNEXPECTED ERROR
+
+java.lang.IllegalStateException: Cannot start async: [ERROR]
+	at org.springframework.util.Assert.state(Assert.java:76) ~[spring-core-6.1.14.jar:6.1.14]
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest.startAsync(StandardServletAsyncWebRequest.java:156) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.context.request.async.WebAsyncManager.startAsyncProcessing(WebAsyncManager.java:508) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.context.request.async.WebAsyncManager.startDeferredResultProcessing(WebAsyncManager.java:483) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler.handleReturnValue(ResponseBodyEmitterReturnValueHandler.java:177) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:136) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:632) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.doDispatch(ApplicationDispatcher.java:560) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.dispatch(ApplicationDispatcher.java:531) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.AsyncContextImpl$AsyncRunnable.run(AsyncContextImpl.java:601) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.AsyncContextImpl.doInternalDispatch(AsyncContextImpl.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.asyncDispatch(CoyoteAdapter.java:239) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessor.dispatch(AbstractProcessor.java:243) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-06-19T09:36:09.336+05:30  WARN 28472 --- [student-Registration] [http-nio-8081-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.IllegalStateException: Cannot start async: [ERROR]]
+2026-06-19T09:36:09.340+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] threw exception
+
+org.springframework.web.context.request.async.AsyncRequestNotUsableException: Response not usable after response errors.
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleHttpServletResponse.obtainLockOrRaiseException(StandardServletAsyncWebRequest.java:335) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleHttpServletResponse.getWriter(StandardServletAsyncWebRequest.java:299) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:370) ~[thymeleaf-spring6-3.1.2.RELEASE.jar:3.1.2.RELEASE]
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192) ~[thymeleaf-spring6-3.1.2.RELEASE.jar:3.1.2.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1432) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1168) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:632) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.doDispatch(ApplicationDispatcher.java:560) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.dispatch(ApplicationDispatcher.java:531) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.AsyncContextImpl$AsyncRunnable.run(AsyncContextImpl.java:601) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.AsyncContextImpl.doInternalDispatch(AsyncContextImpl.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.asyncDispatch(CoyoteAdapter.java:239) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessor.dispatch(AbstractProcessor.java:243) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-06-19T09:36:09.342+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.ndi.controller.NdiSseController    : SSE completed thid=5bdf1a78-a0f7-4128-8be7-9eed1cfe12b3
+2026-06-19T09:36:09.343+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+org.springframework.web.context.request.async.AsyncRequestNotUsableException: Response not usable after response errors.
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleHttpServletResponse.obtainLockOrRaiseException(StandardServletAsyncWebRequest.java:335) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.context.request.async.StandardServletAsyncWebRequest$LifecycleHttpServletResponse.getWriter(StandardServletAsyncWebRequest.java:299) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:370) ~[thymeleaf-spring6-3.1.2.RELEASE.jar:3.1.2.RELEASE]
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192) ~[thymeleaf-spring6-3.1.2.RELEASE.jar:3.1.2.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1432) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1168) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:632) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.doDispatch(ApplicationDispatcher.java:560) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationDispatcher.dispatch(ApplicationDispatcher.java:531) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.AsyncContextImpl$AsyncRunnable.run(AsyncContextImpl.java:601) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.AsyncContextImpl.doInternalDispatch(AsyncContextImpl.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.asyncDispatch(CoyoteAdapter.java:239) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessor.dispatch(AbstractProcessor.java:243) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:57) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-06-19T09:36:13.577+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-7] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:36:13.580+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-7] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:36:21.845+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:36:21.851+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:36:32.247+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:36:32.250+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-4] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:36:38.111+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:36:38.115+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:36:43.239+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-10] c.s.r.api.services.BcseaStudentService   : Student 012250150148 repeater status=false
+2026-06-19T09:36:45.460+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.api.services.BcseaStudentService   : Student 012250150148 repeater status=false
+2026-06-19T09:36:48.008+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] s.r.c.ScholarshipResgistrationController : @@@Calling the addScholarshilRegistration.......................... 
+2026-06-19T09:36:48.008+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.s.ScholarsipRegistrationService    : @@@START: saveScholarshipDetails
+2026-06-19T09:36:48.008+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.s.ScholarsipRegistrationService    : @@@START: saveRegistrationForCountryBhutan
+2026-06-19T09:36:48.012+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.services.BcseaAuthNmarksService  : @@@Calling the getAccessToken proc..................
+2026-06-19T09:36:48.075+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.services.BcseaAuthNmarksService  : @@@Calling getStudentMarks for indexNo: 012250150148
+2026-06-19T09:36:48.103+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.services.BcseaAuthNmarksService  : BCSEA CLIENT ERROR: {"message":"No student details found or wrong index number"}
+2026-06-19T09:36:48.113+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] s.r.c.ScholarshipResgistrationController : @@@Calling the Student Registration frm...................
+2026-06-19T09:36:48.113+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:36:48.113+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling getCitizenDetils proc..................
+2026-06-19T09:37:00.550+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.api.services.BcseaStudentService   : Student 012250150148 repeater status=false
+2026-06-19T09:37:02.507+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:37:02.513+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:37:03.876+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] s.r.c.ScholarshipResgistrationController : @@@Calling the addScholarshilRegistration.......................... 
+2026-06-19T09:37:03.877+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.s.ScholarsipRegistrationService    : @@@START: saveScholarshipDetails
+2026-06-19T09:37:03.877+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.s.ScholarsipRegistrationService    : @@@START: saveRegistrationForCountryBhutan
+2026-06-19T09:37:03.881+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.services.BcseaAuthNmarksService  : @@@Calling the getAccessToken proc..................
+2026-06-19T09:37:03.882+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.services.BcseaAuthNmarksService  : @@@Calling getStudentMarks for indexNo: 012250150148
+2026-06-19T09:37:03.911+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.services.BcseaAuthNmarksService  : BCSEA CLIENT ERROR: {"message":"No student details found or wrong index number"}
+2026-06-19T09:37:03.932+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] s.r.c.ScholarshipResgistrationController : @@@Calling the Student Registration frm...................
+2026-06-19T09:37:03.932+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling the getAccessToken proc..................
+2026-06-19T09:37:03.932+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.s.DcrcAuthNCitizenServices       : @@@Calling getCitizenDetils proc..................
+2026-06-19T09:37:08.363+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:37:08.366+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-3] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:37:20.064+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-2] c.s.r.api.services.BcseaStudentService   : Student 012250150148 repeater status=false
+2026-06-19T09:37:23.574+05:30 ERROR 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.api.services.BcseaStudentService   : BCSEA API unavailable for indexNo: 012250150148. Defaulting repeater status to false.
+
+org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found: "{"message":"No student details found or wrong index number"}"
+	at org.springframework.web.client.HttpClientErrorException.create(HttpClientErrorException.java:112) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:183) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.DefaultResponseErrorHandler.handleError(DefaultResponseErrorHandler.java:137) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.ResponseErrorHandler.handleError(ResponseErrorHandler.java:63) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.handleResponse(RestTemplate.java:942) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:891) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672) ~[spring-web-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.client.BcseaApiClient.fetchStudentDetail(BcseaApiClient.java:33) ~[classes/:na]
+	at com.sprms.registration.api.services.BcseaStudentService.isRepeaterStudent(BcseaStudentService.java:47) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:89) ~[spring-aop-6.1.14.jar:6.1.14]
+	at io.github.resilience4j.retry.Retry.lambda$decorateCheckedSupplier$1(Retry.java:135) ~[resilience4j-retry-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.retry.Retry.executeCheckedSupplier(Retry.java:350) ~[resilience4j-retry-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.handleDefaultJoinPoint(RetryAspect.java:175) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.proceed(RetryAspect.java:132) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.lambda$retryAroundAdvice$0(RetryAspect.java:116) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.fallback.DefaultFallbackDecorator.lambda$decorate$0(DefaultFallbackDecorator.java:36) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.fallback.FallbackExecutor.execute(FallbackExecutor.java:39) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at io.github.resilience4j.spring6.retry.configure.RetryAspect.retryAroundAdvice(RetryAspect.java:117) ~[resilience4j-spring6-2.2.0.jar:2.2.0]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:637) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:627) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:71) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:173) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.14.jar:6.1.14]
+	at com.sprms.registration.api.services.BcseaStudentService$$SpringCGLIB$$0.isRepeaterStudent(<generated>) ~[classes/:na]
+	at com.sprms.registration.controller.BcseaRestController.checkStudentType(BcseaRestController.java:35) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2026-06-19T09:37:25.839+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] s.r.c.ScholarshipResgistrationController : @@@Calling the addScholarshilRegistration.......................... 
+2026-06-19T09:37:25.839+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.s.ScholarsipRegistrationService    : @@@START: saveScholarshipDetails
+2026-06-19T09:37:25.839+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.s.ScholarsipRegistrationService    : @@@START: saveRegistrationForCountryBhutan
+2026-06-19T09:37:25.842+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.a.services.BcseaAuthNmarksService  : @@@Calling the getAccessToken proc..................
+2026-06-19T09:37:25.842+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.a.services.BcseaAuthNmarksService  : @@@Calling getStudentMarks for indexNo: 012250150148
+2026-06-19T09:37:25.895+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.a.services.BcseaAuthNmarksService  : BCSEA Response received successfully
+2026-06-19T09:37:25.895+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.api.services.StudentMapperService  : @@@Calling StudentMapperService...
+2026-06-19T09:37:25.975+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.api.services.StudentServices       : @@@Calling saveStudentProfiles and student marks...................
+2026-06-19T09:37:26.010+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.s.ScholarsipRegistrationService    : @@@Regular student - skipping file upload
+2026-06-19T09:37:26.010+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.s.ScholarsipRegistrationService    : @@@END: saveRegistrationForCountryBhutan
+2026-06-19T09:37:26.010+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.s.ScholarsipRegistrationService    : @@@END: saveScholarshipDetails
+2026-06-19T09:37:26.022+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] s.r.c.ScholarshipResgistrationController : @@@Calling the getThankYouPage......................
+2026-06-19T09:37:32.770+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-10] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:37:32.773+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-10] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:37:38.633+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:37:38.637+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:38:03.034+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:38:03.039+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:38:08.892+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:38:08.898+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:38:33.300+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:38:33.305+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-1] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:38:39.151+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:38:39.154+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-5] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:39:03.570+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:39:03.575+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-6] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:39:09.411+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:39:09.416+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-9] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:39:39.667+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.a.s.NdiAppUserRepositoryServices   : @@@Calling the existsByThid proc.................
+2026-06-19T09:39:39.670+05:30  INFO 28472 --- [student-Registration] [http-nio-8081-exec-8] c.s.r.ndi.controller.NdiLoginController  : @@@AUTH HEADER RECEIVED: thisisfixtoken01
+2026-06-19T09:58:18.340+05:30  INFO 28472 --- [student-Registration] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
+2026-06-19T10:28:18.348+05:30  INFO 28472 --- [student-Registration] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 3, active threads = 1, queued tasks = 0, completed tasks = 2]
+2026-06-19T10:58:18.355+05:30  INFO 28472 --- [student-Registration] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 4, active threads = 1, queued tasks = 0, completed tasks = 3]
+2026-06-19T11:28:18.371+05:30  INFO 28472 --- [student-Registration] [MessageBroker-3] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 5, active threads = 1, queued tasks = 0, completed tasks = 4]
+2026-06-19T11:58:18.373+05:30  INFO 28472 --- [student-Registration] [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 6, active threads = 1, queued tasks = 0, completed tasks = 5]
+2026-06-19T12:28:18.373+05:30  INFO 28472 --- [student-Registration] [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 7, active threads = 1, queued tasks = 0, completed tasks = 6]
+2026-06-19T12:58:18.376+05:30  INFO 28472 --- [student-Registration] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 0, completed tasks = 7]
+2026-06-19T13:28:18.392+05:30  INFO 28472 --- [student-Registration] [MessageBroker-5] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 9, active threads = 1, queued tasks = 0, completed tasks = 8]
+2026-06-19T13:58:18.406+05:30  INFO 28472 --- [student-Registration] [MessageBroker-3] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 10, active threads = 1, queued tasks = 0, completed tasks = 9]
+2026-06-19T14:28:18.409+05:30  INFO 28472 --- [student-Registration] [MessageBroker-6] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 11, active threads = 1, queued tasks = 0, completed tasks = 10]
+2026-06-19T14:58:18.422+05:30  INFO 28472 --- [student-Registration] [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 0, completed tasks = 11]
+2026-06-19T15:28:18.423+05:30  INFO 28472 --- [student-Registration] [MessageBroker-7] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 13, active threads = 1, queued tasks = 0, completed tasks = 12]
+2026-06-19T15:58:18.432+05:30  INFO 28472 --- [student-Registration] [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 14, active threads = 1, queued tasks = 0, completed tasks = 13]
+2026-06-19T16:01:56.213+05:30  INFO 28472 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2026-06-19T16:01:56.216+05:30  INFO 28472 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2026-06-19T16:01:56.217+05:30  INFO 28472 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@4a163075]]
+2026-06-19T16:01:56.217+05:30  INFO 28472 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2026-06-19T16:01:56.430+05:30  INFO 28472 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-19T16:01:56.432+05:30  INFO 28472 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown initiated...
+2026-06-19T16:01:56.435+05:30  INFO 28472 --- [student-Registration] [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : SPRMS-HikariPool - Shutdown completed.

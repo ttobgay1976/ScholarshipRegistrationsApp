@@ -4,7 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,23 +16,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import com.sprms.registration.frmDTO.NdiSseRegistry;
+import com.sprms.registration.frmbean.NdiSseRegistry;
 
 @RestController
 @RequestMapping("/ndi")
 public class NdiSseController {
 
-	// this is used for the logging the error
 	private static final Logger logger = LoggerFactory.getLogger(NdiSseController.class);
 
-	@Autowired
-	private NdiSseRegistry registry;
+	// CALL REPO
+	private final NdiSseRegistry registry;
 
-	// Shared scheduler (IMPORTANT: avoid thread per request leak)
+	// constructor
+	public NdiSseController(NdiSseRegistry ndiSseRegistry) {
+		this.registry = ndiSseRegistry;
+	}
+
+	// Shared scheduler (good approach)
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
 
-	@GetMapping("/events/{thid}")
-	public SseEmitter stream(@PathVariable String thid,
+	@GetMapping("/events_OLD/{thid}")
+	public SseEmitter stream_OLD(@PathVariable String thid,
 			@RequestHeader(value = "Last-Event-ID", required = false) String lastEventId) {
 
 		logger.info("SSE connected thid={}, lastEventId={}", thid, lastEventId);
@@ -41,38 +45,8 @@ public class NdiSseController {
 
 		registry.add(thid, emitter);
 
-		AtomicBoolean closed = new AtomicBoolean(false);
-
-		ScheduledFuture<?>[] futureHolder = new ScheduledFuture<?>[1];
-
-		// ================= CLEANUP =================
-		Runnable cleanup = () -> {
-			if (closed.compareAndSet(false, true)) {
-
-				ScheduledFuture<?> f = futureHolder[0];
-				if (f != null) {
-					f.cancel(true);
-				}
-
-				registry.removeExecutor(thid);
-				registry.remove(thid);
-
-				try {
-					emitter.complete();
-				} catch (Exception ignored) {
-				}
-			}
-		};
-
-		emitter.onCompletion(cleanup);
-		emitter.onTimeout(cleanup);
-		emitter.onError(e -> cleanup.run());
-
 		// ================= HEARTBEAT =================
-		futureHolder[0] = scheduler.scheduleAtFixedRate(() -> {
-
-			if (closed.get())
-				return;
+		ScheduledFuture<?> heartbeat = scheduler.scheduleAtFixedRate(() -> {
 
 			try {
 				emitter.send(SseEmitter.event().id(String.valueOf(System.currentTimeMillis())).name("heartbeat")
@@ -80,24 +54,87 @@ public class NdiSseController {
 
 			} catch (Exception ex) {
 
-				logger.info("SSE disconnected thid {}: {}", thid, ex.getMessage());
+				logger.info("SSE disconnected thid={}: {}", thid, ex.getMessage());
 
-				cleanup.run();
+				registry.cleanup(thid); // single cleanup source
+
 			}
 
-		}, 0, 15, TimeUnit.SECONDS);
+		}, 15, 15, TimeUnit.SECONDS); // start delay added (IMPORTANT)
 
-		registry.addFuture(thid, futureHolder[0]);
+		registry.addFuture(thid, heartbeat);
 
 		// ================= RECONNECT SUPPORT =================
 		if (lastEventId != null) {
 			logger.info("Reconnected thid={} from lastEventId={}", thid, lastEventId);
-
-			// OPTIONAL: replay missed events
-			// replayService.replay(thid, lastEventId, emitter);
 		}
 
 		return emitter;
 	}
 
+	// new code
+	@GetMapping("/events/{thid}")
+	public SseEmitter stream(@PathVariable String thid,
+			@RequestHeader(value = "Last-Event-ID", required = false) String lastEventId) {
+
+		logger.info("SSE connected thid={}", thid);
+
+		SseEmitter emitter = new SseEmitter(0L);
+
+		registry.register(thid, emitter);
+
+		AtomicInteger failCount = new AtomicInteger(0);
+
+		ScheduledFuture<?> heartbeat = scheduler.scheduleWithFixedDelay(() -> {
+
+			// prevent zombie execution after cleanup
+			if (!registry.exists(thid)) {
+				return;
+			}
+
+			try {
+				emitter.send(SseEmitter.event().id(String.valueOf(System.currentTimeMillis())).name("heartbeat")
+						.data("ping").reconnectTime(5000));
+
+				failCount.set(0);
+
+			} catch (Exception ex) {
+
+				int count = failCount.incrementAndGet();
+
+				logger.warn("Heartbeat failed thid={}, count={}", thid, count);
+
+				if (count >= 3) {
+					logger.warn("SSE unstable → cleanup {}", thid);
+					registry.cleanup(thid); // 🔥 FIXED
+				}
+			}
+
+		}, 15, 15, TimeUnit.SECONDS);
+
+		registry.addFuture(thid, heartbeat);
+
+		// ================= LIFECYCLE HANDLERS =================
+
+		emitter.onCompletion(() -> {
+			logger.info("SSE completed thid={}", thid);
+			registry.cleanup(thid); // 🔥 FIXED
+		});
+
+		emitter.onTimeout(() -> {
+			logger.info("SSE timeout thid={}", thid);
+			registry.cleanup(thid);
+		});
+
+		emitter.onError(ex -> {
+			logger.warn("SSE error thid={}, msg={}", thid, ex.getMessage());
+			registry.cleanup(thid); // 🔥 FIXED
+		});
+
+		if (lastEventId != null) {
+			logger.info("Reconnected thid={} lastEventId={}", thid, lastEventId);
+		}
+
+		return emitter;
+	}
 }

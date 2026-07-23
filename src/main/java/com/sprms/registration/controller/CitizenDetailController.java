@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sprms.registration.DTOMapper.CitizenRegistrationDTOMapper;
 import com.sprms.registration.api.services.DcrcAuthNCitizenServices;
-import com.sprms.registration.frmDTO.CitizenDetailDTO;
-import com.sprms.registration.frmDTO.ScholarshipRegistrationDTO;
+import com.sprms.registration.frmbean.CitizenDetailDTO;
+import com.sprms.registration.frmbean.ScholarshipRegistrationDTO;
 
 @RestController
 @RequestMapping("/service")

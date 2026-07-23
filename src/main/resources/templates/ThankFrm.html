@@ -42,11 +42,9 @@
 			<b>Name:</b> <span th:text="${name}"></span>
 		</p>
 		<p>
-			<b>Index No:</b> <span th:text="${indexNo}"></span>
+			<b>Index No. / CID No:</b> <span
+				th:text="${indexNo != null ? indexNo : cidNo}"></span>
 		</p>
-<!-- 		<p>
-			<b>Stream:</b> <span th:text="${strm}"></span>
-		</p> -->
 		<p>
 			<b>Registration No:</b> <span th:text="${regNo}"></span><br>
 			Note: <i>Kindly take note of your registration number, you may
@@ -57,7 +55,7 @@
 
 		<button class="btn btn-primary" onclick="window.print()">
 			Print Registration Slip</button>
-<!-- 
+		<!-- 
 		<a href="/scholarship/registrationfrm" class="btn btn-secondary">
 			New Registration </a> -->
 

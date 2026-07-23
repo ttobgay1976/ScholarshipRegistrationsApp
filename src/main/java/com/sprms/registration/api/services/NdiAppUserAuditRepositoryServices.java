@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.sprms.registration.api.repository.NdiAppUserAuditRepository;
-import com.sprms.registration.frmDTO.VerifiedUserDTO;
+import com.sprms.registration.frmbean.VerifiedUserDTO;
 import com.sprms.registration.hbmbean.NdiLoginAudit;
 import com.sprms.registration.utils.DateUtil;
 

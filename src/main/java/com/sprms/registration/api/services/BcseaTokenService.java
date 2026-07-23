@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.sprms.registration.config.APISchemaConfig;
 import com.sprms.registration.exception.BcseaApiException;
-import com.sprms.registration.frmDTO.TokenResponseDTO;
+import com.sprms.registration.frmbean.TokenResponseDTO;
 
 @Service
 public class BcseaTokenService {

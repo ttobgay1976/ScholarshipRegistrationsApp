@@ -2,8 +2,8 @@ package com.sprms.registration.DTOMapper;
 
 import org.springframework.stereotype.Component;
 
-import com.sprms.registration.frmDTO.CitizenDetailDTO;
-import com.sprms.registration.frmDTO.ScholarshipRegistrationDTO;
+import com.sprms.registration.frmbean.CitizenDetailDTO;
+import com.sprms.registration.frmbean.ScholarshipRegistrationDTO;
 
 @Component
 public class CitizenRegistrationDTOMapper {

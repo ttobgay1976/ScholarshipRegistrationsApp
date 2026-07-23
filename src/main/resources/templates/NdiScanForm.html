@@ -51,35 +51,37 @@
 						eventSource.addEventListener("heartbeat", function(
 								event) {
 							console.log("Heartbeat:", event.data);
+							console.log("Heartbeat my heart");
 						});
 
 						eventSource
 								.addEventListener(
 										"status",
 										function(event) {
-											try {
-												const data = JSON
-														.parse(event.data);
+											
+										    console.log("🔥 STATUS EVENT RECEIVED:", event);
+										    console.log("@@RAW DATA:", event.data);
+										    
+										    try {
+										        console.log("Parsing data:", event.data);
 
-												if (data.status === "PROOF_VALIDATED") {
-													console
-															.log("✅ Proof validated");
+										        const data = JSON.parse(event.data);
 
-													eventSource.close();
+										        console.log("Parsed object:", data);
 
-													window.location.href = "/ndi/post-login?thid="
-															+ thid;
+										        if (data.status === "PROOF_VALIDATED") {
+										            console.log("✅ Proof validated");
+										            eventSource.close();
 
-													// Alternative:
-													// window.location.href = "/ndi/waiting?thid=" + thid;
-												}
+										            console.log("Redirecting with thid:", thid);
 
-											} catch (e) {
-												console
-														.error(
-																"Invalid status event JSON:",
-																event.data);
-											}
+										            window.location.href = "/ndi/post-login?thid=" + thid;
+										        }
+
+										    } catch (e) {
+										        console.error("❌ JSON parse failed:", e);
+										        console.error("Raw event data:", event.data);
+										    }
 										});
 
 						eventSource.onerror = function() {

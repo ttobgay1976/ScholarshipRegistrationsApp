@@ -17,10 +17,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sprms.registration.config.APISchemaConfig;
-import com.sprms.registration.frmDTO.CitizenDetailDTO;
-import com.sprms.registration.frmDTO.CitizenDetailsResponseDTO;
-import com.sprms.registration.frmDTO.DcrcCititezenDetailsDTO;
-import com.sprms.registration.frmDTO.TokenResponseDTO;
+import com.sprms.registration.frmbean.CitizenDetailDTO;
+import com.sprms.registration.frmbean.CitizenDetailsResponseDTO;
+import com.sprms.registration.frmbean.DcrcCititezenDetailsDTO;
+import com.sprms.registration.frmbean.TokenResponseDTO;
 
 //THIS SERVICE WILL GET THE TOKEN WITH AUTH URL
 //SAME TIME WILL GET TH CITIZEN DETAILS FOR THE GIVEN INDIVIDUAL

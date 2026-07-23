@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.sprms.registration.frmDTO.VerifiedUserDTO;
+import com.sprms.registration.frmbean.VerifiedUserDTO;
 
 @Service
 public class NdiAppUserRepositoryServices {

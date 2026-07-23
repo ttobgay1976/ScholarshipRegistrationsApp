@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.sprms.registration.api.repository.StudentProfileRepository;
-import com.sprms.registration.frmDTO.StudentMarksDTO;
-import com.sprms.registration.frmDTO.StudentProfileDTO;
+import com.sprms.registration.frmbean.StudentMarksDTO;
+import com.sprms.registration.frmbean.StudentProfileDTO;
 import com.sprms.registration.hbmbean.ScholarshipRegistration;
 import com.sprms.registration.hbmbean.StudentMarks;
 import com.sprms.registration.hbmbean.StudentProfile;
@@ -90,6 +90,9 @@ public class StudentServices {
 			}).toList();
 
 			student.setStudentMarks(marks);
+			
+			//added later
+			student.setActive(false);
 
 			entities.add(student);
 		}
@@ -138,6 +141,7 @@ public class StudentServices {
 
 			if (hasMath && hasBiology) {
 				return "MED/ENG";
+				//return "BOTH";
 			}
 
 			if (hasMath) {

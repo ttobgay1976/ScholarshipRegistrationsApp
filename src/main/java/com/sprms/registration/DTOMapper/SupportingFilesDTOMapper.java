@@ -3,7 +3,7 @@ package com.sprms.registration.DTOMapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.sprms.registration.frmDTO.SupportingFilesDTO;
+import com.sprms.registration.frmbean.SupportingFilesDTO;
 import com.sprms.registration.hbmbean.SupportingFiles;
 
 public class SupportingFilesDTOMapper {

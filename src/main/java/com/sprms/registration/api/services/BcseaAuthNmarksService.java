@@ -17,8 +17,9 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.sprms.registration.config.APISchemaConfig;
-import com.sprms.registration.frmDTO.StudentApiResponseDTO;
-import com.sprms.registration.frmDTO.TokenResponseDTO;
+import com.sprms.registration.exception.BcseaApiException;
+import com.sprms.registration.frmbean.StudentApiResponseDTO;
+import com.sprms.registration.frmbean.TokenResponseDTO;
 
 import io.github.resilience4j.retry.annotation.Retry;
 
@@ -100,7 +101,6 @@ public class BcseaAuthNmarksService {
 		}
 	}
 
-	
 	// GET THE STUDENT MARKS FROM THIS RESTTEMPATE
 	// MODIFIED ON DT 01/05/2026
 	@Retry(name = "bcseaApi", fallbackMethod = "bcseaFallback")
@@ -154,11 +154,21 @@ public class BcseaAuthNmarksService {
 	}
 
 	// THIS IS THE FALLBACK METHOD
-	public StudentApiResponseDTO bcseaFallback(String indexNo, String token, Throwable ex) {
+	public StudentApiResponseDTO bcseaFallback_OLD(String indexNo, String token, Throwable ex) {
 
 		System.out.println("❌ BCSEA API FAILED after retries for indexNo: " + indexNo);
 		System.out.println("ERROR: " + ex.getMessage());
 
 		throw new RuntimeException("BCSEA service unavailable. Please try again later.");
+	}
+
+	// =====================================================
+	// FALLBACK METHOD - CALLED AFTER ALL RETRIES FAIL
+	// =====================================================
+	public StudentApiResponseDTO bcseaFallback(String indexNo, String token, Throwable ex) {
+
+		logger.error("BCSEA API failed after retries for indexNo: {}", indexNo, ex);
+
+		throw new BcseaApiException("BCSEA service is currently unavailable. Please try again later.", ex);
 	}
 }

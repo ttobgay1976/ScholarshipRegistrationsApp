@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sprms.registration.api.services.NdiLoginStoreServices;
 import com.sprms.registration.api.services.PostLoginService;
-import com.sprms.registration.frmDTO.VerifiedUserDTO;
+import com.sprms.registration.frmbean.VerifiedUserDTO;
 
 import jakarta.servlet.http.HttpSession;
 

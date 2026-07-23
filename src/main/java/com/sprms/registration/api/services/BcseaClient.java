@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.sprms.registration.config.APISchemaConfig;
-import com.sprms.registration.frmDTO.StudentApiResponseDTO;
+import com.sprms.registration.frmbean.StudentApiResponseDTO;
 
 @Service
 public class BcseaClient {

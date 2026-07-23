@@ -12,8 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.sprms.registration.config.APISchemaConfig;
-import com.sprms.registration.frmDTO.ApiResponseDTO;
-import com.sprms.registration.frmDTO.StreamDTO;
+import com.sprms.registration.frmbean.ApiResponseDTO;
+import com.sprms.registration.frmbean.StreamDTO;
 
 @Service
 public class CommonAPIServices {

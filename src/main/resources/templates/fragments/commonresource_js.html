@@ -1,24 +1,41 @@
 
 <th:block th:fragment="common_resource_js">
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous">
+		
+	</script>
+
 	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-	<!-- Your sidebar JS -->
-	<script th:src="@{/js/sidebar.js}"></script>
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+		crossorigin="anonymous"></script>
 
 	<!-- This is for NDI -->
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+		integrity="sha384-3zSEDfvllQohrq0PHL1fOXJuC/jSOO34H46t6UQfobFOmxE5BpjjaIJY5F2/bMnU"
+		crossorigin="anonymous"></script>
 
-	<!-- This is for NDI WebSockets -->
-
-<!-- 	<script
-		src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script
-		src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
- -->
+		src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"
+		integrity="sha384-clKAk7WaYNQiu/pGVWisoFQcSK2VL7YweoI1gim9/HFbMsRvD2ZtLWNoZoL4df65"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"
+		integrity="sha384-svdnwiXBL+Js+yUneJSRFy24NgGiOfDM/vkQl/vCeVrcbYD6yW8EwPr1FnxTEZsR"
+		crossorigin="anonymous"></script>
+
 	<!-- This is for citizen fetch js -->
+
 	<script th:src="@{/js/GetCitizenDetails.js}"></script>
+
+	<script th:src="@{/js/sidebar.js}"></script> -->
+	
+		<!-- ..BUTTON SPINNERS FOR ALL FORMS---GENERIC TO ALL FORM ACTION BUTTONS....... -->
+	<script th:src="@{/js/ButtonSpinnerForAllForm.js}"></script>
 
 
 </th:block>

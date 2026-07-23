@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Component;
 
-import com.sprms.registration.frmDTO.NdiLoginAuditDTO;
+import com.sprms.registration.frmbean.NdiLoginAuditDTO;
 import com.sprms.registration.hbmbean.NdiLoginAudit;
 
 @Component

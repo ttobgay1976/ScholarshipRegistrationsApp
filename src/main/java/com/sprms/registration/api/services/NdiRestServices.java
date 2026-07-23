@@ -19,9 +19,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sprms.registration.api.repository.NdiSessionRepository;
 import com.sprms.registration.applicationEnums.NDIStatus;
 import com.sprms.registration.config.APISchemaConfig;
-import com.sprms.registration.frmDTO.ProofRequestPayloadDTO;
-import com.sprms.registration.frmDTO.ProofRequestResponseDTO;
-import com.sprms.registration.frmDTO.TokenResponseDTO;
+import com.sprms.registration.frmbean.ProofRequestPayloadDTO;
+import com.sprms.registration.frmbean.ProofRequestResponseDTO;
+import com.sprms.registration.frmbean.TokenResponseDTO;
 import com.sprms.registration.hbmbean.NdiSession;
 import com.sprms.registration.utils.DateUtil;
 
@@ -44,6 +44,7 @@ public class NdiRestServices {
 	private final APISchemaConfig _apiSchemaConfig;
 	private final NdiWebhookServices _ndiWebhookServices;
 	private final NdiSessionRepository _ndiSessionRepository;
+	private final WebhookRegistrationService _webhookRegistrationService;
 
 	
 	// constructors
@@ -53,6 +54,7 @@ public class NdiRestServices {
 		this._apiSchemaConfig = apiSchemaConfig;
 		this._ndiWebhookServices = ndiWebhookServices;
 		this._ndiSessionRepository=ndiSessionRepository;
+		this._webhookRegistrationService=webhookRegistrationService;
 	}
 
 	// get the acces token unsing the resttemplate
@@ -120,14 +122,6 @@ public class NdiRestServices {
 		logger.info("@@@Calling the createProofRequest proc..................");
 
 		ProofRequestPayloadDTO payload = buildLoginProofRequest();
-/*
-		System.out.println("@@@Print token :" + token);
-		try {
-			System.out.println("🔥 FINAL REQUEST JSON: " + mapper.writeValueAsString(payload));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-*/
 
 		String url = _apiSchemaConfig.getNdiProofRequestBaseURL() + "/verifier/v1/proof-request";
 
@@ -142,8 +136,7 @@ public class NdiRestServices {
 					ProofRequestResponseDTO.class);
 
 			// REGISTER THE WEBHOOK FOR THE NDI SERVICE
-			// this commented after creating the webhook
-			//_webhookRegistrationService.registerWebhook(token);
+			_webhookRegistrationService.registerWebhook(token);
 			
 			//save the session soon after the proof request
 			NdiSession session = new NdiSession();
