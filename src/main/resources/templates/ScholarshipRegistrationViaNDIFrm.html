@@ -240,12 +240,12 @@
 				<div class="row mb-1">
 					<!-- LABEL -->
 					<label for="citizenId" class="col-sm-2 col-form-label">
-						Enter ID No. : </label>
+						Citizen ID No. : </label>
 					<div class="col-md-4">
 						<input type="text" th:field="*{citizenId}" id="citizenId"
 							class="form-control" placeholder="Enter CID Number"
 							autocomplete="off" onblur="fetchCitizenDetails(this.value)"
-							required />
+							readonly />
 					</div>
 
 					<div class="col-md-4">

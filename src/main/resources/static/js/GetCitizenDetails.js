@@ -6,14 +6,25 @@ function fetchCitizenDetails(cid) {
     let msgBox = document.getElementById("cidMessage");
 
     // 1. Validate CID
-    if (!cid || cid.trim() === "") {
-        msgBox.style.color = "red";
-        msgBox.innerText = "CID is required";
-        return;
-    }
+	if (!cid || !/^\d{11}$/.test(cid.trim())) {
+	
+	    Swal.fire({
+	        icon: 'warning',
+	        title: 'Invalid Citizen ID',
+	        text: 'Please enter a valid 11-digit Citizen ID.',
+	        confirmButtonText: 'OK'
+	    });
+	
+	    return;
+	}
 
-    msgBox.style.color = "blue";
-    msgBox.innerText = "Fetching citizen details...";
+    //msgBox.style.color = "blue";
+    //msgBox.innerText = "Fetching citizen details...";
+	Swal.fire({
+	    icon: 'info',
+	    title: 'Fetching DCRC Records...',
+	    text: 'Please wait...'
+	});
 
    fetch('/service/citizen/details?cid=' + cid)
     .then(async res => {
@@ -46,8 +57,16 @@ function fetchCitizenDetails(cid) {
             throw new Error(data.error);
         }
 
-        msgBox.style.color = "green";
-        msgBox.innerText = "Citizen details loaded successfully";
+       // msgBox.style.color = "green";
+       // msgBox.innerText = "Citizen details loaded successfully";
+        Swal.fire({
+		    icon: 'success',
+		    title: 'Citizen Details',
+		    text: 'Your Citizen details are fetched successfully from DCRC API',
+		    confirmButtonColor: '#198754',
+		    confirmButtonText: 'OK',
+		    allowOutsideClick: false
+		});
 
         const setVal = (id, value) => {
             const el = document.getElementById(id);
@@ -75,7 +94,14 @@ function fetchCitizenDetails(cid) {
 
         console.error("DEBUG ERROR:", err);
 
-        msgBox.style.color = "red";
-        msgBox.innerText = err.message;
+       // msgBox.style.color = "red";
+        //msgBox.innerText = err.message;
+        
+        Swal.fire({
+		    icon: 'error',
+		    title: 'Invalid Citizen ID',
+		    text: err.message,
+		    confirmButtonColor: '#dc3545'
+		});
     });
   }
