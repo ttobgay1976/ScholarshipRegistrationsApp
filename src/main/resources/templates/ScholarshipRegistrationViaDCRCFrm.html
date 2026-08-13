@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-<title>|| SPRMS - Scholarship Registration ||</title>
+<title>|| SPRMS - Student Registration ||</title>
 <link rel="icon" type="image/png" sizes="32x32"
 	th:href="@{/images/RCSC-logo.png}" />
 
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bg-primary text-white shadow-sm">
 
 			<h5 class="mb-0">
-				<i class="bi bi-mortarboard-fill"></i> Scholarship Registration
+				<i class="bi bi-mortarboard-fill"></i> Student Registration
 				Page
 			</h5>
 
@@ -645,14 +645,14 @@ document.addEventListener("DOMContentLoaded", function() {
 	<!-- ========================================================= -->
 
 	<script th:if="${successMessage != null}">
-Swal.fire({
-    icon: 'success',
-    title: 'Scholarship Registration Successful',
-    text: '[[${successMessage}]]',
-    confirmButtonColor: '#198754',
-    confirmButtonText: 'OK',
-    allowOutsideClick: false
-});
+		Swal.fire({
+		    icon: 'success',
+		    title: 'Scholarship Registration Successful',
+		    text: '[[${successMessage}]]',
+		    confirmButtonColor: '#198754',
+		    confirmButtonText: 'OK',
+		    allowOutsideClick: false
+		});
 </script>
 
 	<!-- ========================================================= -->
@@ -675,14 +675,15 @@ document.addEventListener("DOMContentLoaded", function () {
     switch (errorType) {
 
         case "ELIGIBILITY":
-
+            
             Swal.fire({
-                icon: 'warning',
-                title: 'Sorry!',
+                icon: 'info',
+                title: 'No Eligible Scholarships Found',
                 html:
                     '<div style="text-align:center;">' +
-                    '<h5><strong>You are not eligible for any scholarship.</strong></h5>' +
-                    '<p>' + errorMessage.replace(/\n/g, '<br>') + '</p>' +
+                    '<h5><strong>You are currently not eligible for any of the scholarships advertised by RCSC.</strong></h5>' +
+                    '<p>Based on your profile and the eligibility requirements of the currently available scholarships, no matching scholarship opportunities were found.</p>' +
+                    '<p>Please review future scholarship announcements, as eligibility criteria and opportunities may vary.</p>' +
                     '<hr>' +
                     '<small><strong>Scholarship Registration Service</strong><br>Royal Civil Service Commission (RCSC)</small>' +
                     '</div>',

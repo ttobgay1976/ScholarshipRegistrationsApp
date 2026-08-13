@@ -106,16 +106,60 @@ public class ScholarshipResgistrationController {
 					savedRegistration.getFirstName() + " " + savedRegistration.getLastName());
 			redirectAttributes.addFlashAttribute("indexNo", savedRegistration.getIndexNumber());
 			redirectAttributes.addFlashAttribute("regNo", savedRegistration.getId());
+			redirectAttributes.addFlashAttribute("cidNo", savedRegistration.getCitizenId());
 
-		} catch (IOException e) {
-			redirectAttributes.addFlashAttribute("successMessage", "File upload failed: " + e.getMessage());
+		} catch (EligibilityException e) {
 
-			System.out.println("@@@Check the error :" + e.getStackTrace());
+			logger.warn("Eligibility Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "ELIGIBILITY");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
 
 			return "redirect:/scholarship/registrationfrm";
-		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("successMessage" + e.getMessage());
+
+		} catch (BcseaApiException e) {
+
+			logger.error("BCSEA API Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "API");
 			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registrationfrm";
+
+		} catch (IllegalArgumentException e) {
+
+			logger.warn("Validation Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "VALIDATION");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registrationfrm";
+
+		} catch (BusinessException e) {
+
+			logger.warn("Business Validation Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "BUSINESS");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registrationfrm";
+
+		} catch (IOException e) {
+
+			logger.error("File Upload Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "FILE_UPLOAD");
+			redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+
+			return "redirect:/scholarship/registrationfrm";
+
+		} catch (Exception e) {
+
+			logger.error("Scholarship Registration Error", e);
+
+			redirectAttributes.addFlashAttribute("errorType", "SYSTEM");
+			redirectAttributes.addFlashAttribute("errorMessage",
+					"An unexpected error occurred. Please try again later.");
 
 			return "redirect:/scholarship/registrationfrm";
 		}

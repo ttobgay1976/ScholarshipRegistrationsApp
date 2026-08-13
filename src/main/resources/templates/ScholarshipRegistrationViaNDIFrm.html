@@ -210,289 +210,255 @@
 </style>
 </head>
 <!-- Header -->
-<div th:replace="~{fragments/header :: header}"></div>
-<section layout:fragment="content">
+<body>
+	<div th:replace="~{fragments/header :: header}"></div>
+	<section layout:fragment="content">
 
-	<div
-		class="container p-2 rounded
+		<div
+			class="container p-2 rounded
             bg-primary text-white shadow-sm">
 
-		<h5 class="mb-0">
-			<i class="bi bi-currency-exchange"></i> Scholarship Registration Page
-		</h5>
+			<h5 class="mb-0">
+				<i class="bi bi-currency-exchange"></i> Student Registration
+				Page
+			</h5>
 
-	</div>
-	<div class="container mt-3">
-		<div class="border rounded p-4 bg-white shadow-sm">
-			<!-- Success message -->
+		</div>
+		<div class="container mt-3">
+			<div class="border rounded p-4 bg-white shadow-sm">
+				<!-- Success message -->
 
-			<!-- Registration Form -->
-			<form th:action="@{/scholarship/addregistration}"
-				th:object="${scholarshipRegistrationdto}" method="post"
-				autocomplete="off" id="scholarshipregistrationfrm"
-				enctype="multipart/form-data">
+				<!-- Registration Form -->
+				<form th:action="@{/scholarship/addregistration}"
+					th:object="${scholarshipRegistrationdto}" method="post"
+					autocomplete="off" id="scholarshipregistrationfrm"
+					enctype="multipart/form-data">
 
-				<input type="hidden" th:field="*{id}" /> <input type="hidden"
-					th:field="*{dzongkhagId}" /> <input type="hidden"
-					th:field="*{gewogId}" />
+					<input type="hidden" th:field="*{id}" /> <input type="hidden"
+						th:field="*{dzongkhagId}" /> <input type="hidden"
+						th:field="*{gewogId}" />
 
-				<!-- Citizen ID -->
-				<div class="row mb-1">
-					<!-- LABEL -->
-					<label for="citizenId" class="col-sm-2 col-form-label">
-						Citizen ID No. : </label>
-					<div class="col-md-4">
-						<input type="text" th:field="*{citizenId}" id="citizenId"
-							class="form-control" placeholder="Enter CID Number"
-							autocomplete="off" onblur="fetchCitizenDetails(this.value)"
-							readonly />
-					</div>
+					<!-- Citizen ID -->
+					<div class="row mb-1">
+						<!-- LABEL -->
+						<label for="citizenId" class="col-sm-2 col-form-label">
+							Citizen ID No. : </label>
+						<div class="col-md-4">
+							<input type="text" th:field="*{citizenId}" id="citizenId"
+								class="form-control" placeholder="Enter CID Number"
+								autocomplete="off" onblur="fetchCitizenDetails(this.value)"
+								readonly />
+						</div>
 
-					<div class="col-md-4">
-						<span class="text-danger fw-bold"> <i
-							class="bi bi-info-circle-fill"></i> Press <kbd>TAB</kbd> to
-							retrieve your details from the <strong>DCRC</strong>.
-						</span>
-					</div>
+						<div class="col-md-4">
+							<span class="text-danger fw-bold"> <i
+								class="bi bi-info-circle-fill"></i> Press <kbd>TAB</kbd> to
+								retrieve your details from the <strong>DCRC</strong>.
+							</span>
+						</div>
 
-					<!-- MESSAGE BOX (RIGHT SIDE) -->
-					<div class="col-sm-2 d-flex align-items-center">
-						<small id="cidMessage" style="font-weight: bold;"></small>
-					</div>
+						<!-- MESSAGE BOX (RIGHT SIDE) -->
+						<div class="col-sm-2 d-flex align-items-center">
+							<small id="cidMessage" style="font-weight: bold;"></small>
+						</div>
 
-				</div>
-
-				<div class="row mb-1">
-					<label for="firstName" class="col-sm-2 col-form-label">First
-						Name:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{firstName}" id="firstName"
-							class="form-control" placeholder="Enter First Name"
-							autocomplete="off" required readonly>
 					</div>
 
-					<label for="middleName" class="col-sm-2 col-form-label">Middle
-						Name:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{middleName}" id="middleName"
-							class="form-control" autocomplete="off"
-							placeholder="Enter Middle Name" readonly>
-					</div>
-				</div>
-				<div class="row mb-1">
-					<label for="lastName" class="col-sm-2 col-form-label">Last
-						Name:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{lastName}" id="lastName"
-							class="form-control" placeholder="Enter Last Name"
-							autocomplete="off" required readonly>
-					</div>
-					<label for="dateOfBirth" class="col-sm-2 col-form-label">Date
-						of Birth:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{dateOfBirth}" id="dateOfBirth"
-							class="form-control" placeholder="Enter Date of Birth"
-							autocomplete="off" required readonly>
-					</div>
-				</div>
-				<div class="row mb-1">
-					<label for="gender" class="col-sm-2 col-form-label">Gender
-						:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{gender}" id="gender"
-							class="form-control" placeholder="Enter Gender"
-							autocomplete="off" required readonly>
-					</div>
-					<label for="fatherName" class="col-sm-2 col-form-label">Father
-						Name:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{fatherName}" id="fatherName"
-							class="form-control" placeholder="Enter Father Name"
-							autocomplete="off" required readonly>
-					</div>
-				</div>
-				<div class="row mb-1">
-					<label for="motherName" class="col-sm-2 col-form-label">Mother
-						Name:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{motherName}" id="motherName"
-							class="form-control" placeholder="Enter Mother Name"
-							autocomplete="off" required readonly>
-					</div>
-					<label for="dzongkhagName" class="col-sm-2 col-form-label">Dzongkhag
-						Name :</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{dzongkhagName}" id="dzongkhagName"
-							class="form-control" placeholder="Enter Dzongkhga Address"
-							autocomplete="off" required readonly>
-					</div>
-				</div>
-				<div class="row mb-1">
-					<label for="gewogName" class="col-sm-2 col-form-label">Gewog
-						Name:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{gewogName}" id="gewogName"
-							class="form-control" placeholder="Enter Gewog Name"
-							autocomplete="off" required readonly>
-					</div>
-					<label for="villageName" class="col-sm-2 col-form-label">Village
-						Name :</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{villageName}" id="villageName"
-							class="form-control" placeholder="Enter village Name"
-							autocomplete="off" required readonly>
-					</div>
-				</div>
-				<div class="row mb-1">
-					<label for="emailAddress" class="col-sm-2 col-form-label">Email
-						Address :</label>
-					<div class="col-sm-4">
-						<input type="email" th:field="*{emailAddress}" id="emailAddress"
-							class="form-control" placeholder="Enter email address"
-							autocomplete="off" required> <small id="emailError"
-							style="color: red;"></small>
-					</div>
-					<label for="contactNo" class="col-sm-2 col-form-label">Student Contact
-						Number:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{contactNo}" id="contactNo"
-							class="form-control" placeholder="Enter Contact No."
-							autocomplete="off" maxlength="8" pattern="(16|17|77)[0-9]{6}"
-							inputmode="numeric"
-							oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-					</div>
-				</div>
-				<div class="row mb-1">
-					<label for="guardianDetail" class="col-sm-2 col-form-label">Guardian
-						Name:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{guardianDetail}"
-							id="guardianDetail" class="form-control"
-							placeholder="Enter Guardian Name" autocomplete="off" required>
-					</div>
-					<label for="contactNo" class="col-sm-2 col-form-label">Guardian
-						Contact Number:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{contactNo}" id="contactNo"
-							class="form-control" placeholder="Enter Contact No."
-							autocomplete="off" maxlength="8" pattern="(16|17|77)[0-9]{6}"
-							inputmode="numeric"
-							oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-					</div>
-				</div>
-				<div class="hr-with-text my-3">
-					<span><i>Key Information Section</i></span>
-				</div>
-				<div class="row mb-1">
-					<label for="countryOfCompletion" class="col-sm-2 col-form-label">Country
-						Of Completion:</label>
-					<div class="col-sm-4">
-						<select th:field="*{countryOfCompletion}" id="countryOfCompletion"
-							class="form-select required-dropdown">
-							<option value="">--Select Country--</option>
-							<option value="Bhutan">Bhutan</option>
-							<option value="Other">Other Country</option>
-						</select>
-					</div>
-				</div>
-				<div class="row mb-1" id="indexNumberContainer">
-					<label for="indexNumber" class="col-sm-2 col-form-label">Index
-						Number:</label>
-					<div class="col-sm-4">
-						<input type="text" th:field="*{indexNumber}" id="indexNumber"
-							class="form-control" maxlength="12" inputmode="numeric"
-							pattern="[0-9]{12}"
-							oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-					</div>
+					<div class="row mb-1">
+						<label for="firstName" class="col-sm-2 col-form-label">First
+							Name:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{firstName}" id="firstName"
+								class="form-control" placeholder="Enter First Name"
+								autocomplete="off" required readonly>
+						</div>
 
-				</div>
-
-				<div class="row mb-1 hidden" id="fileUploadContainer">
+						<label for="middleName" class="col-sm-2 col-form-label">Middle
+							Name:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{middleName}" id="middleName"
+								class="form-control" autocomplete="off"
+								placeholder="Enter Middle Name" readonly>
+						</div>
+					</div>
+					<div class="row mb-1">
+						<label for="lastName" class="col-sm-2 col-form-label">Last
+							Name:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{lastName}" id="lastName"
+								class="form-control" placeholder="Enter Last Name"
+								autocomplete="off" required readonly>
+						</div>
+						<label for="dateOfBirth" class="col-sm-2 col-form-label">Date
+							of Birth:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{dateOfBirth}" id="dateOfBirth"
+								class="form-control" placeholder="Enter Date of Birth"
+								autocomplete="off" required readonly>
+						</div>
+					</div>
+					<div class="row mb-1">
+						<label for="gender" class="col-sm-2 col-form-label">Gender
+							:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{gender}" id="gender"
+								class="form-control" placeholder="Enter Gender"
+								autocomplete="off" required readonly>
+						</div>
+						<label for="fatherName" class="col-sm-2 col-form-label">Father
+							Name:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{fatherName}" id="fatherName"
+								class="form-control" placeholder="Enter Father Name"
+								autocomplete="off" required readonly>
+						</div>
+					</div>
+					<div class="row mb-1">
+						<label for="motherName" class="col-sm-2 col-form-label">Mother
+							Name:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{motherName}" id="motherName"
+								class="form-control" placeholder="Enter Mother Name"
+								autocomplete="off" required readonly>
+						</div>
+						<label for="dzongkhagName" class="col-sm-2 col-form-label">Dzongkhag
+							Name :</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{dzongkhagName}" id="dzongkhagName"
+								class="form-control" placeholder="Enter Dzongkhga Address"
+								autocomplete="off" required readonly>
+						</div>
+					</div>
+					<div class="row mb-1">
+						<label for="gewogName" class="col-sm-2 col-form-label">Gewog
+							Name:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{gewogName}" id="gewogName"
+								class="form-control" placeholder="Enter Gewog Name"
+								autocomplete="off" required readonly>
+						</div>
+						<label for="villageName" class="col-sm-2 col-form-label">Village
+							Name :</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{villageName}" id="villageName"
+								class="form-control" placeholder="Enter village Name"
+								autocomplete="off" required readonly>
+						</div>
+					</div>
+					<div class="row mb-1">
+						<label for="emailAddress" class="col-sm-2 col-form-label">Email
+							Address :</label>
+						<div class="col-sm-4">
+							<input type="email" th:field="*{emailAddress}" id="emailAddress"
+								class="form-control" placeholder="Enter email address"
+								autocomplete="off" required> <small id="emailError"
+								style="color: red;"></small>
+						</div>
+						<label for="contactNo" class="col-sm-2 col-form-label">Student
+							Contact Number:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{contactNo}" id="contactNo"
+								class="form-control" placeholder="Enter Contact No."
+								autocomplete="off" maxlength="8" pattern="(16|17|77)[0-9]{6}"
+								inputmode="numeric"
+								oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+						</div>
+					</div>
+					<div class="row mb-1">
+						<label for="guardianDetail" class="col-sm-2 col-form-label">Guardian
+							Name:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{guardianDetail}"
+								id="guardianDetail" class="form-control"
+								placeholder="Enter Guardian Name" autocomplete="off" required>
+						</div>
+						<label for="contactNo" class="col-sm-2 col-form-label">Guardian
+							Contact Number:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{contactNo}" id="contactNo"
+								class="form-control" placeholder="Enter Contact No."
+								autocomplete="off" maxlength="8" pattern="(16|17|77)[0-9]{6}"
+								inputmode="numeric"
+								oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+						</div>
+					</div>
 					<div class="hr-with-text my-3">
-						<span><i>Upload following Supporting Documents (CLass
-								10 & 12 Marks and passed certificate)</i></span>
+						<span><i>Key Information Section</i></span>
 					</div>
-					<label for="files" class="col-sm-2 col-form-label">Supporting
-						Documents :</label>
-					<div class="col-sm-4">
-						<input type="file" th:field="*{files}" multiple="multiple"
-							id="files" class="form-control"
-							placeholder="Upload supporting documents" autocomplete="off">
+					<div class="row mb-1">
+						<label for="countryOfCompletion" class="col-sm-2 col-form-label">Country
+							Of Completion:</label>
+						<div class="col-sm-4">
+							<select th:field="*{countryOfCompletion}"
+								id="countryOfCompletion" class="form-select required-dropdown">
+								<option value="">--Select Country--</option>
+								<option value="Bhutan">Bhutan</option>
+								<option value="Other">Other Country</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<!-- ----REPEATER STUDENT FILE UPLOAD SECTION-------- -->
+					<div class="row mb-1" id="indexNumberContainer">
+						<label for="indexNumber" class="col-sm-2 col-form-label">Index
+							Number:</label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{indexNumber}" id="indexNumber"
+								class="form-control" maxlength="12" inputmode="numeric"
+								pattern="[0-9]{12}"
+								oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+						</div>
 
-				<div class="row mb-1  d-none" id="repeaterDocumentDiv">
-					<div class="hr-with-text my-3">
-						<span><i>Since you are a repeater, upload any
-								supporting document (PDF/DOCS).</i></span>
-					</div>
-					<label for="files" class="col-sm-2 col-form-label">Supporting
-						Documents :</label>
-					<div class="col-sm-4">
-						<input id="repeaterDocument" type="file" th:field="*{files}"
-							multiple class="form-control"
-							placeholder="Upload supporting documents" autocomplete="off">
 					</div>
 
-				</div>
-				<div class="row mb-3">
-					<label for="remarks" class="col-sm-2 col-form-label">Remarks
-						:</label>
-					<div class="col-sm-4">
-						<textarea th:field="*{remarks}" id="remarks" class="form-control"
-							rows="3" placeholder="Enter remarks here...">
+					<div class="row mb-1 hidden" id="fileUploadContainer">
+						<div class="hr-with-text my-3">
+							<span><i>Upload following Supporting Documents (CLass
+									10 & 12 Marks and passed certificate)</i></span>
+						</div>
+						<label for="files" class="col-sm-2 col-form-label">Supporting
+							Documents :</label>
+						<div class="col-sm-4">
+							<input type="file" th:field="*{files}" multiple="multiple"
+								id="files" class="form-control"
+								placeholder="Upload supporting documents" autocomplete="off">
+						</div>
+					</div>
+					<!-- ----REPEATER STUDENT FILE UPLOAD SECTION-------- -->
+
+					<div class="row mb-1  d-none" id="repeaterDocumentDiv">
+						<div class="hr-with-text my-3">
+							<span><i>Since you are a repeater, upload any
+									supporting document (PDF/DOCS).</i></span>
+						</div>
+						<label for="files" class="col-sm-2 col-form-label">Supporting
+							Documents :</label>
+						<div class="col-sm-4">
+							<input id="repeaterDocument" type="file" th:field="*{files}"
+								multiple class="form-control"
+								placeholder="Upload supporting documents" autocomplete="off">
+						</div>
+
+					</div>
+					<div class="row mb-3">
+						<label for="remarks" class="col-sm-2 col-form-label">Remarks
+							:</label>
+						<div class="col-sm-4">
+							<textarea th:field="*{remarks}" id="remarks" class="form-control"
+								rows="3" placeholder="Enter remarks here...">
    					 </textarea>
+						</div>
 					</div>
-				</div>
 
-				<!-- Submit -->
-				<div class="d-flex justify-content-center mt-3">
-					<button type="submit" class="btn btn-primary"
-						th:text="${scholarshipRegistrationdto.id != null} ? 'Update' : 'Register'">
-					</button>
-				</div>
-
-			</form>
-
-			<!-- 🔔 TOAST MESSAGE HERE -->
-			<div class="toast position-fixed top-0 end-0 m-3 custom-toast"
-				th:if="${errorMessage != null or successMessage != null}"
-				id="liveToast">
-
-				<div class="toast-header custom-header"
-					th:classappend="${errorMessage != null} ? 'bg-danger' : 'bg-success'">
-
-					<strong class="me-auto text-white">Notification</strong>
-
-					<button type="button" class="btn-close btn-close-white ms-2"
-						data-bs-dismiss="toast"></button>
-				</div>
-
-				<div class="toast-body"
-					th:text="${errorMessage != null ? errorMessage : successMessage}">
-				</div>
-
-			</div>
-			<!-- ---TOAST MSG TO USER IF THE STUDENT IS REPEATER------- -->
-			<div class="toast-container position-fixed top-0 end-0 p-3">
-
-				<div id="appToast"
-					class="toast align-items-center text-bg-primary border-0"
-					role="alert">
-					<div class="d-flex">
-						<div class="toast-body" id="toastMessage">Message here</div>
-						<button type="button"
-							class="btn-close btn-close-white me-2 m-auto"
-							data-bs-dismiss="toast"></button>
+					<!-- Submit -->
+					<div class="d-flex justify-content-center mt-3">
+						<button type="submit" class="btn btn-primary"
+							th:text="${scholarshipRegistrationdto.id != null} ? 'Update' : 'Register'">
+						</button>
 					</div>
-				</div>
+
+				</form>
 			</div>
 		</div>
-	</div>
-	<!-- Footer -->
-	<!-- <div th:replace="~{fragments/footer :: footer}"></div>
- -->
+	</section>
 	<!-- JS Fragment -->
 	<th:block
 		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
@@ -542,7 +508,7 @@
 
                     if (data.repeater === true) {
 
-                        showToast("⚠️ Repeater Candidate - Upload required", "warning");
+                        //showToast("⚠️ Repeater Candidate - Upload required", "warning");
 
                         if (repeaterDiv) {
                             repeaterDiv.classList.remove("d-none");
@@ -551,25 +517,39 @@
                         if (fileInput) {
                             fileInput.setAttribute("required", "required");
                         }
+                        
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Repeater Student",
+                            html:
+                                "<b>You are identified as a repeater student.</b><br><br>" +
+                                "Please upload the required supporting document before submitting your registration.",
+                            confirmButtonColor: "#f39c12"
+                        });
 
                     } else {
 
-                        showToast("✔ Regular Student", "success");
-                        //showToast("⚠️ Repeater Candidate - Upload required", "warning");
 
                         if (repeaterDiv) {
                             repeaterDiv.classList.add("d-none");
-                            //repeaterDiv.classList.remove("d-none");
+  
                         }
 
                         if (fileInput) {
-                            fileInput.removeAttribute("required");
+                            fileInput.required = false;
                             fileInput.value = "";
                         }
                     }
                 })
                 .catch(error => {
                     console.error("API Error:", error);
+                    
+                    Swal.fire({
+                        icon: "error",
+                        title: "System Error",
+                        text: "Unable to verify student information.",
+                        confirmButtonColor: "#dc3545"
+                    });
                 });
         });
     }
@@ -678,10 +658,16 @@ function showToast(message, type = "primary") {
             e.preventDefault();
             e.stopPropagation();
 
-            showToast("⚠ Repeater document is required before submission", "danger");
+            fileInput.classList.add("is-invalid");
+
+            Swal.fire({
+                icon: "warning",
+                title: "Supporting Document Required",
+                text: "Please upload the repeater supporting document before submitting your registration.",
+                confirmButtonColor: "#f39c12"
+            });
 
             fileInput.focus();
-            fileInput.classList.add("is-invalid");
 
             return false;
         }
@@ -691,6 +677,103 @@ function showToast(message, type = "primary") {
 })();
 </script>
 
+	<!-- ========================================================= -->
+	<!-- SUCCESS MESSAGE -->
+	<!-- ========================================================= -->
 
-</section>
+	<script th:if="${successMessage != null}">
+Swal.fire({
+    icon: 'success',
+    title: 'Scholarship Registration Successful',
+    text: '[[${successMessage}]]',
+    confirmButtonColor: '#198754',
+    confirmButtonText: 'OK',
+    allowOutsideClick: false
+});
+</script>
+
+	<!-- ========================================================= -->
+	<!-- ERROR MESSAGE -->
+	<!-- ========================================================= -->
+	<!-- SweetAlert2 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<!-- Error Message Handler -->
+	<script th:inline="javascript">
+document.addEventListener("DOMContentLoaded", function () {
+
+    const errorType = /*[[${errorType}]]*/ "";
+    const errorMessage = /*[[${errorMessage}]]*/ "";
+
+    if (!errorMessage) {
+        return;
+    }
+
+    switch (errorType) {
+
+        case "ELIGIBILITY":
+        	
+            Swal.fire({
+                icon: 'info',
+                title: 'No Eligible Scholarships Found',
+                html:
+                    '<div style="text-align:center;">' +
+                    '<h5><strong>You are currently not eligible for any of the scholarships advertised by RCSC.</strong></h5>' +
+                    '<p>Based on your profile and the eligibility requirements of the currently available scholarships, no matching scholarship opportunities were found.</p>' +
+                    '<p>Please review future scholarship announcements, as eligibility criteria and opportunities may vary.</p>' +
+                    '<hr>' +
+                    '<small><strong>Scholarship Registration Service</strong><br>Royal Civil Service Commission (RCSC)</small>' +
+                    '</div>',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#f39c12',
+                allowOutsideClick: false,
+                allowEscapeKey: false
+            });
+            break;
+
+        case "BCSEA_API":
+
+            Swal.fire({
+                icon: 'error',
+                title: 'BCSEA Service Unavailable',
+                text: errorMessage,
+                confirmButtonColor: '#dc3545'
+            });
+            break;
+
+        case "FILE_UPLOAD":
+
+            Swal.fire({
+                icon: 'error',
+                title: 'File Upload Failed',
+                text: errorMessage,
+                confirmButtonColor: '#dc3545'
+            });
+            break;
+            
+        case "BUSINESS":
+
+            Swal.fire({
+                icon: "warning",
+                title: "Already Registered",
+                text: errorMessage,
+                confirmButtonColor: "#f39c12"
+            });
+
+            break;
+
+        default:
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Failed',
+                text: errorMessage,
+                confirmButtonColor: '#dc3545'
+            });
+    }
+
+});
+</script>
+
+</body>
 </html>
