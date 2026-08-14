@@ -15,7 +15,9 @@
 	<!-- <artifactId>student-Registration</artifactId> <version>0.0.1-SNAPSHOT</version> -->
 
 	<artifactId>SPRMS_REGIS</artifactId>
-	<version>1.0.0</version>
+	<version>
+    	${major.version}.${minor.version}.${build.number}
+	</version>
 
 	<packaging>war</packaging>
 	<name />
@@ -35,9 +37,12 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<revision>1.0.0</revision>
-		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
+		<major.version>1</major.version>
+		<minor.version>0</minor.version>
+		<build.number>1</build.number>
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format> 
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -84,7 +89,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.30</version>
+			<version>1.18.30</version><!--$NO-MVN-MAN-VER$ -->
 			<scope>provided</scope>
 		</dependency>
 
@@ -146,7 +151,11 @@
 	</dependencies>
 
 	<build>
-		<finalName>SPRMS_REGIS-${revision}-${maven.build.timestamp}</finalName>
+		<!-- <finalName>SPRMS_REGIS-${revision}-${maven.build.timestamp}</finalName> -->
+
+	    <finalName>
+        	SPRMS_REGIS-${major.version}.${minor.version}.${build.number}.${maven.build.timestamp}
+    	</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
