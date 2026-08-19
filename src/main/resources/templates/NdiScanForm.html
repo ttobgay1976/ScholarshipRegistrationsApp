@@ -163,7 +163,7 @@
 	text-align: center;
 }
 
-.title span {
+.title .ndi-text {
 	color: var(--ndi-green);
 }
 
@@ -322,7 +322,7 @@
 	background-color: #ffffff;
 	border: 2px solid var(--ndi-green);
 	border-radius: 24px;
-	color: var(- -ndi-green) !important;
+	color: var(--ndi-green) !important;
 	font-size: 15px;
 	font-weight: 400;
 	text-decoration: none !important;
@@ -332,26 +332,25 @@
 /* =========================
    HOVER
 ========================= */
-
 .video-btn:hover {
-    background-color: var(--ndi-green) !important;
-    border-color: var(--ndi-green) !important;
-    color: #ffffff !important;
+	background-color: var(- -ndi-green) !important;
+	border-color: var(--ndi-green) !important;
+	color: #ffffff !important;
 }
 
 /* Button text becomes white */
 .video-btn:hover span {
-    color: #ffffff !important;
+	color: #ffffff !important;
 }
 
 /* Circle becomes WHITE */
 .video-btn:hover .play-icon {
-    background-color: #ffffff !important;
+	background-color: #ffffff !important;
 }
 
 /* Play icon becomes BLUE */
 .video-btn:hover .play-icon i {
-   color: var(--ndi-green) !important;
+	color: var(- -ndi-green) !important;
 }
 
 /* PLAY CIRCLE */
@@ -405,7 +404,7 @@
 }
 
 .download-link {
-	color: var(--ndi-green) !important;
+	color: var(- -ndi-green) !important;
 	font-size: 15px;
 	font-weight: 600;
 	text-decoration: none !important;
@@ -542,6 +541,21 @@
 	color: #ffffff !important;
 }
 
+/* Caption - Desktop */
+.desktop-caption {
+	display: inline !important;
+	color: var(--ndi-dark) !important;
+}
+
+.mobile-caption {
+	display: none !important;
+}
+
+/* Only Bhutan NDI is green */
+.title .ndi-text {
+	color: var(--ndi-green) !important;
+}
+
 /* =========================================================
    MOBILE
 ========================================================= */
@@ -611,6 +625,13 @@
 		display: block;
 		margin-top: 3px;
 	}
+	.desktop-caption {
+		display: none !important;
+	}
+	.mobile-caption {
+		display: inline !important;
+		color: var(--ndi-dark) !important;
+	}
 }
 </style>
 </head>
@@ -634,7 +655,17 @@
 			=========================================== -->
 
 				<h2 class="title">
-					Scan with <span>Bhutan NDI</span> Wallet
+
+					<!-- Desktop -->
+					<span class="desktop-caption"> Scan with <span
+						class="ndi-text">Bhutan NDI</span> Wallet
+					</span>
+
+					<!-- Mobile -->
+					<span class="mobile-caption"> Login with <span
+						class="ndi-text">Bhutan NDI</span> Wallet
+					</span>
+
 				</h2>
 
 				<div class="deep-link-section">
