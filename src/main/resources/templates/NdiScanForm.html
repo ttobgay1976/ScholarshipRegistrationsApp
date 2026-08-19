@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>|| NDI Login</title>
 <link rel="icon" type="image/png" sizes="32x32"
 	th:href="@{/images/RCSC-logo.png}" />
@@ -20,8 +22,8 @@
 						if (qrUrlString) {
 							new QRCode(document.getElementById("qrcode"), {
 								text : qrUrlString,
-								width : 180,
-								height : 180,
+								width : 500,
+								height : 500,
 								colorDark : "#000000",
 								colorLight : "#ffffff",
 								correctLevel : QRCode.CorrectLevel.H
@@ -115,16 +117,11 @@
 /* =========================================================
    NDI COLORS
 ========================================================= */
-
-:root {
-	/* ================= */
-
-	--ndi-green: #5AC994;
-	--ndi-text: #999999;
-	--ndi-dark: #222222;
+:root { 
+	--ndi-green: #5AC994; 
+	--ndi-text: #999999; 
+	--ndi-dark: #222222; 
 	--ndi-border: #cccccc;
-	
-	
 }
 /* =========================================================
    PAGE
@@ -145,11 +142,11 @@
    MAIN CARD
 ========================================================= */
 .login-box {
-	width: 500px;
-	min-height: 720px;
+	width: 590px;
+	min-height: 750px;
 	box-sizing: border-box;
 	padding: 18px 35px 30px;
-	background-color: #fafafa;
+	background-color: #F8F8F8;
 	border: 1px solid var(--ndi-border);
 	border-radius: 6px;
 	text-align: center;
@@ -171,22 +168,25 @@
 }
 
 /* =========================================================
-   QR WRAPPER
+   RESPONSIVE QR CODE
 ========================================================= */
 .qr-wrapper {
 	position: relative;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 	margin: 0 auto 32px;
 }
 
-/* Green OUTER QR border */
 .qr-box {
 	position: relative;
-	display: inline-flex;
+	display: flex;
 	justify-content: center;
 	align-items: center;
+	/* responsive QR container */
+	width: min(280px, 75vw);
+	aspect-ratio: 1/1;
 	padding: 12px;
 	background-color: #ffffff;
 	border: 3px solid var(--ndi-green) !important;
@@ -194,9 +194,11 @@
 	border-radius: 11px;
 }
 
-/* Remove any inner border */
 #qrcode {
 	display: block;
+	/* fill available qr-box space */
+	width: 100% !important;
+	height: 100% !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: #ffffff;
@@ -207,6 +209,8 @@
 
 #qrcode img, #qrcode canvas {
 	display: block;
+	width: 100% !important;
+	height: 100% !important;
 	margin: 0 !important;
 	padding: 0 !important;
 	background-color: #ffffff;
@@ -216,15 +220,13 @@
 	border-radius: 0 !important;
 }
 
-/* =========================================================
-   QR CENTER LOGO
-========================================================= */
+/* QR center NDI logo */
 .qr-logo {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 38px;
-	height: 38px;
+	width: clamp(55px, 22%, 80px) !important;
+	height: auto !important;
 	transform: translate(-50%, -50%);
 	object-fit: contain;
 	border: none !important;
@@ -250,7 +252,7 @@
 ========================================================= */
 .steps {
 	width: fit-content;
-	max-width: 500px;
+	max-width: 450px;
 	margin: 0 auto 44px;
 	color: var(--ndi-text);
 	font-size: 14px;
@@ -259,7 +261,7 @@
 }
 
 .steps p {
-	margin: 0 0 0 65px;
+	margin: 0 0 0 100px;
 	padding: 0;
 }
 
@@ -327,6 +329,31 @@
 	transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* =========================
+   HOVER
+========================= */
+
+.video-btn:hover {
+    background-color: var(--ndi-green) !important;
+    border-color: var(--ndi-green) !important;
+    color: #ffffff !important;
+}
+
+/* Button text becomes white */
+.video-btn:hover span {
+    color: #ffffff !important;
+}
+
+/* Circle becomes WHITE */
+.video-btn:hover .play-icon {
+    background-color: #ffffff !important;
+}
+
+/* Play icon becomes BLUE */
+.video-btn:hover .play-icon i {
+   color: var(--ndi-green) !important;
+}
+
 /* PLAY CIRCLE */
 .play-icon {
 	display: inline-flex !important;
@@ -361,23 +388,10 @@
    DOWNLOAD SECTION
 ========================================================= */
 .download-section {
-	margin: 0 auto 27px;
+	margin: 0 auto 3px;
 	text-align: center;
 }
 
-/* .download-text {
-	margin: 0 0 4px;
-	color: var(--ndi-text);
-	font-size: 13px;
-	font-weight: 400;
-}
-
-.download-link {
-	color: var(--ndi-green) !important;
-	font-size: 15px;
-	font-weight: 600;
-	text-decoration: none !important;
-} */
 .download-text {
 	margin: 0 0 4px;
 	color: var(--ndi-text);
@@ -410,7 +424,7 @@
 	justify-content: center;
 	align-items: center;
 	gap: 14px;
-	margin: 30px auto 3px;
+	margin: 10px auto 30px;
 }
 
 .store-links a {
@@ -432,12 +446,12 @@
 ========================================================= */
 .support {
 	text-align: center;
-	margin: 30px 0 30px;
+	margin: 30xp 0 0;
 }
 
 .support-title {
 	display: inline-block;
-	margin-bottom: 18px;
+	/* margin-bottom: 18px; */
 	color: var(--ndi-green) !important;
 	font-size: 14px;
 	font-weight: 600;
@@ -455,7 +469,7 @@
 	align-items: center;
 	gap: 12px;
 	font-size: 13px;
-	/* margin: 30px 0 30px; */
+	margin: 10px 0 30px;
 	font-weight: 700; /* semi-bold */
 }
 
@@ -478,126 +492,131 @@
 }
 
 /* =========================================================
-   RESPONSIVE
+   DEEP LINK
 ========================================================= */
-@media ( max-width : 500px) {
+/* Hidden by default */
+.deep-link-section {
+	display: none !important;
+}
+
+.deep-link-divider {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin: 20px 0;
+	color: #777;
+	font-size: 13px;
+}
+
+.deep-link-divider::before, .deep-link-divider::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background-color: #ddd;
+}
+
+.deep-link-divider span {
+	padding: 0 12px;
+}
+
+.deep-link-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 48px;
+	padding: 10px 18px;
+	box-sizing: border-box;
+	background-color: var(--ndi-green);
+	color: #ffffff !important;
+	font-size: 15px;
+	font-weight: 600;
+	text-align: center;
+	text-decoration: none !important;
+	border: none;
+	border-radius: 6px; /* APPLY HERE */
+}
+
+.deep-link-btn:hover {
+	opacity: 0.9;
+	color: #ffffff !important;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+@media screen and (max-width: 500px) {
+	.container {
+		width: 100% !important;
+		max-width: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
 	.page-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
 		padding: 0;
 	}
 	.login-box {
-		width: 100%;
+		width: 90%;
+		margin-top: 20px;
 		min-height: 100vh;
-		padding-left: 20px;
-		padding-right: 20px;
-		border-radius: 0;
+		padding: 15px 20px 30px;
+		box-sizing: border-box;
+		border-left: none;
+		border-right: none;
+		/* border-radius: 0; */
+		border: 1px solid var(--ndi-border);
+		border-radius: 6px;
 	}
-	.steps {
-		width: fit-content;
-		max-width: 100%;
-		font-size: 13px;
+
+	/* CENTER QR AREA */
+	.qr-wrapper {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
-	.support-details {
-		flex-wrap: wrap;
+	.qr-box {
+		width: min(240px, 82vw);
+		aspect-ratio: 1/1;
+		margin: 0 auto !important;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+	#qrcode {
+		width: 100% !important;
+		height: 100% !important;
+	}
+	#qrcode img, #qrcode canvas {
+		width: 100% !important;
+		height: 100% !important;
+	}
+	.deep-link-section {
+		display: block !important;
+		width: 100%;
+		max-width: 320px;
+		margin: 0 auto 25px;
+	}
+	.steps p {
+		margin: 0 0 0 30px;
+		padding: 0;
+	}
+	.download-text {
+		display: block;
+		text-align: center;
+	}
+	.download-link {
+		display: block;
+		margin-top: 3px;
 	}
 }
 </style>
-
 </head>
 <body>
 
 	<div th:replace="~{fragments/header :: header}"></div>
-
-	<!-- 	<div class="container">
-		<div class="page-wrapper">
-			<div class="login-box">
-
-				<h2 class="title">
-					Login with <span>Bhutan NDI </span> Wallet
-				</h2>
-
-				<a th:href="${deepLink}" class="primary-btn"> Open Bhutan NDI
-					Wallet </a>
-
-				<div class="divider">
-					<span>OR</span>
-				</div>
-
-				QR WRAPPER
-
-								<div class="qr-wrapper">
-
-					LOADER
-					<div id="loader" class="loader"></div>
-					<p th:text="${qrUrl}"></p>
-					<div class="qr-box">
-						<div id="qrcode"></div>
-					</div>
-
-				</div>
-
-				-----NEW QRCODE------
-
-				<div class="qr-wrapper">
-					LOADER
-					<div id="loader" class="loader"></div>
-					<div class="qr-box">
-						<div id="qrcode"></div>
-						LOGO OVERLAY
-						<img th:src="@{/images/QRNDIlogo.png}"
-							style="width:60px; height:60px;" class="qr-logo" alt="NDI Logo">
-					</div>
-
-				</div>
-
-				----END OF QR SCAN-------
-
-				<div class="steps">
-					<p>1. Open Bhutan NDI Wallet on your phone.</p>
-					<p>2. Tap Scan and scan QR code</p>
-				</div>
-
-				<a href="https://www.youtube.com/@BhutanNDI" target="_blank"
-					rel="noopener noreferrer" class="video-btn"> Watch video guide
-					<i class="bi bi-play-circle-fill ms-1"></i>
-				</a>
-
-				<div class="download-text">Don’t have the Bhutan NDI Wallet?</div>
-				<a href="https://www.youtube.com/@BhutanNDI" class="download-link">Download
-					Now!</a>
-
-				<div class="store-links">
-
-					<div class="store-badges">
-
-						<a
-							href="https://play.google.com/store/apps/details?id=com.example.app"
-							target="_blank" class="store-badge-box"> <img
-							th:src="@{/images/PlayStore.png}" alt="Google Play">
-						</a> <a href="https://apps.apple.com/app/id123456789" target="_blank"
-							class="store-badge-box"> <img
-							th:src="@{/images/AppStore.png}" alt="App Store">
-						</a>
-
-					</div>
-
-				</div>
-				<div class="support">
-
-					<a href="https://www.youtube.com/@BhutanNDI" target="_blank" class="download-link">Get
-						Support </a>
-					<p>
-						<i class="bi bi-envelope-fill"></i> ndifeedback@dhi.bt
-						&nbsp;&nbsp; <i class="bi bi-telephone-fill"></i> 1199
-					</p>
-				</div>
-
-				<input type="hidden" id="threadId" th:value="${threadId}" />
-
-			</div>
-
-		</div>
-
-	</div> -->
 
 	<!-- =====================================================
      NDI UI
@@ -618,6 +637,17 @@
 					Scan with <span>Bhutan NDI</span> Wallet
 				</h2>
 
+				<div class="deep-link-section">
+
+					<a th:href="${deepLink}" class="deep-link-btn"> Open Bhutan NDI
+						Wallet </a>
+
+					<div class="deep-link-divider">
+						<span>OR</span>
+					</div>
+
+
+				</div>
 
 				<!-- ==========================================
 			     QR CODE
@@ -656,7 +686,7 @@
 						<span class="step-no">2.</span> <span class="step-text">
 							Tap the Scan button <span class="scan-icon"> <i
 								class="bi bi-qr-code-scan"></i>
-						</span> located on the menu<br> bar and scan QR code
+						</span> located on the menu bar and scan QR code
 						</span>
 					</p>
 
@@ -682,7 +712,7 @@
 				<div class="download-section">
 
 					<p class="download-text">
-						Don't Have the Bhutan NDI Wallet? <a
+						Don't have the Bhutan NDI Wallet? <a
 							href="https://www.bhutanndi.com/" target="_blank"
 							rel="noopener noreferrer" class="download-link"> Download
 							Now! </a>
@@ -723,7 +753,6 @@
 
 				<div class="support">
 
-
 					<a href="https://www.bhutanndi.com/" target="_blank"
 						rel="noopener noreferrer" class="support-title"> Get Support </a>
 
@@ -734,15 +763,16 @@
 						<!-- EMAIL -->
 
 						<a href="mailto:ndifeedback@bhutanndi.bt"> <img
-						th:src="@{/images/Mail.svg}" style="width: 18px; height: 18px;" alt="mail"> &nbsp; ndifeedback@bhutanndi.bt
+							th:src="@{/images/Mail.svg}" style="width: 18px; height: 18px;"
+							alt="mail"> &nbsp; ndifeedback@bhutanndi.bt
 
 						</a>
 
 
 						<!-- PHONE -->
 
-						<a href="tel:1199"> <img
-						th:src="@{/images/Call.svg}" style="width:18px; height: 18px;" alt="call"> 1199
+						<a href="tel:1199"> <img th:src="@{/images/Call.svg}"
+							style="width: 18px; height: 18px;" alt="call"> 1199
 
 						</a>
 
