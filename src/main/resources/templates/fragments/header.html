@@ -62,33 +62,19 @@
 }
 
 .sprms-logo {
-    height: 40px !important;
-    width: auto !important;
-    max-width: none !important;
-    margin-right: 10px;
-    object-fit: contain;
+	height: 40px !important;
+	width: auto !important;
+	max-width: none !important;
+	margin-right: 10px;
+	object-fit: contain;
 }
+
 .sprms-title {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 600;
+	color: #ffffff;
+	font-size: 20px;
+	font-weight: 600;
 }
 
-.desktop-title {
-    display: inline !important;
-}
-
-.mobile-title {
-    display: none !important;
-}
-
-.sprms-header-brand .desktop-title {
-	display: inline !important;
-}
-
-.sprms-header-brand .mobile-title {
-	display: none !important;
-}
 
 /* =========================================
    MOBILE
@@ -97,13 +83,13 @@
 	.sprms-header-brand .desktop-title {
 		display: none !important;
 	}
-	.sprms-header-brand .mobile-title {
+/* 	.sprms-header-brand .mobile-title {
 		display: inline-block !important;
 		color: #ffffff !important;
 		font-size: 17px;
 		font-weight: 600;
 		white-space: nowrap;
-	}
+	} */
 	.sprms-header-content {
 		padding-left: 10px !important;
 		padding-right: 10px !important;
@@ -131,14 +117,15 @@
 
 			<div class="sprms-header-brand">
 
-				<img th:src="@{/images/RCSC-logo.png}" style="height: 50px; margin-right: 15px;" alt="RCSC Logo">
-
+				<img th:src="@{/images/RCSC-logo.png}"
+					style="height: 50px; margin-right: 15px;" alt="RCSC Logo">
+				
 				<!-- Desktop -->
-				<span class="sprms-title desktop-title"> Scholarship Profile
-					and Resource Management System (SPRMS) - RCSC </span>
+				<span class="sprms-title d-none d-md-inline"> Scholarship
+					Profile and Resource Management System (SPRMS) - RCSC </span>
 
 				<!-- Mobile -->
-				<span class="sprms-title mobile-title"> SPRMS - RCSC </span>
+				<span class="sprms-title d-inline d-md-none"> SPRMS - RCSC </span>
 
 			</div>
 
