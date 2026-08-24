@@ -118,7 +118,7 @@
    NDI COLORS
 ========================================================= */
 :root { 
-	--ndi-green: #5AC994;
+	--ndi-green: #5AC994; 
 	--ndi-text: #999999; 
 	--ndi-dark: #222222; 
 	--ndi-border: #cccccc;
@@ -412,7 +412,8 @@
 }
 
 .download-link:hover {
-	text-decoration: underline !important;
+	/* text-decoration: underline !important; */
+	text-decoration: none !important;
 }
 
 /* =========================================================
@@ -452,13 +453,15 @@
 	display: inline-block;
 	/* margin-bottom: 18px; */
 	color: var(--ndi-green) !important;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 600;
 	text-decoration: none !important;
+	
 }
 
 .support-title:hover {
-	text-decoration: underline !important;
+	/* text-decoration: underline !important; */
+	text-decoration: none !important;
 }
 
 /* SUPPORT DETAILS */
@@ -747,6 +750,8 @@
 							href="https://www.bhutanndi.com/" target="_blank"
 							rel="noopener noreferrer" class="download-link"> Download
 							Now! </a> -->
+							
+							<span class="download-link">Download Now!</span>
 					</p>
 				</div>
 
@@ -784,9 +789,9 @@
 
 				<div class="support">
 
-<!-- 					<a href="https://www.bhutanndi.com/" target="_blank"
+					<!-- 					<a href="https://www.bhutanndi.com/" target="_blank"
 						rel="noopener noreferrer" class="support-title"> Get Support </a> -->
-
+					<span class="support-title">Get Support</span>
 
 					<div class="support-details">
 
