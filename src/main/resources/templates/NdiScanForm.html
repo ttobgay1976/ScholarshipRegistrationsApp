@@ -92,6 +92,15 @@
 
 													window.location.href = "/ndi/post-login?thid="
 															+ thid;
+												}else if (data.status === "DECLINED") {
+
+												    console.log("⚠️ User declined information sharing");
+
+												    eventSource.close();
+
+												    showDeclinedScreen();
+
+												    return;
 												}
 
 											} catch (e) {
@@ -456,7 +465,6 @@
 	font-size: 16px;
 	font-weight: 600;
 	text-decoration: none !important;
-	
 }
 
 .support-title:hover {
@@ -636,6 +644,145 @@
 		color: var(--ndi-dark) !important;
 	}
 }
+
+.btn-try-again {
+	background-color: #5AC994;
+	border: 2px solid #5AC994;
+	color: #ffffff;
+	min-width: 120px;
+	height: 30px;
+	border-radius: 20px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.btn-try-again:hover {
+	background-color: #4fbd89;
+	border-color: #4fbd89;
+	color: #ffffff;
+}
+
+.btn-cancel-ndi {
+	background-color: #ffffff;
+	border: 2px solid #5AC994;
+	color: #5AC994;
+	min-width: 120px;
+	height: 30px;
+	border-radius: 20px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.btn-cancel-ndi:hover {
+	background-color: #ffffff;
+	border-color: #5AC994;
+	color: #5AC994;
+}
+
+/* =========================================================
+   NDI REQUEST DECLINED
+========================================================= */
+.ndi-declined-content {
+	display: none;
+	text-align: center;
+}
+
+.declined-box {
+	width: 215px;
+	height: 215px;
+	margin: 0 auto 32px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #f1f4f4;
+	border: 1px solid #d9dede;
+	border-radius: 16px;
+	box-sizing: border-box;
+}
+
+.declined-icon {
+	width: 68px;
+	height: 68px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #ffffff;
+	border: 1px solid #dfe3e3;
+	border-radius: 50%;
+	color: #7d878b;
+}
+
+.declined-icon i {
+	color: #7d878b !important;
+	font-size: 28px !important;
+	line-height: 1;
+}
+
+.declined-label {
+	margin-top: 18px;
+	color: #7d878b;
+	font-size: 15px;
+	font-weight: 700;
+}
+
+.declined-title {
+	margin: 0 0 10px;
+	color: var(--ndi-dark);
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.declined-message {
+	margin: 0 auto 28px;
+	color: #858b8e;
+	font-size: 15px;
+	line-height: 1.7;
+}
+
+.declined-actions {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 32px;
+}
+
+.btn-try-again, .btn-cancel-ndi {
+	min-width: 130px;
+	height: 50px;
+	padding: 0 25px;
+	border-radius: 26px;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.btn-try-again {
+	background-color: var(--ndi-green);
+	border: 2px solid var(--ndi-green);
+	color: #ffffff;
+}
+
+.btn-try-again:hover {
+	background-color: #4fbd89;
+	border-color: #4fbd89;
+	color: #ffffff;
+}
+
+.btn-cancel-ndi {
+	background-color: transparent;
+	border: 1.5px solid var(--ndi-green);
+	color: var(--ndi-green);
+}
+
+.btn-cancel-ndi:hover {
+	background-color: #ffffff;
+	border-color: var(--ndi-green);
+	color: var(--ndi-green);
+}
 </style>
 </head>
 <body>
@@ -671,121 +818,160 @@
 
 				</h2>
 
-				<div class="deep-link-section">
+				<!-- ----QR SECTION--------- -->
 
-					<a th:href="${deepLink}" class="deep-link-btn"> Open Bhutan NDI
-						Wallet </a>
+				<div id="ndiNormalContent">
+					<div class="deep-link-section">
 
-					<div class="deep-link-divider">
-						<span>OR</span>
+						<a th:href="${deepLink}" class="deep-link-btn"> Open Bhutan
+							NDI Wallet </a>
+
+						<div class="deep-link-divider">
+							<span>OR</span>
+						</div>
+
+
 					</div>
 
-
-				</div>
-
-				<!-- ==========================================
+					<!-- ==========================================
 			     QR CODE
 			=========================================== -->
 
-				<div class="qr-wrapper">
+					<div class="qr-wrapper">
 
-					<!-- Loader -->
-					<div id="loader" class="loader"></div>
-
-
-					<div class="qr-box">
-
-						<!-- Generated QR -->
-						<div id="qrcode"></div>
+						<!-- Loader -->
+						<div id="loader" class="loader"></div>
 
 
-						<!-- NDI Logo -->
-						<img th:src="@{/images/QRNDIlogo.png}" class="qr-logo"
-							style="width: 60px; height: 60px;" alt="NDI Logo">
+						<div id="ndiRequestArea" class="qr-box">
+
+							<!-- Generated QR -->
+							<div id="qrcode"></div>
+
+
+							<!-- NDI Logo -->
+							<img th:src="@{/images/QRNDIlogo.png}" class="qr-logo"
+								style="width: 60px; height: 60px;" alt="NDI Logo">
+
+						</div>
+
+					</div>
+
+
+					<!-- ==========================================
+			     SCAN INSTRUCTIONS
+			=========================================== -->
+
+					<div class="steps">
+
+						<p>1. Open Bhutan NDI Wallet on your phone</p>
+
+						<p class="step-two">
+							<span class="step-no">2.</span> <span class="step-text">
+								Tap the Scan button <span class="scan-icon"> <i
+									class="bi bi-qr-code-scan"></i>
+							</span> located on the menu bar and scan the QR code
+							</span>
+						</p>
+
+					</div>
+
+
+					<!-- ==========================================
+			     VIDEO GUIDE
+			=========================================== -->
+					<a href="https://www.youtube.com/@BhutanNDI" target="_blank"
+						rel="noopener noreferrer" class="video-btn"> <span>
+							Watch video guide </span> <span class="play-icon"> <i
+							class="bi bi-play-fill"></i>
+					</span>
+
+					</a>
+
+
+					<!-- ==========================================
+			     DOWNLOAD
+			=========================================== -->
+
+					<div class="download-section">
+
+						<p class="download-text">
+							Don't have the Bhutan NDI Wallet?
+							<!-- <a
+							href="https://www.bhutanndi.com/" target="_blank"
+							rel="noopener noreferrer" class="download-link"> Download
+							Now! </a> -->
+
+							<span class="download-link">Download Now!</span>
+						</p>
+					</div>
+
+					<!-- ==========================================
+			     APP STORES
+				=========================================== -->
+
+					<div class="store-links">
+
+
+						<!-- GOOGLE PLAY -->
+
+						<a href="https://play.google.com/" target="_blank"
+							rel="noopener noreferrer"> <img
+							th:src="@{/images/PlayStore.png}" alt="Get it on Google Play">
+
+						</a>
+
+
+						<!-- APP STORE -->
+
+						<a href="https://apps.apple.com/" target="_blank"
+							rel="noopener noreferrer"> <img
+							th:src="@{/images/AppStore.png}" alt="Download on App Store">
+
+						</a>
+
 
 					</div>
 
 				</div>
 
+				<!-- ----END QR SECTION--------- -->
 
-				<!-- ==========================================
-			     SCAN INSTRUCTIONS
-			=========================================== -->
+				<!-- -----NDI DECLINED SECTION-------------- -->
+				<div id="ndiDeclinedContent" class="ndi-declined-content">
 
-				<div class="steps">
+					<div class="declined-box">
 
-					<p>1. Open Bhutan NDI Wallet on your phone</p>
+						<div class="declined-icon">
+							<i class="bi bi-dash-lg"></i>
+						</div>
 
-					<p class="step-two">
-						<span class="step-no">2.</span> <span class="step-text">
-							Tap the Scan button <span class="scan-icon"> <i
-								class="bi bi-qr-code-scan"></i>
-						</span> located on the menu bar and scan the QR code
-						</span>
+						<div class="declined-label">CANCELLED</div>
+
+					</div>
+
+					<h4 class="declined-title">Request cancelled</h4>
+
+					<p class="declined-message">
+						You declined this request in your Bhutan NDI<br> Wallet.
 					</p>
 
-				</div>
+					<div class="declined-actions">
 
+						<button type="button" class="btn-try-again"
+							onclick="tryAgainNDI()">Try again</button>
 
-				<!-- ==========================================
-			     VIDEO GUIDE
-			=========================================== -->
-				<a href="https://www.youtube.com/@BhutanNDI" target="_blank"
-					rel="noopener noreferrer" class="video-btn"> <span>
-						Watch video guide </span> <span class="play-icon"> <i
-						class="bi bi-play-fill"></i>
-				</span>
+						<button type="button" class="btn-cancel-ndi" onclick="cancelNDI()">
+							Cancel</button>
 
-				</a>
-
-
-				<!-- ==========================================
-			     DOWNLOAD
-			=========================================== -->
-
-				<div class="download-section">
-
-					<p class="download-text">
-						Don't have the Bhutan NDI Wallet? <!-- <a
-							href="https://www.bhutanndi.com/" target="_blank"
-							rel="noopener noreferrer" class="download-link"> Download
-							Now! </a> -->
-							
-							<span class="download-link">Download Now!</span>
-					</p>
-				</div>
-
-				<!-- ==========================================
-			     APP STORES
-				=========================================== -->
-
-				<div class="store-links">
-
-
-					<!-- GOOGLE PLAY -->
-
-					<a href="https://play.google.com/" target="_blank"
-						rel="noopener noreferrer"> <img
-						th:src="@{/images/PlayStore.png}" alt="Get it on Google Play">
-
-					</a>
-
-
-					<!-- APP STORE -->
-
-					<a href="https://apps.apple.com/" target="_blank"
-						rel="noopener noreferrer"> <img
-						th:src="@{/images/AppStore.png}" alt="Download on App Store">
-
-					</a>
-
+					</div>
 
 				</div>
 
-
+				<!-- -----NDI DECLINED SECTION END------------- -->
 				<!-- ==========================================
 			     SUPPORT
-			=========================================== -->
+				=========================================== -->
 
 				<div class="support">
 
@@ -835,5 +1021,45 @@
 	<th:block
 		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
 
+<script type="text/javascript">
+
+function showDeclinedScreen() {
+
+    console.log("⚠️ Showing NDI declined screen");
+
+    const normalContent = document.getElementById("ndiNormalContent");
+    const declinedContent = document.getElementById("ndiDeclinedContent");
+
+    if (!normalContent || !declinedContent) {
+        console.error("NDI screen containers not found");
+        return;
+    }
+
+    // Hide QR, instructions, video, download and app links
+    normalContent.style.display = "none";
+
+    // Show declined screen
+    declinedContent.style.display = "block";
+}
+
+
+function tryAgainNDI() {
+
+    console.log("🔄 Generating new NDI request...");
+
+    // Reload /ndi/login so backend generates
+    // a fresh proof request, threadId and QR code
+    window.location.href = "/ndi/login";
+}
+
+
+function cancelNDI() {
+
+    console.log("❌ NDI login cancelled");
+
+    window.location.href = "http://172.30.3.10:31128";
+}
+
+</script>
 </body>
 </html>

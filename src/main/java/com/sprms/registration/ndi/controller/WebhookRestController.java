@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 
+import com.sprms.registration.api.repository.NdiSessionRepository;
 import com.sprms.registration.api.services.NdiAppUserAuditRepositoryServices;
 import com.sprms.registration.api.services.NdiAuthServices;
 import com.sprms.registration.api.services.NdiDataExtractorServices;
 import com.sprms.registration.api.services.NdiRestServices;
 import com.sprms.registration.api.services.NdiWebhookServices;
+import com.sprms.registration.applicationEnums.NDIStatus;
 import com.sprms.registration.frmbean.NdiSseRegistry;
 import com.sprms.registration.frmbean.PresentationResultRequestDTO;
 import com.sprms.registration.frmbean.ProofRequestResponseDTO;
+import com.sprms.registration.hbmbean.NdiSession;
 import com.sprms.registration.ndievent.NdiVerifiedEvent;
 
 @RestController
@@ -35,17 +38,22 @@ public class WebhookRestController {
 	private final NdiWebhookServices _ndiWebhookServices;
 	private final NdiAuthServices _ndiAuthServices;
 	private final ApplicationEventPublisher _publisher;
+
+	private final NdiSessionRepository _ndiSessionRepository;
+
 	@Autowired
-    private NdiSseRegistry registry;
+	private NdiSseRegistry registry;
 
 	// constructor
 	public WebhookRestController(NdiRestServices ndiRestServices, NdiWebhookServices ndiWebhookServices,
 			NdiAuthServices ndiAuthServices, NdiAppUserAuditRepositoryServices ndiAppUserAuditRepositoryServices,
-			ApplicationEventPublisher applicationEventPublisher,NdiDataExtractorServices ndiDataExtractorServices) {
+			ApplicationEventPublisher applicationEventPublisher, NdiDataExtractorServices ndiDataExtractorServices,
+			NdiSessionRepository ndiSessionRepository) {
 		this._ndiRestServices = ndiRestServices;
 		this._ndiWebhookServices = ndiWebhookServices;
 		this._ndiAuthServices = ndiAuthServices;
 		this._publisher = applicationEventPublisher;
+		this._ndiSessionRepository = ndiSessionRepository;
 	}
 
 	@GetMapping("/new-qr")
@@ -61,8 +69,9 @@ public class WebhookRestController {
 		return response;
 	}
 
-	//THIS AUTOMATICALLY CALLED BY NGROK
-	//FOR PRODUCTION THE URL WILL BE PROVIDED BY GOVTECH AND HAVE TO REPLACE IN THE URL DEFINE CODE
+	// THIS AUTOMATICALLY CALLED BY NGROK
+	// FOR PRODUCTION THE URL WILL BE PROVIDED BY GOVTECH AND HAVE TO REPLACE IN THE
+	// URL DEFINE CODE
 	@PostMapping("/webhook")
 	public ResponseEntity<String> webhook(@RequestBody(required = false) PresentationResultRequestDTO payload,
 			@RequestHeader(value = "authorization", required = false) String authHeader) {
@@ -87,29 +96,51 @@ public class WebhookRestController {
 		}
 
 		// Top level checking
-		//System.out.println("Type: " + payload.getType());
-		//System.out.println("Verification: " + payload.getVerificationResult());
-		//System.out.println("THID: " + payload.getThid());
-		//System.out.println("Holder DID: " + payload.getHolderDid());
+		// System.out.println("Type: " + payload.getType());
+		// System.out.println("Verification: " + payload.getVerificationResult());
+		// System.out.println("THID: " + payload.getThid());
+		// System.out.println("Holder DID: " + payload.getHolderDid());
 
 		// Only proceed if proof is valid
+		/*
+		 * if (!"ProofValidated".equalsIgnoreCase(payload.getVerificationResult())) {
+		 * logger.warn("Proof NOT valid"); return
+		 * ResponseEntity.ok("Ignored - Proof not valid"); }
+		 */
+		// Only proceed if proof is valid
 		if (!"ProofValidated".equalsIgnoreCase(payload.getVerificationResult())) {
-			logger.warn("Proof NOT valid");
-			return ResponseEntity.ok("Ignored - Proof not valid");
+
+			logger.warn("NDI proof declined/not validated. thid={}, result={}", payload.getThid(),
+					payload.getVerificationResult());
+
+			// Find NDI session
+			NdiSession session = _ndiSessionRepository.findByThreadId(payload.getThid());
+
+			if (session != null) {
+
+				session.setNdiStatus(NDIStatus.DECLINED);
+
+				_ndiSessionRepository.save(session);
+
+				logger.info("NDI session updated to DECLINED. thid={}", payload.getThid());
+			}
+
+			// Send DECLINED to browser
+			registry.send(payload.getThid(), "status", Map.of("status", NDIStatus.DECLINED.name()));
+			
+			return ResponseEntity.ok("DECLINED");
 		}
 
 		// fire event ONLY
 		_publisher.publishEvent(new NdiVerifiedEvent(payload, payload.getThid()));
-		
-		 //PUSH EVENT TO FRONTEND
-		  registry.send(payload.getThid(), "status", Map.of(
-		            "status", "PROOF_VALIDATED"
-		    ));
+
+		// PUSH EVENT TO FRONTEND
+		registry.send(payload.getThid(), "status", Map.of("status", "PROOF_VALIDATED"));
 
 		// only pass to service
 		// _ndiWebhookServices.process(payload);
-		
-		  logger.info("@@@AUTH HEADER RECEIVED: {}", authHeader);
+
+		logger.info("@@@AUTH HEADER RECEIVED: {}", authHeader);
 
 		return ResponseEntity.ok("Processed Successfully");
 	}

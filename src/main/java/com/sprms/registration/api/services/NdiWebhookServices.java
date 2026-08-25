@@ -197,6 +197,14 @@ public class NdiWebhookServices {
 
 		PresentationResultRequestDTO payload = event.getPayload();
 		String thid = payload.getThid();
+		
+	    String verificationResult = payload.getVerificationResult();
+	    logger.info(
+	        "NDI event received. thid={}, verificationResult={}",
+	        thid,
+	        verificationResult
+	    );
+	    
 
 		// 🔐 1. IDENTITY GUARD (IDEMPOTENCY)
 		if (_ndiAppUserAuditRepository.existsByThid(thid)) {
@@ -209,6 +217,7 @@ public class NdiWebhookServices {
 			if (!"ProofValidated".equalsIgnoreCase(payload.getVerificationResult())) {
 				return;
 			}
+
 
 			// EXTRACT USER
 			VerifiedUserDTO user = _ndiDataExtractorServices.extract(payload);
