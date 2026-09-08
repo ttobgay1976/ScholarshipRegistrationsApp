@@ -142,6 +142,9 @@ public class DcrcAuthNCitizenServices {
 				// 🔥 MAP BEFORE RETURN (BEST PRACTICE)
 				CitizenDetailDTO dto = new CitizenDetailDTO();
 
+				logger.info("============GENDER STATUS=================");
+				logger.info("Checking the return value of Gender Status :"+ apiData.getGender());
+				
 				dto.setCid(apiData.getCid());
 				dto.setFirstName(apiData.getFirstName());
 				dto.setLastName(apiData.getLastName());
@@ -160,7 +163,8 @@ public class DcrcAuthNCitizenServices {
 			
 
 				// 🔥 example mapping
-				dto.setGender(mapGender(apiData.getGender()));
+				//dto.setGender(mapGender(apiData.getGender()));
+				dto.setGender(apiData.getGender());
 
 				return dto;
 			}
