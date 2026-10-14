@@ -46,15 +46,14 @@ public class NdiRestServices {
 	private final NdiSessionRepository _ndiSessionRepository;
 	private final WebhookRegistrationService _webhookRegistrationService;
 
-	
 	// constructors
 
 	public NdiRestServices(APISchemaConfig apiSchemaConfig, NdiWebhookServices ndiWebhookServices,
-			WebhookRegistrationService webhookRegistrationService,NdiSessionRepository ndiSessionRepository) {
+			WebhookRegistrationService webhookRegistrationService, NdiSessionRepository ndiSessionRepository) {
 		this._apiSchemaConfig = apiSchemaConfig;
 		this._ndiWebhookServices = ndiWebhookServices;
-		this._ndiSessionRepository=ndiSessionRepository;
-		this._webhookRegistrationService=webhookRegistrationService;
+		this._ndiSessionRepository = ndiSessionRepository;
+		this._webhookRegistrationService = webhookRegistrationService;
 	}
 
 	// get the acces token unsing the resttemplate
@@ -82,6 +81,25 @@ public class NdiRestServices {
 
 			HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
 
+
+			/*
+			
+			logger.info("NDI Auth URL: {}", url);
+
+			logger.info("NDI Client ID configured: {}",
+					_apiSchemaConfig.getNdiClientId() != null && !_apiSchemaConfig.getNdiClientId().isBlank());
+
+			logger.info("NDI Client Secret configured: {}", _apiSchemaConfig.getNdiClientSecretId() != null
+					&& !_apiSchemaConfig.getNdiClientSecretId().isBlank());
+
+			logger.info("NDI Client ID length: {}",
+					_apiSchemaConfig.getNdiClientId() != null ? _apiSchemaConfig.getNdiClientId().length() : 0);
+
+			logger.info("NDI Client Secret length: {}",
+					_apiSchemaConfig.getNdiClientSecretId() != null ? _apiSchemaConfig.getNdiClientSecretId().length()
+							: 0);
+			 */
+	
 			ResponseEntity<TokenResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST, request,
 					TokenResponseDTO.class);
 
@@ -137,8 +155,8 @@ public class NdiRestServices {
 
 			// REGISTER THE WEBHOOK FOR THE NDI SERVICE
 			_webhookRegistrationService.registerWebhook(token);
-			
-			//save the session soon after the proof request
+
+			// save the session soon after the proof request
 			NdiSession session = new NdiSession();
 
 			session.setThreadId(response.getBody().getData().getProofRequestThreadId());
@@ -146,7 +164,7 @@ public class NdiRestServices {
 			session.setCreatedAt(DateUtil.getCurrentDateTime());
 
 			_ndiSessionRepository.save(session);
-	        
+
 			// SUBSCRIBE IMMEDIATELY (THIS IS THE KEY STEP)
 			// subscribeToWebhook(response.getBody().getData().getProofRequestThreadId(),
 			// "sprms01", token);
@@ -158,7 +176,7 @@ public class NdiRestServices {
 
 			// 🔥 VERY IMPORTANT: show real API error
 			System.out.println("🔥 STATUS CODE: " + e.getStatusCode());
-			//System.out.println("🔥 RESPONSE BODY: " + e.getResponseBodyAsString());
+			// System.out.println("🔥 RESPONSE BODY: " + e.getResponseBodyAsString());
 
 			throw e;
 		}
@@ -179,16 +197,16 @@ public class NdiRestServices {
 						new ProofRequestPayloadDTO.ProofAttribute("Date of Birth",
 								List.of(new ProofRequestPayloadDTO.Restriction(schema)))));
 	}
-	
-	//getsession attributes
+
+	// getsession attributes
 	public NDIStatus getByThreadId(String thid) {
 
-	    NdiSession entity = _ndiSessionRepository.findByThreadId(thid);
+		NdiSession entity = _ndiSessionRepository.findByThreadId(thid);
 
-	    if (entity == null) {
-	        return NDIStatus.PENDING;
-	    }
+		if (entity == null) {
+			return NDIStatus.PENDING;
+		}
 
-	    return entity.getNdiStatus();
+		return entity.getNdiStatus();
 	}
 }
