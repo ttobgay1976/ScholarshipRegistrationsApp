@@ -12,13 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sprms.registration.config.APISchemaConfig;
 import com.sprms.registration.frmbean.CitizenDetailDTO;
-import com.sprms.registration.frmbean.CitizenDetailsResponseDTO;
 import com.sprms.registration.frmbean.DcrcCititezenDetailsDTO;
 import com.sprms.registration.frmbean.TokenResponseDTO;
 

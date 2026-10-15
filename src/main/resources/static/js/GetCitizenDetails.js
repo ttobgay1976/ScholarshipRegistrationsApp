@@ -99,7 +99,7 @@ function fetchCitizenDetails(cid) {
         
         Swal.fire({
 		    icon: 'error',
-		    title: 'Invalid Citizen ID',
+		    title: 'API Service Status',
 		    text: err.message,
 		    confirmButtonColor: '#dc3545'
 		});

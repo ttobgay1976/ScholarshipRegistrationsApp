@@ -24,6 +24,7 @@ public class CitizenDetailController {
 	private static final Logger logger = LoggerFactory.getLogger(CitizenDetailController.class);
 
 	private final DcrcAuthNCitizenServices _dcrcAuthNCitizenServices;
+
 	// constructor
 	public CitizenDetailController(DcrcAuthNCitizenServices dcrcAuthNCitizenServices,
 			CitizenRegistrationDTOMapper citizenRegistrationDTOMapper) {
@@ -33,27 +34,24 @@ public class CitizenDetailController {
 	@GetMapping("/citizen/details")
 	public ResponseEntity<?> getCitizenDetails(@RequestParam String cid) {
 
-	    logger.info("@@@ CID: {}", cid);
+		logger.info("@@@ CID: {}", cid);
 
-	    try {
-	        String token = _dcrcAuthNCitizenServices.getAccessToken();
+		try {
+			String token = _dcrcAuthNCitizenServices.getAccessToken();
 
-	        CitizenDetailDTO dto =
-	                _dcrcAuthNCitizenServices.getCitizenDetils(cid, token);
+			CitizenDetailDTO dto = _dcrcAuthNCitizenServices.getCitizenDetils(cid, token);
 
-	        if (dto == null) {
-	            return ResponseEntity.status(404)
-	                    .body(Map.of("error", "Citizen not found"));
-	        }
+			if (dto == null) {
+				return ResponseEntity.status(404).body(Map.of("error", "Citizen not found"));
+			}
 
-	        return ResponseEntity.ok(dto);
+			return ResponseEntity.ok(dto);
 
-	    } catch (Exception e) {
+		} catch (Exception e) {
 
-	        logger.error("DCRC service down", e);
+			logger.error("DCRC service down", e);
 
-	        return ResponseEntity.status(503)
-	                .body(Map.of("error", "DCRC service is currently unavailable"));
-	    }
+			return ResponseEntity.status(503).body(Map.of("error", "DCRC service is currently unavailable"));
+		}
 	}
 }
