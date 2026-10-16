@@ -81,9 +81,6 @@ public class NdiRestServices {
 
 			HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
 
-
-			/*
-			
 			logger.info("NDI Auth URL: {}", url);
 
 			logger.info("NDI Client ID configured: {}",
@@ -98,8 +95,7 @@ public class NdiRestServices {
 			logger.info("NDI Client Secret length: {}",
 					_apiSchemaConfig.getNdiClientSecretId() != null ? _apiSchemaConfig.getNdiClientSecretId().length()
 							: 0);
-			 */
-	
+
 			ResponseEntity<TokenResponseDTO> response = restTemplate.exchange(url, HttpMethod.POST, request,
 					TokenResponseDTO.class);
 
