@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -35,46 +35,9 @@ public class NdiSseController {
 	// Shared scheduler (good approach)
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
 
-	@GetMapping("/events_OLD/{thid}")
-	public SseEmitter stream_OLD(@PathVariable String thid,
-			@RequestHeader(value = "Last-Event-ID", required = false) String lastEventId) {
-
-		logger.info("SSE connected thid={}, lastEventId={}", thid, lastEventId);
-
-		SseEmitter emitter = new SseEmitter(0L);
-
-		registry.add(thid, emitter);
-
-		// ================= HEARTBEAT =================
-		ScheduledFuture<?> heartbeat = scheduler.scheduleAtFixedRate(() -> {
-
-			try {
-				emitter.send(SseEmitter.event().id(String.valueOf(System.currentTimeMillis())).name("heartbeat")
-						.data("ping").reconnectTime(5000));
-
-			} catch (Exception ex) {
-
-				logger.info("SSE disconnected thid={}: {}", thid, ex.getMessage());
-
-				registry.cleanup(thid); // single cleanup source
-
-			}
-
-		}, 15, 15, TimeUnit.SECONDS); // start delay added (IMPORTANT)
-
-		registry.addFuture(thid, heartbeat);
-
-		// ================= RECONNECT SUPPORT =================
-		if (lastEventId != null) {
-			logger.info("Reconnected thid={} from lastEventId={}", thid, lastEventId);
-		}
-
-		return emitter;
-	}
-
 	// new code
-	@GetMapping("/events/{thid}")
-	public SseEmitter stream(@PathVariable String thid,
+	@GetMapping("/events_OOOLLLDDD/{thid}")
+	public SseEmitter stream_Ooolldd(@PathVariable String thid,
 			@RequestHeader(value = "Last-Event-ID", required = false) String lastEventId) {
 
 		logger.info("SSE connected thid={}", thid);
@@ -133,6 +96,92 @@ public class NdiSseController {
 
 		if (lastEventId != null) {
 			logger.info("Reconnected thid={} lastEventId={}", thid, lastEventId);
+		}
+
+		return emitter;
+	}
+
+	@GetMapping(value = "/events/{thid}", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public SseEmitter stream(@PathVariable String thid,
+			@RequestHeader(value = "Last-Event-ID", required = false) String lastEventId) {
+
+		logger.info("SSE connected thid={}", thid);
+
+		SseEmitter emitter = new SseEmitter(0L);
+
+		registry.register(thid, emitter);
+
+		// =====================================================
+		// LIFECYCLE HANDLERS
+		// =====================================================
+
+		emitter.onCompletion(() -> {
+			logger.info("SSE completed thid={}", thid);
+			registry.cleanup(thid);
+		});
+
+		emitter.onTimeout(() -> {
+			logger.info("SSE timeout thid={}", thid);
+			registry.cleanup(thid);
+		});
+
+		emitter.onError(ex -> {
+			logger.warn("SSE error thid={}, msg={}", thid, ex.getMessage());
+
+			registry.cleanup(thid);
+		});
+
+		// =====================================================
+		// INITIAL EVENT
+		// =====================================================
+
+		try {
+
+			emitter.send(SseEmitter.event().name("connected").data("connected").reconnectTime(5000));
+
+		} catch (Exception ex) {
+
+			logger.warn("Initial SSE send failed thid={}, msg={}", thid, ex.getMessage());
+
+			registry.cleanup(thid);
+
+			return emitter;
+		}
+
+		// =====================================================
+		// HEARTBEAT
+		// =====================================================
+
+		ScheduledFuture<?> heartbeat = scheduler.scheduleWithFixedDelay(() -> {
+
+			if (!registry.exists(thid)) {
+				return;
+			}
+
+			try {
+
+				emitter.send(SseEmitter.event().id(String.valueOf(System.currentTimeMillis())).name("heartbeat")
+						.data("ping").reconnectTime(5000));
+
+			} catch (Exception ex) {
+
+				logger.warn("SSE heartbeat failed thid={}, msg={}", thid, ex.getMessage());
+
+				// Connection is already dead.
+				registry.cleanup(thid);
+			}
+
+		}, 15, 15, TimeUnit.SECONDS);
+
+		registry.addFuture(thid, heartbeat);
+
+		// =====================================================
+		// RECONNECTION
+		// =====================================================
+
+		if (lastEventId != null) {
+
+			logger.info("SSE reconnected thid={}, lastEventId={}", thid, lastEventId);
 		}
 
 		return emitter;

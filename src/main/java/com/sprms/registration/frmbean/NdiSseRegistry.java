@@ -1,18 +1,14 @@
 package com.sprms.registration.frmbean;
 
 import java.io.IOException;
-
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-import org.springframework.web.context.request.async.AsyncRequestNotUsableException;
 
 @Component
 public class NdiSseRegistry {
@@ -23,72 +19,63 @@ public class NdiSseRegistry {
 
 	private final Map<String, ScheduledFuture<?>> futures = new ConcurrentHashMap<>();
 
-	// ✅ PUT IT HERE (class level, not inside method)
-	private final Set<String> cleaned = ConcurrentHashMap.newKeySet();
+	// =====================================================
+	// REGISTER
+	// =====================================================
 
-	private final Map<String, AtomicInteger> failCounts = new ConcurrentHashMap<>();
+	public void register(String thid, SseEmitter emitter) {
 
-	/**
-	 * Register emitter
-	 */
-	public void add(String thid, SseEmitter emitter) {
+		SseEmitter oldEmitter = emitters.put(thid, emitter);
 
-		emitters.put(thid, emitter);
+		if (oldEmitter != null && oldEmitter != emitter) {
+			logger.debug("Replacing existing SSE emitter. thid={}", thid);
+		}
 
 		logger.info("SSE emitter registered. thid={}", thid);
-
-		emitter.onCompletion(() -> {
-
-			logger.info("SSE completed. thid={}", thid);
-
-			cleanup(thid);
-		});
-
-		emitter.onTimeout(() -> {
-
-			logger.info("SSE timeout. thid={}", thid);
-
-			cleanup(thid);
-
-			try {
-				emitter.complete();
-			} catch (Exception ignored) {
-			}
-		});
-
-		emitter.onError(ex -> {
-
-			logger.warn("SSE error. thid={}, message={}", thid, ex.getMessage());
-
-			cleanup(thid);
-		});
 	}
 
-	/**
-	 * Retrieve emitter
-	 */
+	// =====================================================
+	// GET
+	// =====================================================
+
 	public SseEmitter get(String thid) {
+
 		return emitters.get(thid);
 	}
 
-	/**
-	 * Register polling future
-	 */
-	public void addFuture(String thid, ScheduledFuture<?> future) {
+	// =====================================================
+	// EXISTS
+	// =====================================================
 
-		futures.put(thid, future);
+	public boolean exists(String thid) {
+
+		return emitters.containsKey(thid);
 	}
 
-	/**
-	 * Send SSE event
-	 */
-	public void send(String thid, String eventName, Object data) {
+	// =====================================================
+	// HEARTBEAT FUTURE
+	// =====================================================
+
+	public void addFuture(String thid, ScheduledFuture<?> future) {
+
+		ScheduledFuture<?> oldFuture = futures.put(thid, future);
+
+		if (oldFuture != null) {
+			oldFuture.cancel(false);
+		}
+	}
+
+	// =====================================================
+	// SEND EVENT
+	// =====================================================
+
+	public void send_OLD(String thid, String eventName, Object data) {
 
 		SseEmitter emitter = emitters.get(thid);
 
 		if (emitter == null) {
 
-			logger.debug("No active SSE emitter found for thid={}", thid);
+			logger.debug("No active SSE emitter. thid={}", thid);
 
 			return;
 		}
@@ -99,77 +86,106 @@ public class NdiSseRegistry {
 
 		} catch (IOException ex) {
 
-			logger.info("Client disconnected. thid={}", thid);
+			logger.info("SSE client disconnected. thid={}", thid);
 
 			cleanup(thid);
 
 		} catch (Exception ex) {
 
-			logger.error("SSE send failed. thid={}", thid, ex);
+			logger.warn("SSE send failed. thid={}, msg={}", thid, ex.getMessage());
 
 			cleanup(thid);
 		}
 	}
 
-	/**
-	 * Remove emitter only
-	 */
-	public void remove(String thid) {
+	// NEW CODE
+	public void send(String thid, String eventName, Object data) {
 
-		emitters.remove(thid);
+		SseEmitter emitter = emitters.get(thid);
+
+		if (emitter == null) {
+
+			logger.info("No active SSE connection. thid={}, event={}", thid, eventName);
+
+			return;
+		}
+
+		try {
+
+			emitter.send(SseEmitter.event().id(String.valueOf(System.currentTimeMillis())).name(eventName).data(data));
+
+			logger.debug("SSE event sent. thid={}, event={}", thid, eventName);
+
+		} catch (IOException ex) {
+
+			/*
+			 * Normal situation when: - browser closes - page changes - EventSource
+			 * reconnects - proxy terminates connection
+			 */
+
+			logger.warn("SSE client disconnected. thid={}, event={}, msg={}", thid, eventName, ex.getMessage());
+
+			cleanup(thid);
+
+		} catch (IllegalStateException ex) {
+
+			logger.warn("SSE emitter already completed. thid={}, event={}, msg={}", thid, eventName, ex.getMessage());
+
+			cleanup(thid);
+
+		} catch (Exception ex) {
+
+			logger.warn("Unexpected SSE send failure. thid={}, event={}, msg={}", thid, eventName, ex.getMessage());
+
+			cleanup(thid);
+		}
 	}
 
-	/**
-	 * Remove future only
-	 */
-	public void removeExecutor(String thid) {
+	// =====================================================
+	// CLEANUP
+	// =====================================================
+
+	public void cleanup(String thid) {
+
+		SseEmitter removed = emitters.remove(thid);
 
 		ScheduledFuture<?> future = futures.remove(thid);
 
 		if (future != null) {
-			future.cancel(true);
+			future.cancel(false);
+		}
+
+		if (removed != null) {
+
+			logger.info("@@@SSE cleaned safely thid={}", thid);
 		}
 	}
 
-	/**
-	 * Complete cleanup
-	 */
-	public void cleanup(String thid) {
+	// =====================================================
+	// NORMAL COMPLETION
+	// =====================================================
+
+	public void complete(String thid) {
 
 		SseEmitter emitter = emitters.remove(thid);
 
-		// prevent duplicate cleanup
+		ScheduledFuture<?> future = futures.remove(thid);
+
+		if (future != null) {
+			future.cancel(false);
+		}
+
 		if (emitter == null) {
 			return;
 		}
 
 		try {
+
 			emitter.complete();
-			
+
 		} catch (Exception ex) {
-			logger.debug("Ignoring SSE cleanup exception. thid={}, msg={}", thid, ex.getMessage());
+
+			logger.debug("Ignoring SSE completion error. thid={}, msg={}", thid, ex.getMessage());
 		}
-
-		// 🔥 IMPORTANT: cancel heartbeat task (IF YOU HAVE IT)
-		ScheduledFuture<?> future = futures.remove(thid);
-		if (future != null) {
-			future.cancel(true);
-		}
-
-		logger.info("@@@SSE cleaned safely thid={}", thid);
-	}
-
-	public void register(String thid, SseEmitter emitter) {
-		emitters.put(thid, emitter);
-	}
-
-	public boolean exists(String thid) {
-		return emitters.containsKey(thid);
-	}
-
-	public void removeOnly(String thid) {
-		emitters.remove(thid);
-		failCounts.remove(thid);
-		logger.info("@@@SSE removed from registry thid={}", thid);
 	}
 }

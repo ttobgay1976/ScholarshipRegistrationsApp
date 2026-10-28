@@ -40,9 +40,8 @@ public class SecurityConfig {
 						// Scholarship Public Module
 						// ==========================
 
-						.requestMatchers("/", "/ndi/login", "/ndi/events/**", "/ndi/post-login**", "/webhook**",
-								"/scholarship/registrationfrm", "/scholarship/**", "/student/check-student-type/**",
-								"/service/citizen/details**")
+						.requestMatchers("/", "/ndi/**", "/webhook/**", "/scholarship/**",
+								"/student/check-student-type/**", "/service/citizen/details**")
 						.permitAll()
 
 						// Static resources

@@ -1,5 +1,7 @@
 package com.sprms.registration.GlobalExceptionHandler;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ui.Model;
@@ -34,6 +36,23 @@ public class GlobalExceptionHandler {
 		model.addAttribute("errorMessage", message);
 
 		return DISPLAY_NDI_ERROR_PAGE;
+	}
+
+	// ================= IO Exception =================
+	@ExceptionHandler(IOException.class)
+	public void handleIOException(IOException ex) {
+
+		String message = ex.getMessage();
+
+		if (message != null && (message.contains("Broken pipe") || message.contains("Connection reset")
+				|| message.contains("connection was aborted"))) {
+
+			logger.warn("@@@Client disconnected from SSE response: {}", message);
+
+			return;
+		}
+
+		logger.error("I/O ERROR", ex);
 	}
 
 	// ================= GENERIC EXCEPTION =================
