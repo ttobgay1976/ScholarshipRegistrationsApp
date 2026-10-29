@@ -40,7 +40,7 @@ public class SecurityConfig {
 						// Scholarship Public Module
 						// ==========================
 
-						.requestMatchers("/", "/ndi/**", "/webhook/**", "/scholarship/**",
+						.requestMatchers("/", "/ndi/**", "/webhook**","/webhook/**", "/scholarship/**",
 								"/student/check-student-type/**", "/service/citizen/details**")
 						.permitAll()
 

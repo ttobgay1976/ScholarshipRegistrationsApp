@@ -35,6 +35,7 @@ public class WebhookRegistrationService {
 
 	@Value("${ndi.webhook.url}")
 	private String webhookUrl;
+	
 
 	// call the Repository
 	private final APISchemaConfig _apiSchemaConfig;
@@ -59,14 +60,17 @@ public class WebhookRegistrationService {
 
 	public String registerWebhook(String accessToken) {
 
+		logger.info("NDI webhook URL configured as: {}", webhookUrl);
+		
 		validateAccessToken(accessToken);
 
 		// Skip duplicate registration during application runtime
 		if (isRegistered(webhookId)) {
 
 			logger.info("@@@Webhook [{}] already registered locally.", webhookId);
-
+			
 			return "@@@Webhook already registered locally.";
+			
 		}
 
 		try {
@@ -84,7 +88,7 @@ public class WebhookRegistrationService {
 
 			logger.info("Webhook registered successfully. WebhookId={}, Status={}", webhookId,
 					response.getStatusCode());
-
+			
 			return response.getBody();
 
 		} catch (HttpClientErrorException.Conflict ex) {
