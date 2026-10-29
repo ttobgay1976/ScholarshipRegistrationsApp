@@ -58,60 +58,109 @@
 							console.log("Heartbeat my heart");
 						});
 
-						eventSource
-								.addEventListener(
-										"status",
-										function(event) {
+						eventSource.addEventListener(
+							    "status",
+							    function(event) {
 
-											console
-													.log(
-															"🔥 STATUS EVENT RECEIVED:",
-															event);
-											console.log("@@RAW DATA:",
-													event.data);
+							        console.log(
+							            "🔥 STATUS EVENT RECEIVED:",
+							            event
+							        );
 
-											try {
-												console.log("Parsing data:",
-														event.data);
+							        console.log(
+							            "@@RAW DATA:",
+							            event.data
+							        );
 
-												const data = JSON
-														.parse(event.data);
+							        try {
 
-												console.log("Parsed object:",
-														data);
+							            const data =
+							                JSON.parse(event.data);
 
-												if (data.status === "PROOF_VALIDATED") {
-													console
-															.log("✅ Proof validated");
-													eventSource.close();
+							            console.log(
+							                "Parsed object:",
+							                data
+							            );
 
-													console
-															.log(
-																	"Redirecting with thid:",
-																	thid);
 
-													window.location.href = "/ndi/post-login?thid="
-															+ thid;
-												}else if (data.status === "DECLINED") {
+							            // ==========================================
+							            // PROOF VALIDATED
+							            // ==========================================
 
-												    console.log("⚠️ User declined information sharing");
+							            if (data.status === "PROOF_VALIDATED") {
 
-												    eventSource.close();
+							                console.log(
+							                    "✅ Proof validated"
+							                );
 
-												    showDeclinedScreen();
+							                // Close SSE
+							                eventSource.close();
 
-												    return;
-												}
 
-											} catch (e) {
-												console.error(
-														"❌ JSON parse failed:",
-														e);
-												console.error(
-														"Raw event data:",
-														event.data);
-											}
-										});
+							                // SHOW SPINNER OVER NDI SCREEN
+							                showNdiProcessing(
+							                    "Identity Verified",
+							                    "Please wait while we retrieve and process your information."
+							                );
+
+
+							                console.log(
+							                    "Processing NDI post-login. thid:",
+							                    thid
+							                );
+
+
+							                /*
+							                 * Allow browser to render overlay/spinner
+							                 * before starting navigation.
+							                 */
+							                setTimeout(function() {
+
+							                    window.location.href =
+							                        "/ndi/post-login?thid="
+							                        + encodeURIComponent(thid);
+
+							                }, 5000);
+
+
+							                return;
+							            }
+
+
+							            // ==========================================
+							            // DECLINED
+							            // ==========================================
+
+							            else if (data.status === "DECLINED") {
+
+							                console.log(
+							                    "⚠️ User declined information sharing"
+							                );
+
+							                eventSource.close();
+
+							                hideNdiProcessing();
+
+							                showDeclinedScreen();
+
+							                return;
+							            }
+
+
+							        } catch (e) {
+
+							            console.error(
+							                "❌ JSON parse failed:",
+							                e
+							            );
+
+							            console.error(
+							                "Raw event data:",
+							                event.data
+							            );
+							        }
+							    }
+							);
 
 						eventSource.onerror = function() {
 							console
@@ -359,7 +408,7 @@
 
 /* Play icon becomes BLUE */
 .video-btn:hover .play-icon i {
-	color: var(--ndi-green) !important;
+	color: var(- -ndi-green) !important;
 }
 
 /* PLAY CIRCLE */
@@ -461,7 +510,7 @@
 .support-title {
 	display: inline-block;
 	/* margin-bottom: 18px; */
-	color: var(--ndi-green) !important;
+	color: var(- -ndi-green) !important;
 	font-size: 16px;
 	font-weight: 600;
 	text-decoration: none !important;
@@ -564,7 +613,7 @@
 
 /* Only Bhutan NDI is green */
 .title .ndi-text {
-	color: var(--ndi-green) !important;
+	color: var(- -ndi-green) !important;
 }
 
 /* =========================================================
@@ -641,7 +690,7 @@
 	}
 	.mobile-caption {
 		display: inline !important;
-		color: var(--ndi-dark) !important;
+		color: var(- -ndi-dark) !important;
 	}
 }
 
@@ -730,7 +779,7 @@
 
 .declined-title {
 	margin: 0 0 10px;
-	color: var(--ndi-dark);
+	color: var(- -ndi-dark);
 	font-size: 18px;
 	font-weight: 700;
 }
@@ -783,6 +832,160 @@
 	border-color: var(--ndi-green);
 	color: var(--ndi-green);
 }
+
+/* ---SPINNER------- */
+/* ==========================================================
+   NDI LOGIN BOX
+   Required so processing overlay stays inside the NDI card
+========================================================== */
+
+.login-box {
+    position: relative;
+}
+
+
+/* ==========================================================
+   NDI PROCESSING OVERLAY
+========================================================== */
+
+.ndi-processing-overlay {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* Hidden initially */
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    /*
+     * White transparent background.
+     * Existing QR screen remains slightly visible underneath.
+     */
+   background: rgba(255, 255, 255, 0.75);
+
+    z-index: 9999;
+
+    border-radius: inherit;
+}
+
+
+/* ==========================================================
+   ACTIVE STATE
+========================================================== */
+
+.ndi-processing-overlay.active {
+    display: flex;
+}
+
+
+/* ==========================================================
+   PROCESSING CONTENT
+========================================================== */
+
+.ndi-processing-content {
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    text-align: center;
+}
+
+
+/* ==========================================================
+   BIGGER SPINNER
+========================================================== */
+
+.ndi-processing-spinner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.ndi-processing-spinner .spinner-border {
+    width: 4.5rem;
+    height: 4.5rem;
+
+    border: 6px solid #e5e5e5;
+    border-top-color: #5AC994;
+    border-radius: 50%;
+
+    animation: ndiSpinnerRotate 0.8s linear infinite;
+}
+
+@keyframes ndiSpinnerRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ==========================================================
+   BIGGER TITLE
+========================================================== */
+
+.ndi-processing-title {
+    margin: 0 0 12px 0;
+
+    color: #222222;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   BIGGER MESSAGE
+========================================================== */
+
+.ndi-processing-message {
+    margin: 0;
+
+    color: #555555;
+
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 576px) {
+
+    .ndi-processing-content {
+        padding: 25px;
+    }
+
+    .ndi-processing-spinner .spinner-border {
+        width: 4rem;
+        height: 4rem;
+        border-width: 5px;
+    }
+
+    .ndi-processing-title {
+        font-size: 20px;
+    }
+
+    .ndi-processing-message {
+        font-size: 15px;
+    }
+}
+
+/* ---END OF SPINNER------- */
 </style>
 </head>
 <body>
@@ -795,14 +998,44 @@
 
 	<div class="container mt-5">
 
+		<!-- ----NEW NDI SCAN CHECK---------- -->
 		<div class="page-wrapper">
 
-			<div class="login-box">
+			<div class="login-box" id="ndiLoginBox">
+
+	<!-- =====================================================
+             NDI PROCESSING OVERLAY
+             Hidden initially.
+             Shown after NDI verification while further processing.
+        ====================================================== -->
+				<div id="ndiProcessingOverlay" class="ndi-processing-overlay"
+					aria-hidden="true">
+
+					<div class="ndi-processing-content">
+
+						<!-- Spinner -->
+						<div class="ndi-processing-spinner">
+							<div class="spinner-border" role="status" aria-label="Processing">
+								<span class="visually-hidden">Processing...</span>
+							</div>
+						</div>
+
+						<!-- Processing Title -->
+						<h4 id="ndiProcessingTitle" class="ndi-processing-title">
+							Verifying with Bhutan NDI</h4>
+
+						<!-- Processing Message -->
+						<p id="ndiProcessingMessage" class="ndi-processing-message">
+							Please wait while we securely process your information.</p>
+
+					</div>
+
+				</div>
 
 
-				<!-- ==========================================
-			     TITLE
-			=========================================== -->
+				<!-- =====================================================
+             TITLE
+        ====================================================== -->
 
 				<h2 class="title">
 
@@ -818,9 +1051,17 @@
 
 				</h2>
 
-				<!-- ----QR SECTION--------- -->
+
+				<!-- =====================================================
+             NORMAL NDI CONTENT
+        ====================================================== -->
 
 				<div id="ndiNormalContent">
+
+					<!-- =================================================
+                 DEEP LINK SECTION
+            ================================================== -->
+
 					<div class="deep-link-section">
 
 						<a th:href="${deepLink}" class="deep-link-btn"> Open Bhutan
@@ -830,24 +1071,22 @@
 							<span>OR</span>
 						</div>
 
-
 					</div>
 
-					<!-- ==========================================
-			     QR CODE
-			=========================================== -->
+
+					<!-- =================================================
+                 QR CODE
+            ================================================== -->
 
 					<div class="qr-wrapper">
 
-						<!-- Loader -->
+						<!-- Existing QR Loader -->
 						<div id="loader" class="loader"></div>
-
 
 						<div id="ndiRequestArea" class="qr-box">
 
 							<!-- Generated QR -->
 							<div id="qrcode"></div>
-
 
 							<!-- NDI Logo -->
 							<img th:src="@{/images/QRNDIlogo.png}" class="qr-logo"
@@ -858,28 +1097,33 @@
 					</div>
 
 
-					<!-- ==========================================
-			     SCAN INSTRUCTIONS
-			=========================================== -->
+					<!-- =================================================
+                 SCAN INSTRUCTIONS
+            ================================================== -->
 
 					<div class="steps">
 
 						<p>1. Open Bhutan NDI Wallet on your phone</p>
 
 						<p class="step-two">
-							<span class="step-no">2.</span> <span class="step-text">
+
+							<span class="step-no"> 2. </span> <span class="step-text">
+
 								Tap the Scan button <span class="scan-icon"> <i
 									class="bi bi-qr-code-scan"></i>
 							</span> located on the menu bar and scan the QR code
+
 							</span>
+
 						</p>
 
 					</div>
 
 
-					<!-- ==========================================
-			     VIDEO GUIDE
-			=========================================== -->
+					<!-- =================================================
+                 VIDEO GUIDE
+            ================================================== -->
+
 					<a href="https://www.youtube.com/@BhutanNDI" target="_blank"
 						rel="noopener noreferrer" class="video-btn"> <span>
 							Watch video guide </span> <span class="play-icon"> <i
@@ -889,29 +1133,27 @@
 					</a>
 
 
-					<!-- ==========================================
-			     DOWNLOAD
-			=========================================== -->
+					<!-- =================================================
+                 DOWNLOAD
+            ================================================== -->
 
 					<div class="download-section">
 
 						<p class="download-text">
-							Don't have the Bhutan NDI Wallet?
-							<!-- <a
-							href="https://www.bhutanndi.com/" target="_blank"
-							rel="noopener noreferrer" class="download-link"> Download
-							Now! </a> -->
 
-							<span class="download-link">Download Now!</span>
+							Don't have the Bhutan NDI Wallet? <span class="download-link">
+								Download Now! </span>
+
 						</p>
+
 					</div>
 
-					<!-- ==========================================
-			     APP STORES
-				=========================================== -->
+
+					<!-- =================================================
+                 APP STORE LINKS
+            ================================================== -->
 
 					<div class="store-links">
-
 
 						<!-- GOOGLE PLAY -->
 
@@ -930,14 +1172,15 @@
 
 						</a>
 
-
 					</div>
 
 				</div>
 
-				<!-- ----END QR SECTION--------- -->
 
-				<!-- -----NDI DECLINED SECTION-------------- -->
+				<!-- =====================================================
+             NDI DECLINED SECTION
+        ====================================================== -->
+
 				<div id="ndiDeclinedContent" class="ndi-declined-content">
 
 					<div class="declined-box">
@@ -950,11 +1193,14 @@
 
 					</div>
 
+
 					<h4 class="declined-title">Request cancelled</h4>
 
+
 					<p class="declined-message">
-						You declined this request in your Bhutan NDI<br> Wallet.
+						You declined this request in your Bhutan NDI <br> Wallet.
 					</p>
+
 
 					<div class="declined-actions">
 
@@ -968,19 +1214,17 @@
 
 				</div>
 
-				<!-- -----NDI DECLINED SECTION END------------- -->
-				<!-- ==========================================
-			     SUPPORT
-				=========================================== -->
+
+				<!-- =====================================================
+             SUPPORT
+        ====================================================== -->
 
 				<div class="support">
 
-					<!-- 					<a href="https://www.bhutanndi.com/" target="_blank"
-						rel="noopener noreferrer" class="support-title"> Get Support </a> -->
-					<span class="support-title">Get Support</span>
+					<span class="support-title"> Get Support </span>
+
 
 					<div class="support-details">
-
 
 						<!-- EMAIL -->
 
@@ -994,72 +1238,157 @@
 						<!-- PHONE -->
 
 						<a href="tel:1199"> <img th:src="@{/images/Call.svg}"
-							style="width: 18px; height: 18px;" alt="call">&nbsp;1199
+							style="width: 18px; height: 18px;" alt="call"> &nbsp;1199
 
 						</a>
-
 
 					</div>
 
 				</div>
 
 
-				<!-- ==========================================
-			     EXISTING THREAD ID
-			=========================================== -->
+				<!-- =====================================================
+             THREAD ID
+        ====================================================== -->
 
 				<input type="hidden" id="threadId" th:value="${threadId}">
-
 
 			</div>
 
 		</div>
-
+		<!-- ----END OF NEW NDI SCAN CHECK---------- -->
 	</div>
 
 	<!-- JS Fragment -->
 	<th:block
 		th:replace="~{fragments/commonresource_js :: common_resource_js}"></th:block>
 
+	<script type="text/javascript">
+		function showDeclinedScreen() {
+
+			console.log("⚠️ Showing NDI declined screen");
+
+			const normalContent = document.getElementById("ndiNormalContent");
+			const declinedContent = document
+					.getElementById("ndiDeclinedContent");
+
+			if (!normalContent || !declinedContent) {
+				console.error("NDI screen containers not found");
+				return;
+			}
+
+			// Hide QR, instructions, video, download and app links
+			normalContent.style.display = "none";
+
+			// Show declined screen
+			declinedContent.style.display = "block";
+		}
+
+		function tryAgainNDI() {
+
+			console.log("🔄 Generating new NDI request...");
+
+			// Reload /ndi/login so backend generates
+			// a fresh proof request, threadId and QR code
+			window.location.href = "/ndi/login";
+		}
+
+		function cancelNDI() {
+
+			console.log("❌ NDI login cancelled");
+
+			window.location.href = "http://172.30.3.10:31128";
+		}
+	</script>
+	
 <script type="text/javascript">
+/* ==========================================================
+SHOW NDI PROCESSING OVERLAY
+========================================================== */
 
-function showDeclinedScreen() {
+function showNdiProcessing(title, message) {
 
-    console.log("⚠️ Showing NDI declined screen");
+ const overlay =
+     document.getElementById("ndiProcessingOverlay");
 
-    const normalContent = document.getElementById("ndiNormalContent");
-    const declinedContent = document.getElementById("ndiDeclinedContent");
+ const titleElement =
+     document.getElementById("ndiProcessingTitle");
 
-    if (!normalContent || !declinedContent) {
-        console.error("NDI screen containers not found");
-        return;
-    }
+ const messageElement =
+     document.getElementById("ndiProcessingMessage");
 
-    // Hide QR, instructions, video, download and app links
-    normalContent.style.display = "none";
 
-    // Show declined screen
-    declinedContent.style.display = "block";
+ if (!overlay) {
+     console.error("NDI processing overlay not found.");
+     return;
+ }
+
+
+ if (title && titleElement) {
+     titleElement.textContent = title;
+ }
+
+
+ if (message && messageElement) {
+     messageElement.textContent = message;
+ }
+
+
+ overlay.classList.add("active");
+
+ overlay.setAttribute(
+     "aria-hidden",
+     "false"
+ );
 }
 
 
-function tryAgainNDI() {
+/* ==========================================================
+HIDE NDI PROCESSING OVERLAY
+========================================================== */
 
-    console.log("🔄 Generating new NDI request...");
+function hideNdiProcessing() {
 
-    // Reload /ndi/login so backend generates
-    // a fresh proof request, threadId and QR code
-    window.location.href = "/ndi/login";
+ const overlay =
+     document.getElementById("ndiProcessingOverlay");
+
+
+ if (!overlay) {
+     return;
+ }
+
+
+ overlay.classList.remove("active");
+
+ overlay.setAttribute(
+     "aria-hidden",
+     "true"
+ );
 }
 
 
-function cancelNDI() {
+/* ==========================================================
+UPDATE PROCESSING MESSAGE
+========================================================== */
 
-    console.log("❌ NDI login cancelled");
+function updateNdiProcessing(title, message) {
 
-    window.location.href = "http://172.30.3.10:31128";
+ const titleElement =
+     document.getElementById("ndiProcessingTitle");
+
+ const messageElement =
+     document.getElementById("ndiProcessingMessage");
+
+
+ if (title && titleElement) {
+     titleElement.textContent = title;
+ }
+
+
+ if (message && messageElement) {
+     messageElement.textContent = message;
+ }
 }
-
 </script>
 </body>
 </html>
