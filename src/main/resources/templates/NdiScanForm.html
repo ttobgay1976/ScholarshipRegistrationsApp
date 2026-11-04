@@ -11,163 +11,198 @@
 <th:block
 	th:replace="~{fragments/commonresource_css :: common_resource_css}"></th:block>
 <script th:inline="javascript">
-	document
-			.addEventListener(
-					"DOMContentLoaded",
-					function() {
+	document.addEventListener("DOMContentLoaded", function() {
 
-						// ================= QR CODE =================
-						const qrUrlString = /*[[${qrUrl}]]*/"";
+		// =====================================================
+		// QR CODE
+		// =====================================================
 
-						if (qrUrlString) {
-							new QRCode(document.getElementById("qrcode"), {
-								text : qrUrlString,
-								width : 500,
-								height : 500,
-								colorDark : "#000000",
-								colorLight : "#ffffff",
-								correctLevel : QRCode.CorrectLevel.H
-							});
-						}
+		const qrUrlString = /*[[${qrUrl}]]*/"";
 
-						// ================= THREAD ID =================
-						const threadInput = document.getElementById("threadId");
-
-						if (!threadInput) {
-							console.error("threadId not found");
-							return;
-						}
-
-						const thid = threadInput.value;
-
-						// ================= SSE CONNECTION =================
-						const eventSource = new EventSource(
-								window.location.origin + "/ndi/events/" + thid);
-
-						eventSource.onopen = function() {
-							console.log("✅ SSE CONNECTED");
-						};
-
-						eventSource.onmessage = function(event) {
-							console.log("Message:", event.data);
-						};
-
-						eventSource.addEventListener("heartbeat", function(
-								event) {
-							console.log("Heartbeat:", event.data);
-							console.log("Heartbeat my heart");
-						});
-
-						eventSource.addEventListener(
-							    "status",
-							    function(event) {
-
-							        console.log(
-							            "🔥 STATUS EVENT RECEIVED:",
-							            event
-							        );
-
-							        console.log(
-							            "@@RAW DATA:",
-							            event.data
-							        );
-
-							        try {
-
-							            const data =
-							                JSON.parse(event.data);
-
-							            console.log(
-							                "Parsed object:",
-							                data
-							            );
+		if (qrUrlString) {
+			new QRCode(document.getElementById("qrcode"), {
+				text: qrUrlString,
+				width: 500,
+				height: 500,
+				colorDark: "#000000",
+				colorLight: "#ffffff",
+				correctLevel: QRCode.CorrectLevel.H
+			});
+		}
 
 
-							            // ==========================================
-							            // PROOF VALIDATED
-							            // ==========================================
+		// =====================================================
+		// THREAD ID
+		// =====================================================
 
-							            if (data.status === "PROOF_VALIDATED") {
+		const threadInput = document.getElementById("threadId");
 
-							                console.log(
-							                    "✅ Proof validated"
-							                );
+		if (!threadInput) {
+			console.error("threadId not found");
+			return;
+		}
 
-							                // Close SSE
-							                eventSource.close();
-
-
-							                // SHOW SPINNER OVER NDI SCREEN
-							                showNdiProcessing(
-							                    "Identity Verified",
-							                    "Please wait while we retrieve and process your information."
-							                );
+		const thid = threadInput.value;
 
 
-							                console.log(
-							                    "Processing NDI post-login. thid:",
-							                    thid
-							                );
+		// =====================================================
+		// SSE CONNECTION
+		// =====================================================
+
+		const eventSource = new EventSource(
+			window.location.origin + "/ndi/events/" + thid
+		);
 
 
-							                /*
-							                 * Allow browser to render overlay/spinner
-							                 * before starting navigation.
-							                 */
-							                setTimeout(function() {
+		// =====================================================
+		// SSE CONNECTED
+		// =====================================================
 
-							                    window.location.href =
-							                        "/ndi/post-login?thid="
-							                        + encodeURIComponent(thid);
-
-							                }, 5000);
+		eventSource.onopen = function() {
+			console.log("✅ SSE CONNECTED");
+		};
 
 
-							                return;
-							            }
+		// =====================================================
+		// DEFAULT MESSAGE
+		// =====================================================
+
+		eventSource.onmessage = function(event) {
+			console.log("Message:", event.data);
+		};
 
 
-							            // ==========================================
-							            // DECLINED
-							            // ==========================================
+		// =====================================================
+		// HEARTBEAT
+		// =====================================================
 
-							            else if (data.status === "DECLINED") {
-
-							                console.log(
-							                    "⚠️ User declined information sharing"
-							                );
-
-							                eventSource.close();
-
-							                hideNdiProcessing();
-
-							                showDeclinedScreen();
-
-							                return;
-							            }
+		eventSource.addEventListener("heartbeat", function(event) {
+			console.log("Heartbeat:", event.data);
+			console.log("Heartbeat my heart");
+		});
 
 
-							        } catch (e) {
+		// =====================================================
+		// NDI STATUS EVENT
+		// =====================================================
 
-							            console.error(
-							                "❌ JSON parse failed:",
-							                e
-							            );
+		eventSource.addEventListener("status", function(event) {
 
-							            console.error(
-							                "Raw event data:",
-							                event.data
-							            );
-							        }
-							    }
-							);
+			console.log("🔥 STATUS EVENT RECEIVED:", event);
+			console.log("@@RAW DATA:", event.data);
 
-						eventSource.onerror = function() {
-							console
-									.log("⚠️ SSE connection lost (browser will auto-reconnect)");
-						};
+			//THIS IS ADDED TO SEE IF THE SPINER WORK BEFORE IT HIT PROFF-READING/VALIODATION
+			//ADDED ON DT 30102026
+			// Show processing overlay/spinner
+			showNdiProcessing(
+				"Waiting for Connection",
+				"Please wait while we establish a connection to process your information."
+			);
+			
+			setTimeout(function() {
+			
+				updateNdiProcessing(
+					"Processing Information",
+					"Connection established. Please wait while we process your information."
+				);
+			
+			}, 5000);
+			
+			try {
 
-					});
+				const data = JSON.parse(event.data);
+
+				console.log("Parsed object:", data);
+
+				// =================================================
+				// PROOF VALIDATED
+				// =================================================
+
+				if (data.status === "PROOF_VALIDATED") {
+
+					console.log("✅ Proof validated");
+
+					// Close SSE connection
+					eventSource.close();
+
+
+					// Show processing overlay/spinner
+					showNdiProcessing(
+						"Identity Verified",
+						"Please wait while we retrieve and process your information."
+					);
+
+
+					console.log(
+						"Processing NDI post-login. thid:",
+						thid
+					);
+
+
+					/*
+					 * Allow the browser to display the processing
+					 * overlay before navigating to post-login.
+					 */
+					setTimeout(function() {
+
+						window.location.href =
+							"/ndi/post-login?thid="
+							+ encodeURIComponent(thid);
+
+					}, 300);
+
+					return;
+				}
+
+
+				// =================================================
+				// DECLINED
+				// =================================================
+
+				if (data.status === "DECLINED") {
+
+					console.log(
+						"⚠️ User declined information sharing"
+					);
+
+					// Close SSE connection
+					eventSource.close();
+
+					// Hide processing overlay if visible
+					hideNdiProcessing();
+
+					// Display declined screen
+					showDeclinedScreen();
+
+					return;
+				}
+
+			} catch (error) {
+
+				console.error(
+					"❌ JSON parse failed:",
+					error
+				);
+
+				console.error(
+					"Raw event data:",
+					event.data
+				);
+			}
+		});
+
+
+		// =====================================================
+		// SSE ERROR / RECONNECTION
+		// =====================================================
+
+		eventSource.onerror = function() {
+			console.log(
+				"⚠️ SSE connection lost (browser will auto-reconnect)"
+			);
+		};
+
+	});
 </script>
 
 <style type="text/css">
@@ -408,7 +443,7 @@
 
 /* Play icon becomes BLUE */
 .video-btn:hover .play-icon i {
-	color: var(- -ndi-green) !important;
+	color: var(--ndi-green) !important;
 }
 
 /* PLAY CIRCLE */
@@ -510,7 +545,7 @@
 .support-title {
 	display: inline-block;
 	/* margin-bottom: 18px; */
-	color: var(- -ndi-green) !important;
+	color: var(--ndi-green) !important;
 	font-size: 16px;
 	font-weight: 600;
 	text-decoration: none !important;
@@ -613,7 +648,7 @@
 
 /* Only Bhutan NDI is green */
 .title .ndi-text {
-	color: var(- -ndi-green) !important;
+	color: var(--ndi-green) !important;
 }
 
 /* =========================================================
@@ -690,7 +725,7 @@
 	}
 	.mobile-caption {
 		display: inline !important;
-		color: var(- -ndi-dark) !important;
+		color: var(--ndi-dark) !important;
 	}
 }
 
