@@ -69,7 +69,8 @@ public class NdiRestServices {
 			}
 
 			// String url = authBaseUrl + "/authentication/v1/authenticate";
-			String url = _apiSchemaConfig.getNdiAuthBaseURL() + "/authentication/v1/authenticate";
+			//String url = _apiSchemaConfig.getNdiAuthBaseURL() + "/authentication/v1/authenticate";
+			String url = _apiSchemaConfig.getNdiAuthBaseURL() + "/authentication/authenticate";
 
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -137,7 +138,9 @@ public class NdiRestServices {
 
 		ProofRequestPayloadDTO payload = buildLoginProofRequest();
 
-		String url = _apiSchemaConfig.getNdiProofRequestBaseURL() + "/verifier/v1/proof-request";
+		//String url = _apiSchemaConfig.getNdiProofRequestBaseURL() + "/verifier/v1/proof-request";
+		String url = _apiSchemaConfig.getNdiProofRequestBaseURL() + "/verifier/proof-request";
+			
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
