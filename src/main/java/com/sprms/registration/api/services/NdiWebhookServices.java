@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -53,6 +54,10 @@ public class NdiWebhookServices {
 
 	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Value("${ndi.webhook.id}")
+	private String webhookId;
+	
 
 	// constructor to initialize the services and repository
 	public NdiWebhookServices(NdiAuthServices ndiAuthServices, APISchemaConfig apiSchemaConfig,
@@ -80,8 +85,10 @@ public class NdiWebhookServices {
 
 		// Request body
 		Map<String, String> body = new HashMap<>();
-		body.put("webhookId", "sprms01");
+		body.put("webhookId", webhookId); //this change to dynamic fetch from propertise file
 		body.put("threadId", threadId);
+		
+		logger.info("@@@The registered webhookId:"+ webhookId);
 
 		// Headers
 		HttpHeaders headers = new HttpHeaders();
