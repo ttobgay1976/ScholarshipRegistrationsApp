@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -54,6 +55,9 @@ public class NdiWebhookServices {
 	@Autowired
 	private RestTemplate restTemplate;
 
+	@Value("${ndi.webhook.id}")
+	private String webhookId;
+
 	// constructor to initialize the services and repository
 	public NdiWebhookServices(NdiAuthServices ndiAuthServices, APISchemaConfig apiSchemaConfig,
 			NdiDataExtractorServices ndiDataExtractorServices, NdiAppUserRepository ndiAppUserRepository,
@@ -67,7 +71,7 @@ public class NdiWebhookServices {
 		this._ndiAppUserRepository = ndiAppUserRepository;
 		this._ndiWebhookRepositoryServices = ndiWebhookRepositoryServices;
 		this._ndiAppUserAuditRepository = ndiAppUserAuditRepository;
-		this._ndiSessionRepository=ndiSessionRepository;
+		this._ndiSessionRepository = ndiSessionRepository;
 	}
 
 	public void webhookSubscribe(String threadId) {
@@ -80,7 +84,7 @@ public class NdiWebhookServices {
 
 		// Request body
 		Map<String, String> body = new HashMap<>();
-		body.put("webhookId", "sprms01");
+		body.put("webhookId", webhookId);
 		body.put("threadId", threadId);
 
 		// Headers
@@ -197,14 +201,9 @@ public class NdiWebhookServices {
 
 		PresentationResultRequestDTO payload = event.getPayload();
 		String thid = payload.getThid();
-		
-	    String verificationResult = payload.getVerificationResult();
-	    logger.info(
-	        "NDI event received. thid={}, verificationResult={}",
-	        thid,
-	        verificationResult
-	    );
-	    
+
+		String verificationResult = payload.getVerificationResult();
+		logger.info("NDI event received. thid={}, verificationResult={}", thid, verificationResult);
 
 		// 🔐 1. IDENTITY GUARD (IDEMPOTENCY)
 		if (_ndiAppUserAuditRepository.existsByThid(thid)) {
@@ -213,11 +212,10 @@ public class NdiWebhookServices {
 
 		try {
 
-			//invalid proof
+			// invalid proof
 			if (!"ProofValidated".equalsIgnoreCase(payload.getVerificationResult())) {
 				return;
 			}
-
 
 			// EXTRACT USER
 			VerifiedUserDTO user = _ndiDataExtractorServices.extract(payload);
@@ -228,10 +226,10 @@ public class NdiWebhookServices {
 			// AUDIT SUCCESS
 			saveAuditSuccess(thid, user);
 
-			//store TEMP mapping for login completion
+			// store TEMP mapping for login completion
 			NdiLoginStoreServices.saveUser(thid, user);
 
-			//update the session details
+			// update the session details
 			NdiSession session = _ndiSessionRepository.findByThreadId(payload.getThid());
 
 			session.setNdiStatus(NDIStatus.PROOF_VALIDATED);
@@ -243,7 +241,7 @@ public class NdiWebhookServices {
 			// websocket notify UI
 			// _webSocketService.sendLoginSuccess(thid, user);
 
-			//unsubscribe last
+			// unsubscribe last
 			unsubscribe(thid);
 
 		} catch (Exception e) {
