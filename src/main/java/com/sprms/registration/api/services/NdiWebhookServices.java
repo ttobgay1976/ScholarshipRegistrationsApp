@@ -88,6 +88,7 @@ public class NdiWebhookServices {
 		body.put("webhookId", webhookId); //this change to dynamic fetch from propertise file
 		body.put("threadId", threadId);
 		
+		logger.info("@@@Check the webhook ID registration");
 		logger.info("@@@The registered webhookId:"+ webhookId);
 
 		// Headers
