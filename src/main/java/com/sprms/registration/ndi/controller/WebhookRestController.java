@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,8 +73,8 @@ public class WebhookRestController {
 	// THIS AUTOMATICALLY CALLED BY NGROK
 	// FOR PRODUCTION THE URL WILL BE PROVIDED BY GOVTECH AND HAVE TO REPLACE IN THE
 	// URL DEFINE CODE
-	@PostMapping("/webhook")
-	public ResponseEntity<String> webhook(@RequestBody(required = false) PresentationResultRequestDTO payload,
+	@PostMapping("/webhook_OLD")
+	public ResponseEntity<String> webhook_OLD(@RequestBody(required = false) PresentationResultRequestDTO payload,
 			@RequestHeader(value = "authorization", required = false) String authHeader) {
 
 		System.out.println("=== WEBHOOK HIT ===");
@@ -127,7 +128,7 @@ public class WebhookRestController {
 
 			// Send DECLINED to browser
 			registry.send(payload.getThid(), "status", Map.of("status", NDIStatus.DECLINED.name()));
-			
+
 			return ResponseEntity.ok("DECLINED");
 		}
 
@@ -143,6 +144,82 @@ public class WebhookRestController {
 		logger.info("@@@AUTH HEADER RECEIVED: {}", authHeader);
 
 		return ResponseEntity.ok("Processed Successfully");
+	}
+
+	// NEW CODE
+	@PostMapping("/webhook")
+	public ResponseEntity<String> webhook(@RequestBody(required = false) PresentationResultRequestDTO payload,
+			@RequestHeader(value = "Authorization", required = false) String authHeader) {
+
+		logger.info("NDI webhook request received");
+
+		// 1. Verify webhook authentication
+		if (!_ndiAuthServices.isValidToken(authHeader)) {
+
+			logger.warn("Unauthorized NDI webhook request");
+
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+		}
+
+		// 2. Validate payload
+		if (payload == null || payload.getThid() == null || payload.getThid().isBlank()
+				|| payload.getVerificationResult() == null) {
+
+			logger.warn("Invalid NDI webhook payload");
+
+			return ResponseEntity.badRequest().body("Invalid payload");
+		}
+
+		String thid = payload.getThid();
+		String verificationResult = payload.getVerificationResult();
+
+		// 3. Find the associated login session
+		NdiSession session = _ndiSessionRepository.findByThreadId(thid);
+
+		if (session == null) {
+
+			logger.warn("Unknown NDI transaction");
+
+			return ResponseEntity.badRequest().body("Unknown transaction");
+		}
+
+		// 4. Check duplicate processing
+		if (_ndiWebhookServices.isDuplicate(thid)) {
+
+			logger.info("Duplicate NDI webhook received");
+
+			return ResponseEntity.ok("Duplicate ignored");
+		}
+
+		// 5. Process validated proof
+		if ("ProofValidated".equalsIgnoreCase(verificationResult)) {
+
+			_publisher.publishEvent(new NdiVerifiedEvent(payload, thid));
+
+			registry.send(thid, "status", Map.of("status", "PROOF_VALIDATED"));
+
+			logger.info("NDI proof validated for thid={}", thid);
+
+			return ResponseEntity.ok("Processed Successfully");
+		}
+
+		// 6. Handle explicit decline
+		if ("ProofDeclined".equalsIgnoreCase(verificationResult)) {
+
+			session.setNdiStatus(NDIStatus.DECLINED);
+			_ndiSessionRepository.save(session);
+
+			registry.send(thid, "status", Map.of("status", NDIStatus.DECLINED.name()));
+
+			logger.info("NDI proof declined for thid={}", thid);
+
+			return ResponseEntity.ok("DECLINED");
+		}
+
+		// 7. Other event types
+		logger.warn("Unhandled NDI verification result: {}", verificationResult);
+
+		return ResponseEntity.ok("Event ignored");
 	}
 
 }

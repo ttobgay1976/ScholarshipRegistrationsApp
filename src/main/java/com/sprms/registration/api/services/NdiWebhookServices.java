@@ -88,7 +88,7 @@ public class NdiWebhookServices {
 		body.put("webhookId", webhookId);
 		body.put("threadId", threadId);
 		
-		logger.info("@@@Check the WebhookId registration....");
+		logger.info("@@@Check the webhook ID registration");
 		logger.info("@@@The registered webhookId:"+ webhookId);
 
 		// Headers
